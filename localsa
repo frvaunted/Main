@@ -1,295 +1,496 @@
-local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
-local anc = game.Players.LocalPlayer.Character.UpperTorso
-local p1 = CFrame.new(-1218.86951, 140.311691, -954.159973)
-local o1 = CFrame.new(-1210.86951, 140.311691, -954.159973)
+wait(1)
+pl.CFrame = o1
+wait(3)
+pl.CFrame =p1
+wait(3)
+
+pl.CFrame = o2
+wait(3)
+pl.CFrame =p2
+wait(3)
+
+pl.CFrame = o3
+wait(3)
+pl.CFrame =p3
+wait(3)
+
+pl.CFrame = o4
+wait(3)
+pl.CFrame = p4
+wait(3)
+
+pl.CFrame = o5
+wait(3)
+pl.CFrame = p5
+wait(3)
+
+pl.CFrame = o6
+wait(3)
+pl.CFrame = p6
+wait(3)
+
+pl.CFrame = o7
+wait(3)
+pl.CFrame = p7
+wait(3)
+
+pl.CFrame = o8
+wait(3)
+pl.CFrame = p8
+wait(3)
+
+pl.CFrame = o9
+wait(3)
+pl.CFrame = p9
+wait(3)
+
+pl.CFrame = o10
+wait(3)
+pl.CFrame = p10
+wait(3)
+
+pl.CFrame = o11
+wait(3)
+pl.CFrame = p11
+wait(3)
+
+pl.CFrame = o12
+wait(3)
+pl.CFrame = p12
+wait(3)
+
+pl.CFrame = o13
+wait(3)
+pl.CFrame = p13
+wait(3)
+
+pl.CFrame = o14
+wait(3)
+pl.CFrame = p14
+wait(3)
+
+pl.CFrame = o15
+wait(3)
+pl.CFrame = p15
+wait(3)
+
+pl.CFrame = o16
+wait(3)
+pl.CFrame = p16
+wait(3)
+
+pl.CFrame = o17
+wait(3)
+pl.CFrame = p17
+wait(3)
+
+pl.CFrame = o18
+wait(3)
+pl.CFrame = p18
+wait(3)
+
+pl.CFrame = o19
+wait(3)
+pl.CFrame = p19
+wait(3)
+
+pl.CFrame = o20
+wait(3)
+pl.CFrame = p20
+wait(3)
+
+pl.CFrame = o21
+wait(3)
+pl.CFrame = p21
+wait(3)
+
+pl.CFrame = o22
+wait(3)
+pl.CFrame = p22
+wait(3)
+
+pl.CFrame = o23
+wait(3)
+pl.CFrame = p23
+wait(3)
+
+pl.CFrame = o24
+wait(3)
+pl.CFrame = p24
+wait(3)
+
+pl.CFrame = o25
+wait(3)
+pl.CFrame = p25
+wait(3)
+
+pl.CFrame = o26
+wait(3)
+pl.CFrame = p26
+wait(3)
+
+pl.CFrame = o27
+wait(3)
+pl.CFrame = p27
+wait(3)
+
+pl.CFrame = o28
+wait(3)
+pl.CFrame = p28
+wait(3)
+
+pl.CFrame = o29
+wait(3)
+pl.CFrame = p29
+wait(3)
+
+pl.CFrame = o30
+wait(3)
+pl.CFrame = p30
+wait(3)
+
+pl.CFrame = o31
+wait(3)
+pl.CFrame = p31
+wait(3)
+
+pl.CFrame = o32
+wait(3)
+pl.CFrame = p32
+wait(3)
+
+pl.CFrame = o33
+wait(3)
+pl.CFrame = p33
+wait(3)
+
+pl.CFrame = o34
+wait(3)
+pl.CFrame = p34
+wait(3)
+
+pl.CFrame = o35
+wait(3)
+pl.CFrame = p35
+wait(3)
+
+pl.CFrame = o36
+wait(3)
+pl.CFrame = p36
+wait(3)
+
+pl.CFrame = o37
+wait(3)
+pl.CFrame = p37
+wait(3)
+
+pl.CFrame = o38
+wait(3)
+pl.CFrame = p38
+wait(3)
+
+pl.CFrame = o39
+wait(3)
+pl.CFrame = p39
+wait(3)
+
+pl.CFrame = o40
+wait(3)
+pl.CFrame = p40
+wait(3)
+
+pl.CFrame = o41
+wait(3)
+pl.CFrame = p41
+wait(3)
+
+pl.CFrame = o42
+wait(3)
+pl.CFrame = p42
+wait(3)
+
+pl.CFrame = o43
+wait(3)
+pl.CFrame = p43
+wait(3)
+
+pl.CFrame = o44
+wait(3)
+pl.CFrame = p44
+wait(3)
+
+pl.CFrame = o45
+wait(3)
+pl.CFrame = p45
+wait(3)
+
+pl.CFrame = o46
+wait(3)
+pl.CFrame = p46
+wait(3)
+
+pl.CFrame = o47
+wait(3)
+pl.CFrame = p47
+wait(3)
+
+pl.CFrame = o48
+wait(3)
+pl.CFrame = p48
+wait(3)
+
+pl.CFrame = 49
+wait(3)
+pl.CFrame = p49
+wait(3)
+
+pl.CFrame = o50
+wait(3)
+pl.CFrame = p50
+wait(3)
+
+pl.CFrame = o51
+wait(3)
+pl.CFrame = p51
+wait(3)
+
+pl.CFrame = o52
+wait(3)
+pl.CFrame = p52
+wait(3)
+
+pl.CFrame = o53
+wait(3)
+pl.CFrame = p53
+wait(3)
+
+pl.CFrame = o54
+wait(3)
+pl.CFrame = p54
+wait(3)
+
+pl.CFrame = o55
+wait(3)
+pl.CFrame = p55
+wait(3)
+
+pl.CFrame = o56
+wait(3)
+pl.CFrame = p56
+wait(3)
+
+pl.CFrame = o57
+wait(3)
+pl.CFrame = p57
+wait(3)
+
+pl.CFrame = o58
+wait(3)
+pl.CFrame = p58
+wait(3)
+
+pl.CFrame = o59
+wait(3)
+pl.CFrame = p59
+wait(3)
+
+pl.CFrame = o60
+wait(3)
+pl.CFrame = p60
+wait(3)
+
+pl.CFrame = o61
+wait(3)
+pl.CFrame = p61
+wait(3)
+
+pl.CFrame = o62
+wait(3)
+pl.CFrame = p62
+wait(3)
+
+pl.CFrame = o63
+wait(3)
+pl.CFrame = p63
+wait(3)
+
+pl.CFrame = o64
+wait(3)
+pl.CFrame = p64
+wait(3)
+
+pl.CFrame = o65
+wait(3)
+pl.CFrame = p65
+wait(3)
+
+pl.CFrame = o66
+wait(3)
+pl.CFrame = p66
+wait(3)
+
+pl.CFrame = o67
+wait(3)
+pl.CFrame = p67
+wait(3)
+
+pl.CFrame = o68
+wait(3)
+pl.CFrame = p68
+wait(3)
+
+pl.CFrame = o69
+wait(3)
+pl.CFrame = p69
+wait(3)
+
+pl.CFrame = o70
+wait(3)
+pl.CFrame = p70
+wait(3)
+
+pl.CFrame = o71
+wait(3)
+pl.CFrame = p71
+wait(3)
+
+pl.CFrame = o72
+wait(3)
+pl.CFrame = p72
+wait(3)
+
+pl.CFrame = o73
+wait(3)
+pl.CFrame = p73
+wait(3)
+
+pl.CFrame = o74
+wait(3)
+pl.CFrame = p74
+wait(3)
+
+pl.CFrame = o75
+wait(3)
+pl.CFrame = p75
+wait(3)
+
+pl.CFrame = o76
+wait(3)
+pl.CFrame = p76
+wait(3)
+
+pl.CFrame = o77
+wait(3)
+pl.CFrame = p77
+wait(3)
+
+pl.CFrame = o78
+wait(3)
+pl.CFrame = p78
+wait(3)
+
+pl.CFrame = o79
+wait(3)
+pl.CFrame = p79
+wait(3)
+
+pl.CFrame = o80
+wait(3)
+pl.CFrame = p80
+wait(3)
+
+pl.CFrame = o81
+wait(3)
+pl.CFrame = p81
+wait(3)
+
+pl.CFrame = o82
+wait(3)
+pl.CFrame = p82
+wait(3)
+
+pl.CFrame = o83
+wait(3)
+pl.CFrame = p83
+wait(3)
+
+pl.CFrame = o84
+wait(3)
+pl.CFrame = p84
+wait(3)
+
+pl.CFrame = o85
+wait(3)
+pl.CFrame = p85
+wait(3)
+
+pl.CFrame = o86
+wait(3)
+pl.CFrame = p86
+wait(3)
+
+pl.CFrame = o87
+wait(3)
+pl.CFrame = p87
+wait(3)
+
+pl.CFrame = o88
+wait(3)
+pl.CFrame = p88
+wait(3)
+
+pl.CFrame = o89
+wait(3)
+pl.CFrame = p89
+wait(3)
+
+pl.CFrame = o90
+wait(3)
+pl.CFrame = p90
+wait(3)
+
+pl.CFrame = o91
+wait(3)
+pl.CFrame = p91
+wait(3)
+
+pl.CFrame = o92
+wait(3)
+pl.CFrame = p92
+wait(3)
+
+pl.CFrame = o93
+wait(3)
+pl.CFrame = p93
+wait(3)
+
+pl.CFrame = o94
+wait(3)
+pl.CFrame = p94
+wait(3)
+
+pl.CFrame = o95
+wait(3)
+pl.CFrame = p95
+wait(3)
+
+pl.CFrame = o96
+wait(3)
+pl.CFrame = p96
+wait(3)
+
+pl.CFrame = o97
+wait(3)
+pl.CFrame = p97
+wait(3)
+
+pl.CFrame = o98
+wait(3)
+pl.CFrame = p98
+wait(3)
+
+pl.CFrame = o99
+wait(3)
+pl.CFrame = p99
+wait(3)
 
-local p2 = CFrame.new(-177.550003, 348.082886, 1021.75879)
-local o2 = CFrame.new(-170.550003, 348.082886, 1021.75879)
-
-local p3 = CFrame.new(1766.96277, 508.181702, 1979.54675)
-local o3 = CFrame.new(1758.96277, 508.181702, 1979.54675)
-
-local p4 = CFrame.new(1135.58582, 857.219482, 2377.8689)
-local o4 = CFrame.new(1130.58582, 857.219482, 2377.8689)
-
-local p5 = CFrame.new(-2743.29932, 125.553131, -2649.49976)
-local o5 = CFrame.new(-2749.29932, 125.553131, -2649.49976)
-
-local p6 = CFrame.new(-1001.44714, 282.905377, -1933.32385)
-local o6 = CFrame.new(-1010.44714, 282.605377, -1933.32385)
-
-local p7 = CFrame.new(1642.43262, 1273.53601, -1672.11511)
-local o7 = CFrame.new(1632.5460205078, 1271.8389892578, -1681.6540527344)
-
-local p8 = CFrame.new(1369.81238, 736.814453, 517.547791)
-local o8 = CFrame.new(1360.81238, 736.814453, 517.547791)
-
-local p9 = CFrame.new(754.131226, 777.411499, 1833.84766)
-local o9 = CFrame.new(759.131226, 777.411499, 1833.84766)
-
-local p10 = CFrame.new(-1486.51086, 314.212921, 968.924194)
-local o10 = CFrame.new(-1480.51086, 314.212921, 968.924194)
-
-local p11 = CFrame.new(-2216.22168, 123.773354, -2761.51904)
-local o11 = CFrame.new(-2210.22168, 123.773354, -2761.51904)
-
-local p12 = CFrame.new(-2441.11963, 145.673111, -2769.30688)
-local o12 = CFrame.new(-2449.11963, 145.673111, -2769.30688)
-
-local p13 = CFrame.new(1666.30981, 1160.38013, -1726.59753)
-local o13 = CFrame.new(1674.3985595703, 1161.9398193359, -1725.5017089844)
-
-local p14 = CFrame.new(143.380463, 646.068481, -347.836273)
-local o14 = CFrame.new(149.380463, 646.068481, -347.836273)
-
-local p15 = CFrame.new(977.245972, 624.454895, 112.191277)
-local o15 = CFrame.new(970.245972, 624.454895, 112.191277)
-
-local p16 = CFrame.new(1576.02039, 973.009644, 1365.71155)
-local o16 = CFrame.new(1570.02039, 973.009644, 1365.71155)
-
-local p17 = CFrame.new(1870.05078, 987.716248, 97.0572357)
-local o17 = CFrame.new(1879.05078, 987.716248, 97.0572357)
-
-local p18 = CFrame.new(679.159851, 921.41925, 2115.39917)
-local o18 = CFrame.new(670.159851, 921.41925, 2115.39917)
-
-local p19 = CFrame.new(352.960663, 607.988647, 2547.64722)
-local o19 = CFrame.new(333.18103027344, 613.91516113281, 2556.6147460938)
-
-local p20 = CFrame.new(713.577515, 984.713684, -66.0514221)
-local o20 = CFrame.new(719.577515, 984.713684, -66.0514221)
-
-local p21 = CFrame.new(751.51001, 738.240601, -671.610046)
-local o21 = CFrame.new(759.51001, 738.240601, -671.610046)
-
-local p22 = CFrame.new(2929.48657, 422.769104, 1646.4375)
-local o22 = CFrame.new(2934.53515625, 418.61761474609, 1640.2161865234)
-
-local p23 = CFrame.new(-516.02948, 442.212402, 1796.86987)
-local o23 = CFrame.new(-510.02948, 442.212402, 1796.86987)
-
-local p24 = CFrame.new(-471.222351, 336.733765, -1100.10913)
-local o24 = CFrame.new(-479.222351, 336.733765, -1100.10913)
-
-local p25 = CFrame.new(-1083.9917, 413.877716, -2794.74097)
-local o25 = CFrame.new(-1081.7497558594, 419.73797607422, -2806.5119628906)
-
-local p26 = CFrame.new(836.675171, 1261.14709, -1940.00598)
-local o26 = CFrame.new(825.02923583984, 1260.0925292969, -1943.0258789062)
-
-local p27 = CFrame.new(1896.97302, 655.040344, -143.768311)
-local o27 = CFrame.new(1890.97302, 655.040344, -143.768311)
-
-local p28 = CFrame.new(-1.60259485, 620.313904, -1116.29944)
-local o28 = CFrame.new(-9.60259485, 620.313904, -1116.29944)
-
-local p29 = CFrame.new(1884.75452, 702.057739, 1317.31934)
-local o29 = CFrame.new(1889.75452, 702.057739, 1317.31934)
-
-local p30 = CFrame.new(-2646.06592, 131.151199, 463.605072)
-local o30 = CFrame.new(-2640.06592, 131.151199, 463.605072)
-
-local p31 = CFrame.new(1018.90961, 769.941101, 105.08744)
-local o31 = CFrame.new(1010.90961, 769.941101, 105.08744)
-
-local p32 = CFrame.new(946.062866, 777.131165, 162.998123)
-local o32 = CFrame.new(940.062866, 777.131165, 162.998123)
-
-local p33 = CFrame.new(915.746887, 770.101135, 7.12567186)
-local o33 = CFrame.new(910.746887, 770.101135, 7.12567186)
-
-local p34 = CFrame.new(883.797058, 776.960632, 105.810837)
-local o34 = CFrame.new(889.797058, 776.960632, 105.810837)
-
-local p35 = CFrame.new(921.7547, 795.273132, 254.621613)
-local o35 = CFrame.new(929.7547, 795.273132, 254.621613)
-
-local p36 = CFrame.new(977.658569, 781.342041, 201.314468)
-local o36 = CFrame.new(970.658569, 781.342041, 201.314468)
-
-local p37 = CFrame.new(1007.60712, 768.150391, 147.798416)
-local o37 = CFrame.new(1000.60712, 768.150391, 147.798416)
-
-local p38 = CFrame.new(1029.07898, 767.521912, 57.7324486)
-local o38 = CFrame.new(1020.07898, 767.521912, 57.7324486)
-
-local p39 = CFrame.new(1056.01782, 821.91449, -38.7388382)
-local o39 = CFrame.new(1050.01782, 821.91449, -38.7388382)
-
-local p40 = CFrame.new(908.472107, 767.521912, 80.9780426)
-local o40 = CFrame.new(900.472107, 767.521912, 80.9780426)
-
-local p41 = CFrame.new(902.093506, 780.78717, 204.991898)
-local o41 = CFrame.new(897.27874755859, 782.38696289062, 190.8376159668)
-
-local p42 = CFrame.new(1112.64209, 773.056335, 1637.91492)
-local o42 = CFrame.new(1127.5074462891, 771.90991210938, 1629.2247314453)
-
-local p43 = CFrame.new(1148.11987, 771.713318, 1684.99609)
-local o43 = CFrame.new(1153.7443847656, 772.35235595703, 1682.8996582031)
-
-local p44 = CFrame.new(-996.758118, 312.267487, -2662.16577)
-local o44 = CFrame.new(-990.758118, 312.267487, -2662.16577)
-
-local p45 = CFrame.new(-2630.13818, 294.680756, -1119.63037)
-local o45 = CFrame.new(-2639.13818, 294.680756, -1119.63037)
-
-local p46 = CFrame.new(-2568, 122.225014, -458.399994)
-local o46 = CFrame.new(-2560, 122.225014, -458.399994)
-
-local p47 = CFrame.new(-3280.6001, 122.490623, 196)
-local o47 = CFrame.new(-3289.6001, 122.490623, 196)
-
-local p48 = CFrame.new(-2827.99976, 122.490623, 1215.59998)
-local o48 = CFrame.new(-2820.99976, 122.490623, 1215.59998)
-
-local p49 = CFrame.new(-2522.5459, 192.52063, 1668.40027)
-local o49 = CFrame.new(-2529.5459, 192.52063, 1668.40027)
-
-local p50 = CFrame.new(2352.68408, 420.147919, 900.777039)
-local o50 = CFrame.new(2359.68408, 420.147919, 900.777039)
-
-local p51 = CFrame.new(2470.57861, 383.495422, -2458.96094)
-local o51 = CFrame.new(2479.57861, 383.495422, -2458.96094)
-
-local p52 = CFrame.new(2411.23828, 319.637543, -2474.50391)
-local o52 = CFrame.new(2419.23828, 319.637543, -2474.50391)
-
-local p53 = CFrame.new(779.525146, 1143.90723, -1455.95581)
-local o53 = CFrame.new(770.525146, 1143.90723, -1455.95581)
-
-local p54 = CFrame.new(734.94751, 996.703613, 4.89858198)
-local o54 = CFrame.new(739.94751, 996.703613, 4.89858198)
-
-local p55 = CFrame.new(-211.347443, 649.599976, -232.189194)
-local o55 = CFrame.new(-219.347443, 649.599976, -232.189194)
-
-local p56 = CFrame.new(-2484.84204, 192.52063, 1701.48889)
-local o56 = CFrame.new(-2489.84204, 192.52063, 1701.48889)
-
-local p57 = CFrame.new(-2123.80127, 252.925415, 2359.16748)
-local o57 = CFrame.new(-2129.80127, 252.925415, 2359.16748)
-
-local p58 = CFrame.new(-1443.64001, 252.135574, 2718.8728)
-local o58 = CFrame.new(-1449.64001, 252.135574, 2718.8728)
-
-local p59 = CFrame.new(-562.956421, 474.242645, 2665.89819)
-local o59 = CFrame.new(-569.956421, 474.242645, 2665.89819)
-
-local p61 = CFrame.new(2976.90259, 460.458588, 2516.42407)
-local o61 = CFrame.new(2970.90259, 460.458588, 2516.42407)
-
-local p62 = CFrame.new(2780.26782, 403.45575, 2933.91943)
-local o62 = CFrame.new(2789.26782, 403.45575, 2933.91943)
-
-local p63 = CFrame.new(2951.19409, 408.538666, 2778.67651)
-local o63 = CFrame.new(2959.19409, 408.538666, 2778.67651)
-
-local p64 = CFrame.new(2665.3269, 493.97876, 2909.95361)
-local o64 = CFrame.new(2660.3269, 493.97876, 2909.95361)
-
-local p65 = CFrame.new(2643.58228, 455.453979, 2439.47339)
-local o65 = CFrame.new(2649.58228, 455.453979, 2439.47339)
-
-local p66 = CFrame.new(2946.26831, 433.907135, 1978.64941)
-local o66 = CFrame.new(2940.26831, 433.907135, 1978.64941)
-
-local p67 = CFrame.new(2890.75317, 421.319092, 509.399994)
-local o67 = CFrame.new(2899.75317, 421.319092, 509.399994)
-
-local p68 = CFrame.new(2723.17236, 428.048828, 497.920074)
-local o68 = CFrame.new(2729.17236, 428.048828, 497.920074)
-
-local p69 = CFrame.new(2621.52393, 444.758881, 522.750305)
-local o69 = CFrame.new(2629.52393, 444.758881, 522.750305)
-
-local p70 = CFrame.new(2683.48193, 348.236328, 863.850769)
-local o70 = CFrame.new(2689.48193, 348.236328, 863.850769)
-
-local p71 = CFrame.new(2742.7439, 353.022736, 1191.10193)
-local o71 = CFrame.new(2749.7439, 353.022736, 1191.10193)
-
-local p72 = CFrame.new(-3018.29541, 131.655869, -3137.61475)
-local o72 = CFrame.new(-3010.29541, 131.655869, -3137.61475)
-
-local p73 = CFrame.new(-3129.69873, 151.822281, -3138.76709)
-local o73 = CFrame.new(-3120.69873, 151.822281, -3138.76709)
-
-local p74 = CFrame.new(-3043.88501, 155.571396, -2730.18115)
-local o74 = CFrame.new(-3049.88501, 155.571396, -2730.18115)
-
-local p75 = CFrame.new(43.3464699, 620.313904, -464.162994)
-local o75 = CFrame.new(49.3464699, 620.313904, -464.162994)
-
-local p76 = CFrame.new(2427.98096, 383.495422, -2562.07397)
-local o76 = CFrame.new(2420.98096, 383.495422, -2562.07397)
-
-local p77 = CFrame.new(979.142029, 777.131165, -2.30174518)
-local o77 = CFrame.new(970.142029, 777.131165, -2.30174518)
-
-local p78 = CFrame.new(883.794556, 797.271118, 179.304764)
-local o78 = CFrame.new(889.794556, 797.271118, 179.304764)
-
-local p79 = CFrame.new(1258.10559, 893.533203, -1768.18323)
-local o79 = CFrame.new(1250.10559, 893.533203, -1768.18323)
-
-local p80 = CFrame.new(1876.39697, 371.880524, 652.782104)
-local o80 = CFrame.new(1870.39697, 371.880524, 652.782104)
-
-local p81 = CFrame.new(1099.66626, 838.447266, 2176.23022)
-local o81 = CFrame.new(1090.66626, 838.447266, 2176.23022)
-
-local p82 = CFrame.new(436.940002, 762.303101, -688.519958)
-local o82 = CFrame.new(430.940002, 762.303101, -688.519958)
-
-local p83 = CFrame.new(2782.58569, 427.457764, 500.021729)
-local o83 = CFrame.new(2789.58569, 427.457764, 500.021729)
-
-local p84 = CFrame.new(1130.85254, 949.816406, -234.198822)
-local o84 = CFrame.new(1139.85254, 949.816406, -234.198822)
-
-local p85 = CFrame.new(1040.21375, 937.873108, 2837.53906)
-local o85 = CFrame.new(1049.21375, 937.873108, 2837.53906)
-
-local p86 = CFrame.new(-2299.83911, 125.171478, -3026.04663)
-local o86 = CFrame.new(-2290.83911, 125.171478, -3026.04663)
-
-local p87 = CFrame.new(-2458.84204, 120.10672, 1322.71191)
-local o87 = CFrame.new(-2450.84204, 120.10672, 1322.71191)
-
-local p88 = CFrame.new(-3066.62744, 151.754959, -3099.16797)
-local o88 = CFrame.new(-3060.62744, 151.754959, -3099.16797)
-
-local p89 = CFrame.new(-2674.91504, 132.891296, 1142.95337)
-local o89 = CFrame.new(-2679.91504, 132.891296, 1142.95337)
-
-local p90 = CFrame.new(3085.66382, 356.271881, 706.995056)
-local o90 = CFrame.new(3080.66382, 356.271881, 706.995056)
-
-local p91 = CFrame.new(3031.77783, 349.655945, 749.53833)
-local o91 = CFrame.new(3039.77783, 349.655945, 749.53833)
-
-local p92 = CFrame.new(2944.3774414062, 435.81387329102, 1978.4809570312)
-local o92 = CFrame.new(2939.875, 432.90771484375, 1978.3254394531)
-
-local p93 = CFrame.new(-2460.8181152344, 122.07667541504, 1322.3957519531)
-local o93 = CFrame.new(-2471.9406738281, 121.70667266846, 1323.4674072266)
-
-local p94 = CFrame.new(-2498.3239746094, 121.70667266846, 1392.8536376953)
-local o94 = CFrame.new(-2507.6708984375, 121.70667266846, 1383.4390869141)
-
-local p95 = CFrame.new(-2122.0908203125, 254.93626403809, 2360.876953125)
-local o95 = CFrame.new(-2112.1240234375, 253.86981201172, 2365.7717285156)
-
-local p96 = CFrame.new(1039.1177978516, 940.10699462891, 2839.7431640625)
-local o96 = CFrame.new(1038.0792236328, 940.07006835938, 2846.0222167969)
-
-local p97 = CFrame.new(2740.4536132812, 359.12548828125, 1191.4697265625)
-local o97 = CFrame.new(2743.0563964844, 354.62255859375, 1181.9937744141)
-
-local p98 = CFrame.new(3031.2854003906, 354.38711547852, 749.10668945312)
-local o98 = CFrame.new(3022.8269042969, 347.37176513672, 744.37750244141)
-
-local p99 = CFrame.new(3085.7790527344, 362.27755737305, 707.88763427734)
-local o99 = CFrame.new(3085.5349121094, 357.87176513672, 714.65417480469)
