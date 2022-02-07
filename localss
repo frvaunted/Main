@@ -273,451 +273,451 @@ local o91 = CFrame.new(3042.8161621094, 347.3717956543, 746.19891357422)
 anc.Anchored = false
 wait(0.5)
 pl.CFrame = o1
-wait(3)
+wait(3.3)
 pl.CFrame = p1
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o2
-wait(3)
+wait(3.3)
 pl.CFrame = p2
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o3
-wait(3)
+wait(3.3)
 pl.CFrame = p3
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o4
-wait(3)
+wait(3.3)
 pl.CFrame = p4
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o5
-wait(3)
+wait(3.3)
 pl.CFrame = p5
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o6
-wait(3)
+wait(3.3)
 pl.CFrame = p6
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o7
-wait(3)
+wait(3.3)
 pl.CFrame = p7
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o8
-wait(3)
+wait(3.3)
 pl.CFrame = p8
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o9
-wait(3)
+wait(3.3)
 pl.CFrame = p9
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o10
-wait(3)
+wait(3.3)
 pl.CFrame = p10
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o11
-wait(3)
+wait(3.3)
 pl.CFrame = p11
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o12
-wait(3)
+wait(3.3)
 pl.CFrame = p12
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o13
-wait(3)
+wait(3.3)
 pl.CFrame = p13
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o14
-wait(3)
+wait(3.3)
 pl.CFrame = p14
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o15
-wait(3)
+wait(3.3)
 pl.CFrame = p15
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o16
-wait(3)
+wait(3.3)
 pl.CFrame = p16
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o17
-wait(3)
+wait(3.3)
 pl.CFrame = p17
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o18
-wait(3)
+wait(3.3)
 pl.CFrame = p18
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o19
-wait(3)
+wait(3.3)
 pl.CFrame = p19
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o20
-wait(3)
+wait(3.3)
 pl.CFrame = p20
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o21
-wait(3)
+wait(3.3)
 pl.CFrame = p21
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o22
-wait(3)
+wait(3.3)
 pl.CFrame = p22
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o23
-wait(3)
+wait(3.3)
 pl.CFrame = p23
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o24
-wait(3)
+wait(3.3)
 pl.CFrame = p24
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o25
-wait(3)
+wait(3.3)
 pl.CFrame = p25
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o26
-wait(3)
+wait(3.3)
 pl.CFrame = p26
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o27
-wait(3)
+wait(3.3)
 pl.CFrame = p27
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o28
-wait(3)
+wait(3.3)
 pl.CFrame = p28
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o29
-wait(3)
+wait(3.3)
 pl.CFrame = p29
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o30
-wait(3)
+wait(3.3)
 pl.CFrame = p30
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o31
-wait(3)
+wait(3.3)
 pl.CFrame = p31
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o32
-wait(3)
+wait(3.3)
 pl.CFrame = p32
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o33
-wait(3)
+wait(3.3)
 pl.CFrame = p33
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o34
-wait(3)
+wait(3.3)
 pl.CFrame = p34
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o35
-wait(3)
+wait(3.3)
 pl.CFrame = p35
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o36
-wait(3)
+wait(3.3)
 pl.CFrame = p36
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o37
-wait(3)
+wait(3.3)
 pl.CFrame = p37
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o38
-wait(3)
+wait(3.3)
 pl.CFrame = p38
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o39
-wait(3)
+wait(3.3)
 pl.CFrame = p39
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o40
-wait(3)
+wait(3.3)
 pl.CFrame = p40
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o41
-wait(3)
+wait(3.3)
 pl.CFrame = p41
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o42
-wait(3)
+wait(3.3)
 pl.CFrame = p42
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o43
-wait(3)
+wait(3.3)
 pl.CFrame = p43
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o44
-wait(3)
+wait(3.3)
 pl.CFrame = p44
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o45
-wait(3)
+wait(3.3)
 pl.CFrame = p45
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o46
-wait(3)
+wait(3.3)
 pl.CFrame = p46
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o47
-wait(3)
+wait(3.3)
 pl.CFrame = p47
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o48
-wait(3)
+wait(3.3)
 pl.CFrame = p48
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o49
-wait(3)
+wait(3.3)
 pl.CFrame = p49
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o50
-wait(3)
+wait(3.3)
 pl.CFrame = p50
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o51
-wait(3)
+wait(3.3)
 pl.CFrame = p51
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o52
-wait(3)
+wait(3.3)
 pl.CFrame = p52
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o53
-wait(3)
+wait(3.3)
 pl.CFrame = p53
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o54
-wait(3)
+wait(3.3)
 pl.CFrame = p54
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o55
-wait(3)
+wait(3.3)
 pl.CFrame = p55
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o56
-wait(3)
+wait(3.3)
 pl.CFrame = p56
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o57
-wait(3)
+wait(3.3)
 pl.CFrame = p57
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o58
-wait(3)
+wait(3.3)
 pl.CFrame = p58
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o59
-wait(3)
+wait(3.3)
 pl.CFrame = p59
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o61
-wait(3)
+wait(3.3)
 pl.CFrame = p61
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o62
-wait(3)
+wait(3.3)
 pl.CFrame = p62
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o63
-wait(3)
+wait(3.3)
 pl.CFrame = p63
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o64
-wait(3)
+wait(3.3)
 pl.CFrame = p64
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o65
-wait(3)
+wait(3.3)
 pl.CFrame = p65
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o66
-wait(3)
+wait(3.3)
 pl.CFrame = p66
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o67
-wait(3)
+wait(3.3)
 pl.CFrame = p67
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o68
-wait(3)
+wait(3.3)
 pl.CFrame = p68
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o69
-wait(3)
+wait(3.3)
 pl.CFrame = p69
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o70
-wait(3)
+wait(3.3)
 pl.CFrame = p70
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o71
-wait(3)
+wait(3.3)
 pl.CFrame = p71
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o72
-wait(3)
+wait(3.3)
 pl.CFrame = p72
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o73
-wait(3)
+wait(3.3)
 pl.CFrame = p73
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o74
-wait(3)
+wait(3.3)
 pl.CFrame = p74
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o75
-wait(3)
+wait(3.3)
 pl.CFrame = p75
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o76
-wait(3)
+wait(3.3)
 pl.CFrame = p76
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o77
-wait(3)
+wait(3.3)
 pl.CFrame = p77
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o78
-wait(3)
+wait(3.3)
 pl.CFrame = p78
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o79
-wait(3)
+wait(3.3)
 pl.CFrame = p79
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o80
-wait(3)
+wait(3.3)
 pl.CFrame = p80
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o81
-wait(3)
+wait(3.3)
 pl.CFrame = p81
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o82
-wait(3)
+wait(3.3)
 pl.CFrame = p82
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o83
-wait(3)
+wait(3.3)
 pl.CFrame = p83
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o84
-wait(3)
+wait(3.3)
 pl.CFrame = p84
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o85
-wait(3)
+wait(3.3)
 pl.CFrame = p85
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o86
-wait(3)
+wait(3.3)
 pl.CFrame = p86
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o87
-wait(3)
+wait(3.3)
 pl.CFrame = p87
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o88
-wait(3)
+wait(3.3)
 pl.CFrame = p88
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o89
-wait(3)
+wait(3.3)
 pl.CFrame = p89
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o90
-wait(3)
+wait(3.3)
 pl.CFrame = p90
-wait(2.7)
+wait(3.3)
 
 pl.CFrame = o91
-wait(3)
+wait(3.3)
 pl.CFrame = p91
-wait(2.7)
+wait(3.3)
