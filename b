@@ -5,12 +5,18 @@ local chr = ply.Character
 
 
 animation.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+
 animation.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=782845736"
-animation.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
-animation.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083218792"
-animation.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083189019"
-animation.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=5319816685"
-animation.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=707897309"
+
+animation.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682" -- run
+
+animation.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=656117878" -- jump
+
+animation.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=656115606" -- fall
+
+animation.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=5319816685" -- climb
+
+animation.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=707897309" --walk
 
 
 
