@@ -17,6 +17,6 @@ workspace.CurrentCamera.FieldOfView = 90
  
 animation.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
 animation.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083218792"
-animation.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=707829716"
+animation.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=5319839762"
 animation.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=5319816685"
 animation.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=707897309"
