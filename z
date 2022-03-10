@@ -7,7 +7,7 @@ local HumanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
 local TweenService = game:GetService("TweenService")
 
 local TweenInformation = TweenInfo.new(
-11, -- Time
+11.5, -- Time
 Enum.EasingStyle.Linear, -- EasingStyle
 Enum.EasingDirection.Out, -- EasingDirection
 0, -- RepeatCount (when less than zero the tween will loop indefinitely)
