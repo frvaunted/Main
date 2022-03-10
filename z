@@ -20,7 +20,7 @@ Goal.CFrame = v.CFrame
 local Tween = TweenService:Create(HumanoidRootPart, TweenInformation, Goal)
 Tween:Play()
 Tween.Completed:Wait()
-wait(0.5)
+wait(0.2)
 chest:Destroy()
 end
 end
