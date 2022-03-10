@@ -15,9 +15,6 @@ false, -- Reverses (tween will reverse once reaching it's goal)
 0.5 -- DelayTime
 )
 
-local Goal = {}
-Goal.CFrame = v.CFrame
-local Tween = TweenService:Create(HumanoidRootPart, TweenInformation, Goal)
 Tween:Play()
 Tween.Completed:Wait()
 wait(0.2)
