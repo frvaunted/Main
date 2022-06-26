@@ -27,7 +27,7 @@ _b.BackgroundColor3=Color3.new(0,0,0)
 _b.Position=UDim2.new(0,0,0.800455689,0)
 _b.Size=UDim2.new(0,250,0,21)
 _b.Font=Enum.Font.Arial
-_b.Text="elvita so hot bruh😭"
+_b.Text="elvita so gorgeous bro😭"
 _b.TextColor3=Color3.new(.6, 0, .6)
 _b.TextSize=20
 
