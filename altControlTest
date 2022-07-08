@@ -885,7 +885,7 @@ local plr = game:GetService("Players").LocalPlayer
 									--> Replaced 1 occurrences:
 									--> I like scripting!
 									coroutine.wrap(function()
-										BringPlr(Target.Name)
+										BringPlr(Targ.Name)
 									end)()
 								end
 
