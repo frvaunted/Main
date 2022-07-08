@@ -870,30 +870,7 @@ local plr = game:GetService("Players").LocalPlayer
 
 					print(Chat.."Player chatted ran through")
 
-					if Chat:match(".bring ") and Chat ~= ".bring" and getgenv().PointInTable == 1 and not IsLocking then
-						print("Matched")
-						for i,Targ in pairs(game.Players:GetPlayers()) do 
-							if not IsLocking and Targ ~= game.Players.LocalPlayer then
-								local str = Chat
-								local newStr, replaced = string.gsub(str, ".bring ", "")
-
-								if Targ.Name:lower():sub(1,#newStr) == newStr:lower() and not IsLocking then
-									print(Player.Name.."Brought")
-
-									Aura = false
-									IsLocking = true
-									--> Replaced 1 occurrences:
-									--> I like scripting!
-									coroutine.wrap(function()
-										BringPlr(Targ.Name)
-									end)()
-								end
-
-							end
-
-						end
-
-					end
+				
 					if Chat == ".bring host bank" then
 
 						BringPlr(Player.Name,CFrame.new(-396.988922, 21.7570763, -293.929779, -0.102468058, -1.9584887e-09, -0.994736314, 7.23731564e-09, 1, -2.71436984e-09, 0.994736314, -7.47735651e-09, -0.102468058))
