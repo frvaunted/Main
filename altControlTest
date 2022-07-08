@@ -742,7 +742,7 @@ local plr = game:GetService("Players").LocalPlayer
 	Humanoid.Parent = plr.Character
 	Tool.Parent = plr.Character
     game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
-	firetouchinterest(TargetChar.HumanoidRootPart, Tool.Handle, 0);
+	firetouchinterest(TargetChar.Head, Tool.Handle, 0);
 					if POS == nil then
 						Root.CFrame = MainPlr.Character.HumanoidRootPart.CFrame
 					else
