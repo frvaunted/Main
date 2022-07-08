@@ -735,7 +735,6 @@ local function BringPlr(Target,POS)
 					IsLocking = true
 local plr = game:GetService("Players").LocalPlayer
 	local Humanoid = plr.Character.Humanoid:Clone()
-    	Targett = Target
 	local Tool = plr.Backpack:FindFirstChildOfClass("Tool")
 
 	plr.Character.Animate.Disabled = true
@@ -743,7 +742,7 @@ local plr = game:GetService("Players").LocalPlayer
 	Humanoid.Parent = plr.Character
 	Tool.Parent = plr.Character
     game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
-	firetouchinterest(Targett.Character.HumanoidRootPart, Tool.Handle, 0);
+	firetouchinterest(TargetChar.HumanoidRootPart, Tool.Handle, 0);
 					if POS == nil then
 						Root.CFrame = MainPlr.Character.HumanoidRootPart.CFrame
 					else
