@@ -734,9 +734,18 @@ if Player then
 
 		end
 	end
-local function BringPlr(Target,POS)
+	local function BringPlr(Target,POS)
 		if getgenv().PointInTable == 1 then
 			Aura = false
+
+			coroutine.wrap(function()
+				local TargetPlr = game.Players:FindFirstChild(Target)
+				if TargetPlr and TargetPlr.Character and TargetPlr.Character:FindFirstChild("Humanoid") then
+					local c = game.Players.LocalPlayer.Character
+					local Root = c.HumanoidRootPart
+					local PrevCF = Root.CFrame
+					local TargetChar = TargetPlr.Character
+					c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
 local plr = game:GetService("Players").LocalPlayer
 	local Humanoid = plr.Character.Humanoid:Clone()
 	local Tool = plr.Backpack:FindFirstChildOfClass("Tool")
@@ -745,7 +754,7 @@ local plr = game:GetService("Players").LocalPlayer
 	Humanoid.Parent = plr.Character
 	Tool.Parent = plr.Character
     game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
-	firetouchinterest(Target.Character.HumanoidRootPart, Tool.Handle, 0);
+	firetouchinterest(TargetChar.HumanoidRootPart, Tool.Handle, 0);
 					if POS == nil then
 						Root.CFrame = MainPlr.Character.HumanoidRootPart.CFrame
 					else
