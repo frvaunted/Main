@@ -721,6 +721,16 @@ if Player then
 		end
 	end
 local function BringPlr(Target,POS)
+		if getgenv().PointInTable == 1 then
+			Aura = false
+
+			coroutine.wrap(function()
+				local TargetPlr = game.Players:FindFirstChild(Target)
+				if TargetPlr and TargetPlr.Character and TargetPlr.Character:FindFirstChild("Humanoid") then
+					local c = game.Players.LocalPlayer.Character
+					local Root = c.HumanoidRootPart
+					local PrevCF = Root.CFrame
+					local TargetChar = TargetPlr.Character
 local plr = game:GetService("Players").LocalPlayer
 	local Humanoid = plr.Character.Humanoid:Clone()
 	local Tool = plr.Backpack:FindFirstChildOfClass("Tool")
@@ -736,8 +746,15 @@ local plr = game:GetService("Players").LocalPlayer
 					else
 						Root.CFrame = POS
 					end
+
+
 				end
+			end)()
+
 		end
+
+
+	end
 	local function SetUpVault()
 		local Player = game.Players.LocalPlayer
 		local XCoordinate = 0
@@ -1382,3 +1399,4 @@ local plr = game:GetService("Players").LocalPlayer
 	
 		end
 	end)
+end
