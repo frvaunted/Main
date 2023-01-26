@@ -554,6 +554,7 @@ local function Initiate()
 				local c = plr.Character
 				local Root = c.PrimaryPart
 				local OldCF = Root.CFrame
+				local maskinv = plr.Backpack:FindFirstChild('[Mask]')
 
 				local Tries = 0 
 				repeat wait(0.1) Tries += 1
@@ -562,7 +563,7 @@ local function Initiate()
 				until not c or not c:FindFirstChild("Humanoid") or c:FindFirstChild"[Mask]" or plr.Backpack:FindFirstChild"[Mask]"
 				wait(0.5)
 				if plr.Backpack:FindFirstChild("[Mask]") then
-					c.Humanoid:EquipTool(plr.Backpack:FindFirstChild('[Mask]'))
+					c.Humanoid:EquipTool(maskinv)
 					c.Mask:Activate()
 				elseif c:FindFirstChild("[Mask]") then
 					c.Mask:Activate()
@@ -572,9 +573,10 @@ local function Initiate()
 				local plr = game.Players.LocalPlayer
 				local c = plr.Character
 				local Root = c.PrimaryPart
+				local maskinv = plr.Backpack:FindFirstChild('[Mask]')
 
 				if plr.Backpack:FindFirstChild("[Mask]") then
-					c.Humanoid:EquipTool(plr..Backpack:FindFirstChild('[Mask]'))
+					c.Humanoid:EquipTool(maskinv)
 					c.Mask:Activate()
 				elseif c:FindFirstChild("[Mask]") then
 					c.Mask:Activate()
