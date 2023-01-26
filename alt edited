@@ -110,7 +110,7 @@ local function BringPlr(Target,POS)
 			CmdSettings["IsLocking"] = true
 
 			c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
-
+			game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer('Please dont move, its bringing!', 'All');
 			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,0,1)
 
 			repeat wait()
@@ -191,7 +191,7 @@ local SetupsTable = {
 		Rows = 4,
 	},
 	Klub = {
-		Origin = CFrame.new(-237.016571, -4.87585974, -411.940063, 0.994918466, -1.5840282e-08, -0.100683607, 6.8329018e-09, 1, -8.9807088e-08, 0.100683607, 8.86627731e-08, 0.994918466),
+		Origin = CFrame.new(-264.203156, -6.20523834, -373.658722, 0.999895692, 4.32056417e-08, 0.014443012, -4.34601652e-08, 1, 1.7308933e-08, -0.014443012, -1.79348234e-08, 0.999895692),
 		ZMultiplier = 6,
 		XMultiplier = -12,
 		PerRow = 10,
@@ -205,7 +205,7 @@ local SetupsTable = {
 		Rows = 4,
 	},
 	Train = {
-		Origin = CFrame.new(606.527588, 34.5070801, -159.083542, 0.0376962014, -7.60452892e-08, 0.999289274, 6.54496404e-08, 1, 7.36304173e-08, -0.999289274, 6.26275352e-08, 0.0376962014),
+		Origin = CFrame.new(608.837158, 34.5031013, -148.630508, -0.024492478, -1.20323316e-08, 0.99970001, -1.06082769e-08, 1, 1.17760415e-08, -0.99970001, -1.03166702e-08, -0.024492478),
 		ZMultiplier = 5,
 		XMultiplier = -7,
 		PerRow = 10,
