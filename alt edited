@@ -552,7 +552,7 @@ local function Initiate()
 			elseif Message == ".maskon" then
 				local plr = game.Players.LocalPlayer
 				local c = plr.Character
-				local Root = c.PrimaryPart
+				local Root = c.HumanoidRootPart
 				local OldCF = Root.CFrame
 
 				local Tries = 0 
@@ -571,7 +571,7 @@ local function Initiate()
 			elseif Message == ".maskoff" then
 				local plr = game.Players.LocalPlayer
 				local c = plr.Character
-				local Root = c.PrimaryPart
+				local Root = c.HumanoidRootPart
 
 				if plr.Backpack("[Mask]") then
 					c.Humanoid:EquipTool(plr.Backpack('[Mask]'))
