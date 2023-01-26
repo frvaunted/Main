@@ -562,7 +562,7 @@ local function Initiate()
 				until not c or not c:FindFirstChild("Humanoid") or c:FindFirstChild"[Mask]" or plr.Backpack:FindFirstChild"[Mask]"
 				wait(1)
 				if plr.Backpack:FindFirstChild("[Mask]") then
-					c.Humanoid:EquipTool(plr.Backpack("[Mask]"))
+					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]"))
 					c:FindFirstChild('[Mask]'):Activate()
 				elseif c:FindFirstChild("[Mask]") then
 					c:FindFirstChild('[Mask]'):Activate()
@@ -574,7 +574,7 @@ local function Initiate()
 				local Root = c.HumanoidRootPart
 
 				if plr.Backpack("[Mask]") then
-					c.Humanoid:EquipTool(plr.Backpack("[Mask]"))
+					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]"))
 					c:FindFirstChild('[Mask]'):Activate()
 				elseif c:FindFirstChild("[Mask]") then
 					c:FindFirstChild('[Mask]'):Activate()
