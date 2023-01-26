@@ -561,11 +561,11 @@ local function Initiate()
 					fireclickdetector(workspace.Ignored.Shop["[Surgeon Mask] - $26"].ClickDetector)
 				until not c or not c:FindFirstChild("Humanoid") or c:FindFirstChild"[Mask]" or plr.Backpack:FindFirstChild"[Mask]"
 				wait(1)
-				if plr.Backpack("[Mask]") then
-					c.Humanoid:EquipTool(plr.Backpack('[Mask]'))
-					c.Mask:Activate()
+				if plr.Backpack:FindFirstChild("[Mask]") then
+					c.Humanoid:EquipTool(plr.Backpack("[Mask]"))
+					c:FindFirstChild('[Mask]'):Activate()
 				elseif c:FindFirstChild("[Mask]") then
-					c.Mask:Activate()
+					c:FindFirstChild('[Mask]'):Activate()
 				end
 				Root.CFrame = OldCF
 			elseif Message == ".maskoff" then
@@ -574,10 +574,10 @@ local function Initiate()
 				local Root = c.HumanoidRootPart
 
 				if plr.Backpack("[Mask]") then
-					c.Humanoid:EquipTool(plr.Backpack('[Mask]'))
-					c.Mask:Activate()
+					c.Humanoid:EquipTool(plr.Backpack("[Mask]"))
+					c:FindFirstChild('[Mask]'):Activate()
 				elseif c:FindFirstChild("[Mask]") then
-					c.Mask:Activate()
+					c:FindFirstChild('[Mask]'):Activate()
 				end
 			elseif Args[1] == ".aura" then
 				local Player = GetPlayerFromString(Args[2],true)
