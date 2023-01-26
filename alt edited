@@ -553,8 +553,8 @@ local function Initiate()
 				local plr = game.Players.LocalPlayer
 				local c = plr.Character
 				local Root = c.PrimaryPart
-				local OldCF = Root.CFrame
 				local maskinv = plr.Backpack:FindFirstChild('[Mask]')
+				local OldCF = Root.CFrame
 
 				local Tries = 0 
 				repeat wait(0.1) Tries += 1
