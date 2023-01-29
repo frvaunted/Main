@@ -1,6 +1,5 @@
-wait(0.5)
-if game:GetService("CoreGui"):FindFirstChild("ba") then
-    game:GetService("CoreGui"):FindFirstChild("ba"):Destroy()
+if game:GetService("CoreGui"):FindFirstChild("antiafk") then
+    game:GetService("CoreGui"):FindFirstChild("antiafk"):Destroy()
 end
 local ba=Instance.new("ScreenGui")
 local ca=Instance.new("TextLabel")
@@ -9,7 +8,7 @@ local _b=Instance.new("TextLabel")
 local ab=Instance.new("TextLabel")
 
 ba.Parent=game.CoreGui
-
+ba.Name = "antiafk"
 ca.Parent=ba
 ca.Active=true
 ca.BackgroundColor3=Color3.new(0,0,0)
@@ -17,7 +16,7 @@ ca.Draggable=true
 ca.Position=UDim2.new(0.1598610067,0,0.098096624,0)
 ca.Size=UDim2.new(0,250,0,30)
 ca.Font=Enum.Font.SourceSansSemibold
-ca.Text="Vdhc"
+ca.Text="uwu"
 ca.TextColor3=Color3.new(.6, 0, .6)
 ca.TextSize=22
 
@@ -31,7 +30,7 @@ _b.BackgroundColor3=Color3.new(0,0,0)
 _b.Position=UDim2.new(0,0,0.800455689,0)
 _b.Size=UDim2.new(0,250,0,21)
 _b.Font=Enum.Font.Arial
-_b.Text="Vdhc"
+_b.Text=""
 _b.TextColor3=Color3.new(.6, 0, .6)
 _b.TextSize=20
 
