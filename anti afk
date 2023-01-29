@@ -17,7 +17,7 @@ ca.Draggable=true
 ca.Position=UDim2.new(0.1598610067,0,0.098096624,0)
 ca.Size=UDim2.new(0,250,0,30)
 ca.Font=Enum.Font.SourceSansSemibold
-ca.Text="L<3"
+ca.Text="Vdhc"
 ca.TextColor3=Color3.new(.6, 0, .6)
 ca.TextSize=22
 
@@ -31,7 +31,7 @@ _b.BackgroundColor3=Color3.new(0,0,0)
 _b.Position=UDim2.new(0,0,0.800455689,0)
 _b.Size=UDim2.new(0,250,0,21)
 _b.Font=Enum.Font.Arial
-_b.Text="LAILAA"
+_b.Text="Vdhc"
 _b.TextColor3=Color3.new(.6, 0, .6)
 _b.TextSize=20
 
