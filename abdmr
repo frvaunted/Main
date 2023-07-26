@@ -1,0 +1,91 @@
+repeat wait() until game:IsLoaded()
+
+for i,v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do
+    v:Disable()
+end
+local player = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("ABDMR", "DarkTheme")
+--tabs
+local Tab1 = Window:NewTab("Bosses")
+local Tab2 = Window:NewTab("TP")
+local Tab3 = Window:NewTab("Items")
+local Tab4 = Window:NewTab("Settings")
+--sections
+local Section1 = Tab1:NewSection("Bosses")
+local Section2 = Tab2:NewSection("Teleports")
+local Section3 = Tab3:NewSection("Items")
+local Section4 = Tab4:NewSection("Settings")
+--buttons
+Section1:NewButton("Kill Jotaro", "Kills the jotaro boss", function()
+local args = {
+    [1] = workspace:WaitForChild("Entities"):WaitForChild("Jotaro3"):WaitForChild("Humanoid"),
+    [2] = CFrame.new(-74.60751342773438, 88.04500579833984, 2135.036376953125, 0.20152565836906433, -0.9792218208312988, 0.0226186141371727, 0.04722847044467926, -0.0133509561419487, -0.9987949132919312, 0.9783437848091125, 0.20235103368759155, 0.043556634336709976),
+    [3] = 1500,}
+game:GetService("ReplicatedStorage"):WaitForChild("Damage"):FireServer(unpack(args))
+end)
+
+Section1:NewButton("Kill Renbyte", "Kills the Renbyte boss", function()
+local args = {
+    [1] = workspace:WaitForChild("Entities"):WaitForChild("RenbyteBoss"):WaitForChild("Humanoid"),
+    [2] = CFrame.new(-74.60751342773438, 88.04500579833984, 2135.036376953125, 0.20152565836906433, -0.9792218208312988, 0.0226186141371727, 0.04722847044467926, -0.0133509561419487, -0.9987949132919312, 0.9783437848091125, 0.20235103368759155, 0.043556634336709976),
+    [3] = 1500,}
+game:GetService("ReplicatedStorage"):WaitForChild("Damage"):FireServer(unpack(args))
+end)
+
+Section1:NewButton("Kill DIO", "Kills the DIO boss", function()
+local args = {
+    [1] = workspace:WaitForChild("Entities"):WaitForChild("DIO"):WaitForChild("Humanoid"),
+    [2] = CFrame.new(-74.60751342773438, 88.04500579833984, 2135.036376953125, 0.20152565836906433, -0.9792218208312988, 0.0226186141371727, 0.04722847044467926, -0.0133509561419487, -0.9987949132919312, 0.9783437848091125, 0.20235103368759155, 0.043556634336709976),
+    [3] = 1900,}
+game:GetService("ReplicatedStorage"):WaitForChild("Damage"):FireServer(unpack(args))
+end)
+
+Section1:NewButton("Kill Jotaro Morioh", "Kills the Jotaro boss", function()
+local args = {
+    [1] = workspace:WaitForChild("Entities"):WaitForChild("Jotaro4"):WaitForChild("Humanoid"),
+    [2] = CFrame.new(-68.4330062866211, 89.5593490600586, 2142.444580078125, -0.326956182718277, -0.935079038143158, 0.13684667646884918, -0.08307315409183502, -0.11580680310726166, -0.9897918105125427, 0.9413813948631287, -0.3349866569042206, -0.03981626778841019),
+    [3] = 2000,}
+game:GetService("ReplicatedStorage"):WaitForChild("Damage"):FireServer(unpack(args))
+end)
+
+Section2:NewButton("Mid", "Teleports you to mid", function()
+player.CFrame = CFrame.new(319.91064453125, 299.97821044921875, -218.7211151123047)
+end)
+Section2:NewButton("Bridge", "Teleports you to the bridge", function()
+player.CFrame = CFrame.new(-200.77767944335938, 87.6534194946289, 2157.343505859375)
+end)
+Section2:NewButton("Tom's shop", "Teleports you to Tim", function()
+player.CFrame = CFrame.new(165.07394409179688, 290.6051025390625, -72.487060546875)
+end)
+Section2:NewButton("Beach", "Teleports you to the beach", function()
+player.CFrame = CFrame.new(139.43504333496094, 277.48004150390625, 42.938777923583984)
+end)
+Section2:NewButton("Fishing dock", "Teleports you to the docks", function()
+player.CFrame = CFrame.new(382.0420227050781, 289.9799499511719, 141.4783477783203)
+end)
+Section2:NewButton("Disco", "Teleports you to the Disco room", function()
+player.CFrame = CFrame.new(-1081.2821044921875, 106.03362274169922, 787.7421264648438)
+end)
+
+getgenv().cash = false
+while getgenv().cash do wait()
+for i,v in pairs(game.Workspace:GetDescendants()) do
+if v.Name == "Handle" and v.Parent =="Banknote" then
+v.CFrame = player
+end end
+end
+
+Section3:NewToggle("Collect Cash", "Auto collects all cash that spawns", function(state)
+    if state then
+    
+for i,v in pairs(game.Workspace:GetDescendants()) do
+if v.Name == "Handle" and v.Parent =="Banknote" then
+v.CFrame = player
+end end
+
+    else
+        print("Toggle Off")
+    end
+end)
