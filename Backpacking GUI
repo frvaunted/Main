@@ -1,0 +1,356 @@
+if game:GetService("CoreGui"):FindFirstChild("KAIOD") then
+    game:GetService("CoreGui"):FindFirstChild("KAIOD"):Destroy()
+end
+
+local KAIOD = Instance.new("ScreenGui")
+local Frame = Instance.new("ImageLabel")
+local UIGradient = Instance.new("UIGradient")
+local Punish = Instance.new("TextButton")
+local Target = Instance.new("TextBox")
+local Kill = Instance.new("TextButton")
+local Killall = Instance.new("TextButton")
+local Bring = Instance.new("TextButton")
+local Bringall = Instance.new("TextButton")
+local Goto = Instance.new("TextButton")
+local View = Instance.new("TextButton")
+local Reset = Instance.new("TextButton")
+local Unview = Instance.new("TextButton")
+local Spawn = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+local ImageLabel = Instance.new("ImageLabel")
+local plr = game:GetService("Players").LocalPlayer
+local UIS = game:GetService('UserInputService')
+
+--coregui
+KAIOD.Name = "KAIOD"
+KAIOD.Parent = game:GetService("CoreGui")
+
+-- main
+Frame.Name = "Frame"
+Frame.Parent = KAIOD
+Frame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Frame.BackgroundTransparency = 0
+Frame.Position = UDim2.new(0, 1.5, 0.50, 0)
+Frame.Size = UDim2.new(0, 205, 0, 300)
+Frame.Image = "rbxassetid://3570695787"
+Frame.ScaleType = Enum.ScaleType.Slice
+Frame.SliceCenter = Rect.new(100, 100, 100, 100)
+Frame.SliceScale = -100
+Frame.Active = true
+Frame.Draggable = true
+Frame.Visible = true
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.51, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 25, 25))}
+UIGradient.Parent = Frame
+
+
+ImageLabel.Parent = Frame
+ImageLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BackgroundTransparency = 1
+ImageLabel.Position = UDim2.new(0.29, 0, -0.001, 0)
+ImageLabel.Size = UDim2.new(0, 84, 0, 84)
+ImageLabel.Image = ""
+
+
+Target.Name = "Target"
+Target.Parent = Frame
+Target.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Target.Position = UDim2.new(0.121, 0, 0.36, 0)
+Target.Size = UDim2.new(0, 150, 0, 45)
+Target.Font = Enum.Font.SourceSans
+Target.PlaceholderColor3 = Color3.fromRGB(355, 355, 355)
+Target.PlaceholderText = "User"
+Target.Text = ""
+Target.TextColor3 = Color3.fromRGB(355, 355, 355)
+Target.TextSize = 15
+Target.BackgroundTransparency = 0.7
+
+
+Punish.Name = "Punish"
+Punish.Parent = Frame
+Punish.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Punish.Position = UDim2.new(0.09, 0, 0.525, 0)
+Punish.Size = UDim2.new(0, 75, 0, 22)
+Punish.Text = "Punish"
+Punish.TextColor3 = Color3.fromRGB(355, 355, 355)
+Punish.TextScaled = true
+Punish.TextSize = 11.000
+Punish.TextWrapped = false
+Punish.BackgroundTransparency = 0.7
+
+
+Kill.Name = "Kill"
+Kill.Parent = Frame
+Kill.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Kill.Position = UDim2.new(0.09, 0, 0.615, 0)
+Kill.Size = UDim2.new(0, 75, 0, 22)
+Kill.Text = "Kill"
+Kill.TextColor3 = Color3.fromRGB(355, 355, 355)
+Kill.TextScaled = true
+Kill.TextSize = 11.000
+Kill.TextWrapped = false
+Kill.BackgroundTransparency = 0.7
+
+Spawn.Name = "Spawn"
+Spawn.Parent = Frame
+Spawn.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Spawn.Position = UDim2.new(0.53, 0, 0.525, 0)
+Spawn.Size = UDim2.new(0, 75, 0, 22)
+Spawn.Text = "Spawn car"
+Spawn.TextColor3 = Color3.fromRGB(355, 355, 355)
+Spawn.TextScaled = true
+Spawn.TextSize = 11.000
+Spawn.TextWrapped = false
+Spawn.BackgroundTransparency = 0.7
+
+
+Bring.Name = "Bring"
+Bring.Parent = Frame
+Bring.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Bring.Position = UDim2.new(0.53, 0, 0.615, 0)
+Bring.Size = UDim2.new(0, 75, 0, 22)
+Bring.Text = "Bring"
+Bring.TextColor3 = Color3.fromRGB(355, 355, 355)
+Bring.TextScaled = true
+Bring.TextSize = 11.000
+Bring.TextWrapped = false
+Bring.BackgroundTransparency = 0.7
+
+
+Goto.Name = "Goto"
+Goto.Parent = Frame
+Goto.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Goto.Position = UDim2.new(0.09, 0, 0.705, 0)
+Goto.Size = UDim2.new(0, 75, 0, 22)
+Goto.Text = "Goto"
+Goto.TextColor3 = Color3.fromRGB(355, 355, 355)
+Goto.TextScaled = true
+Goto.TextSize = 11.000
+Goto.TextWrapped = false
+Goto.BackgroundTransparency = 0.7
+
+View.Name = "View"
+View.Parent = Frame
+View.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+View.Position = UDim2.new(0.53, 0, 0.705, 0)
+View.Size = UDim2.new(0, 75, 0, 22)
+View.Text = "View"
+View.TextColor3 = Color3.fromRGB(355, 355, 355)
+View.TextScaled = true
+View.TextSize = 11.000
+View.TextWrapped = false
+View.BackgroundTransparency = 0.7
+
+
+Reset.Name = "Reset"
+Reset.Parent = Frame
+Reset.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Reset.Position = UDim2.new(0.09, 0, 0.8, 0)
+Reset.Size = UDim2.new(0, 75, 0, 22)
+Reset.Text = "Reset"
+Reset.TextColor3 = Color3.fromRGB(355, 355, 355)
+Reset.TextScaled = true
+Reset.TextSize = 11.000
+Reset.TextWrapped = false
+Reset.BackgroundTransparency = 0.7
+
+
+Unview.Name = "Unview"
+Unview.Parent = Frame
+Unview.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Unview.Position = UDim2.new(0.53, 0, 0.8, 0)
+Unview.Size = UDim2.new(0, 75, 0, 22)
+Unview.Text = "Unview"
+Unview.TextColor3 = Color3.fromRGB(355, 355, 355)
+Unview.TextScaled = true
+Unview.TextSize = 11.000
+Unview.TextWrapped = false
+Unview.BackgroundTransparency = 0.7
+
+
+Bringall.Name = "Bringall"
+Bringall.Parent = Frame
+Bringall.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Bringall.Position = UDim2.new(0.09, 0, 0.89, 0)
+Bringall.Size = UDim2.new(0, 75, 0, 22)
+Bringall.Text = "Bring all"
+Bringall.TextColor3 = Color3.fromRGB(355, 355, 355)
+Bringall.TextScaled = true
+Bringall.TextSize = 11.000
+Bringall.TextWrapped = false
+Bringall.BackgroundTransparency = 0.7
+
+Killall.Name = "Killall"
+Killall.Parent = Frame
+Killall.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Killall.Position = UDim2.new(0.53, 0, 0.89, 0)
+Killall.Size = UDim2.new(0, 75, 0, 22)
+Killall.Text = "Kill all"
+Killall.TextColor3 = Color3.fromRGB(355, 355, 355)
+Killall.TextScaled = true
+Killall.TextSize = 11.000
+Killall.TextWrapped = false
+Killall.BackgroundTransparency = 0.7
+
+--toggle
+UIS.InputBegan:Connect(function(key) 
+    if key.KeyCode == Enum.KeyCode.V then
+        if Frame.Visible == true then
+        Frame.Visible = false
+        else
+            Frame.Visible = true
+        end
+    end
+end)
+
+-- fill rest of the username
+local Player = function(Ev)
+ if Ev == "" then
+  return nil
+ elseif Ev == "random" then
+  return game:GetService("Players"):GetPlayers()[math.random(1, #game:GetService("Players"):GetPlayers())]
+ else
+  for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+   if v.Name:lower():sub(1, #Ev) == Ev:lower() or v.DisplayName:lower():sub(1, #Ev) == Ev then
+    return v
+   end
+  end
+ end
+end
+
+-- target image
+Target.Focused:Connect(function()
+ while Target:IsFocused() and wait() do
+  local User = Player(Target.Text)
+  if User ~= nil then
+   ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(User.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
+  end
+ end
+end)
+
+spawn(function() -- Network
+    game.RunService.RenderStepped:Connect(function()
+        game.Players.LocalPlayer.MaximumSimulationRadius = 1000;
+    end)
+end)
+
+Target.FocusLost:Connect(function()
+ while wait() do
+  if Target:IsFocused() then break end
+  if Target.Text ~= "random" then break end
+  ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(Player(Target.Text).UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
+ end
+end)
+local function spawncar()
+local args = {[1] = "BasicRedCampervan",[2] = workspace:WaitForChild("VehicleSpawns"):WaitForChild("VehicleSpawn")}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vehicles"):WaitForChild("VehicleSpawn"):FireServer(unpack(args))
+end
+-- punish
+Punish.MouseButton1Click:Connect(function()
+task.wait(0.2)
+local Target = Player(Target.Text)
+for i,v in pairs(game.Workspace.Vehicles:GetDescendants())do
+	if v.Name == "BasicRedCampervan" and v.OwnerName.Value == plr.Name then
+		v:SetPrimaryPartCFrame(CFrame.new(9e9,9e9,9e9))
+			task.wait(0.3)
+			local args = {[1] = "exit",[2] = Target.Character.HumanoidRootPart,[3] = v.Seats.LeftVehicleSeat}
+			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vehicles"):WaitForChild("WheelReplication"):FireServer(unpack(args))		
+		end
+	end
+end)
+
+-- kill
+Kill.MouseButton1Click:Connect(function()
+task.wait(0.2)
+local Target = Player(Target.Text)
+for i,v in pairs(game.Workspace.Vehicles:GetDescendants())do
+	if v.Name == "BasicRedCampervan" and v.OwnerName.Value == plr.Name then
+		v:SetPrimaryPartCFrame(CFrame.new(-4330, 25, -2753))
+			task.wait(0.3)
+			local args = {[1] = "exit",[2] = Target.Character.HumanoidRootPart,[3] = v.Seats.LeftVehicleSeat}
+			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vehicles"):WaitForChild("WheelReplication"):FireServer(unpack(args))		
+		end
+	end
+end)
+
+-- bring
+Bring.MouseButton1Click:Connect(function()
+task.wait(0.1)
+local Target = Player(Target.Text)
+for i,v in pairs(game.Workspace.Vehicles:GetDescendants())do
+	if v.Name == "BasicRedCampervan" and v.OwnerName.Value == plr.Name then
+		v:SetPrimaryPartCFrame(plr.Character.Head.CFrame * CFrame.new(15,5,0))
+			task.wait(0.5)
+			local args = {[1] = "exit",[2] = Target.Character.HumanoidRootPart,[3] = v.Seats.LeftVehicleSeat}
+			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vehicles"):WaitForChild("WheelReplication"):FireServer(unpack(args))		
+		end
+	end
+end)
+
+-- goto
+Goto.MouseButton1Click:Connect(function()
+ local Target = Player(Target.Text)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame
+end)
+
+-- view
+View.MouseButton1Click:Connect(function()
+ local Target = Player(Target.Text)
+ game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = Target.Character:FindFirstChildWhichIsA('Humanoid')
+end)
+
+-- unview
+Unview.MouseButton1Click:Connect(function()
+game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid')
+end)
+
+-- reset
+Reset.MouseButton1Click:Connect(function()
+for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+                if v:IsA("BasePart") then
+                    v:Destroy()
+                end
+end
+end)
+
+Spawn.MouseButton1Click:Connect(function()
+spawncar()
+end)
+
+-- bring all
+Bringall.MouseButton1Click:Connect(function()
+task.wait(0.1)
+local Target = Player(Target.Text)
+for i,v in pairs(game.Workspace.Vehicles:GetDescendants())do
+	if v.Name == "BasicRedCampervan" and v.OwnerName.Value == plr.Name then
+		v:SetPrimaryPartCFrame(plr.Character.Head.CFrame * CFrame.new(15,5,0))
+			task.wait(0.5)
+				for i,p in pairs(game.Workspace:GetDescendants())do
+						if p.Name == "HumanoidRootPart" then
+					local args = {[1] = "exit",[2] = p,[3] = v.Seats.LeftVehicleSeat}
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vehicles"):WaitForChild("WheelReplication"):FireServer(unpack(args))		
+				end
+		end
+	end
+end
+end)
+
+-- kill all
+Killall.MouseButton1Click:Connect(function()
+task.wait(0.1)
+local Target = Player(Target.Text)
+for i,v in pairs(game.Workspace.Vehicles:GetDescendants())do
+	if v.Name == "BasicRedCampervan" and v.OwnerName.Value == plr.Name then
+		v:SetPrimaryPartCFrame(plr.Character.Head.CFrame * CFrame.new(-4330, 25, -2753))
+			task.wait(0.5)
+				for i,p in pairs(game.Workspace:GetDescendants())do
+						if p.Name == "HumanoidRootPart" then
+					local args = {[1] = "exit",[2] = p,[3] = v.Seats.LeftVehicleSeat}
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vehicles"):WaitForChild("WheelReplication"):FireServer(unpack(args))		
+				end
+		end
+	end
+end
+end)
+
+
