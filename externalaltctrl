@@ -52,21 +52,8 @@ function Kill(Player)
 	pcall(function()
 		if Player.Character:FindFirstChild("ForceField") or not workspace:FindFirstChild(Player.Name) or not workspace:FindFirstChild(Player.Name):FindFirstChild("Head") or Player == nil or Player.Character.Parent ~= workspace then return end
 		local remington =game.Workspace.Prison_ITEMS.giver["Remington 870"]
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = remington.ITEMPICKUP.CFrame * CFrame.new(0,15,0)task.wait(0.2)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = remington.ITEMPICKUP.CFrame * CFrame.new(0,25,0)task.wait(0.2)
 		workspace.Remote.ItemHandler:InvokeServer(remington.ITEMPICKUP)
-
-
-		local MyTeam = GetTeam()
-		if Player.TeamColor.Name == game.Players.LocalPlayer.TeamColor.Name then
-			local savedcf = GetPos()
-			local savedcamcf = GetCamPos()
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
-			workspace.CurrentCamera.CFrame = savedcamcf
-			local remington =game.Workspace.Prison_ITEMS.giver["Remington 870"]
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = remington.ITEMPICKUP.CFrame * CFrame.new(0,15,0)task.wait(0.2)
-			workspace.Remote.ItemHandler:InvokeServer(remington.ITEMPICKUP)
-	
-		end
 
 		local Gun = game.Players.LocalPlayer.Character:FindFirstChild("Remington 870") or game.Players.LocalPlayer.Backpack:FindFirstChild("Remington 870")
 
