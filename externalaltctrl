@@ -476,18 +476,18 @@ local mainacc = game.Players["6m1av4Iu8Bq3vj9Bf2mm"]
 			local PrevCF = Root.CFrame
 			local TargetChar = TargetPlr.Character
 			if TargetPlr and TargetPlr.Character and TargetPlr.Character:FindFirstChild("Humanoid") and not ( not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == true ) then
-			for i,v in pairs(game:GetService("Workspace").MAP.Indestructible:GetDescendants()) do
+			--[[for i,v in pairs(game:GetService("Workspace").MAP.Indestructible:GetDescendants()) do
 				if v:IsA("Part") then
    				 	v.CanCollide = false
 				end
-			end
+			end]]
 			CmdSettings["IsLocking"] = true
 
 			c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
-			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,-4,0)
+			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,-4,-2)
 
 			repeat wait()
-				Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,-4,0)
+				Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,-4,-2)
 					if not c:FindFirstChild("Combat") then
 						c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)     
 					end
