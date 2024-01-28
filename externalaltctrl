@@ -575,6 +575,7 @@ elseif Args[1] == ";dbring" then
 	game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
 	end
 end
+local viewing
 viewing = nil
 elseif Args[1] == ";spec" then
 	local TargetPlr =  GetPlayerFromString(Args[2])
@@ -589,7 +590,7 @@ elseif Args[1] == ";spec" then
 		local function viewDiedFunc()
 			repeat wait() until Players[v].Character ~= nil and getRoot(Players[v].Character)
 			workspace.CurrentCamera.CameraSubject = viewing.Character
-		end
+		end	
 		viewDied = Players[v].CharacterAdded:Connect(viewDiedFunc)
 		local function viewChangedFunc()
 			workspace.CurrentCamera.CameraSubject = viewing.Character
