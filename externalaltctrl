@@ -575,28 +575,23 @@ elseif Args[1] == ";dbring" then
 	game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
 	end
 end
-local viewing
-viewing = nil
+
 elseif Args[1] == ";spec" then
 	local TargetPlr =  GetPlayerFromString(Args[2])
-	local players = {TargetPlr, HostUser}
-	for i,v in pairs(players) do
 		if viewDied then
 			viewDied:Disconnect()
 			viewChanged:Disconnect()
 		end
-		viewing = Players[v]
-		workspace.CurrentCamera.CameraSubject = viewing.Character
+		workspace.CurrentCamera.CameraSubject = TargetPlr.Character
 		local function viewDiedFunc()
-			repeat wait() until Players[v].Character ~= nil and getRoot(Players[v].Character)
-			workspace.CurrentCamera.CameraSubject = viewing.Character
+			repeat wait() until TargetPlr.Character ~= nil and getRoot(TargetPlr.Character)
+			workspace.CurrentCamera.CameraSubject = TargetPlr.Character
 		end	
-		viewDied = Players[v].CharacterAdded:Connect(viewDiedFunc)
+		viewDied = TargetPlr.CharacterAdded:Connect(viewDiedFunc)
 		local function viewChangedFunc()
-			workspace.CurrentCamera.CameraSubject = viewing.Character
+			workspace.CurrentCamera.CameraSubject = TargetPlr.Character
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
-	end
 
 end
 end)
