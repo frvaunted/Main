@@ -176,17 +176,34 @@ elseif Args[1] == ";tp" then
 if FoundPlayer then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FoundPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,2,0)
 end
---[[elseif Args[1] == ";view" then
-	viewing = true
-	local FoundPlayer = GetPlayerFromString(Args[2])
-if FoundPlayer then
-game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = FoundPlayer.Character:FindFirstChild("Humanoid")
-end]]
+viewing = nil
+elseif Args[1] == ";view" then
+	local TargetPlr =  GetPlayerFromString(Args[2])
+		if viewDied then
+			viewDied:Disconnect()
+			viewChanged:Disconnect()
+		end
+		viewing = TargetPlr
+		workspace.CurrentCamera.CameraSubject = TargetPlr.Character
+		local function viewDiedFunc()
+			repeat wait() until TargetPlr.Character ~= nil and getRoot(TargetPlr.Character)
+			workspace.CurrentCamera.CameraSubject = TargetPlr.Character
+		end	
+		viewDied = TargetPlr.CharacterAdded:Connect(viewDiedFunc)
+		local function viewChangedFunc()
+			workspace.CurrentCamera.CameraSubject = TargetPlr.Character
+		end
+		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
 
 elseif Message == ";unview" then
-	if viewing == true then
-		game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid')
+	if viewing ~= nil then
+		viewing = nil
 	end
+	if viewDied then
+		viewDied:Disconnect()
+		viewChanged:Disconnect()
+	end
+	workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
 
 elseif Message == ";clip" then
 		Noclipping:Disconnect()
@@ -575,23 +592,6 @@ elseif Args[1] == ";dbring" then
 	game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
 	end
 end
-
-elseif Args[1] == ";spec" then
-	local TargetPlr =  GetPlayerFromString(Args[2])
-		if viewDied then
-			viewDied:Disconnect()
-			viewChanged:Disconnect()
-		end
-		workspace.CurrentCamera.CameraSubject = TargetPlr.Character
-		local function viewDiedFunc()
-			repeat wait() until TargetPlr.Character ~= nil and getRoot(TargetPlr.Character)
-			workspace.CurrentCamera.CameraSubject = TargetPlr.Character
-		end	
-		viewDied = TargetPlr.CharacterAdded:Connect(viewDiedFunc)
-		local function viewChangedFunc()
-			workspace.CurrentCamera.CameraSubject = TargetPlr.Character
-		end
-		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
 
 end
 end)
