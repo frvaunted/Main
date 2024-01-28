@@ -38,6 +38,7 @@ function getRoot(char)
 	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
 	return rootPart
 end
+Players = game:GetService("Players")
 local Admin = {}
 local LoopKill = {}
 local States = {}
