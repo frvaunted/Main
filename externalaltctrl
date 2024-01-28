@@ -593,6 +593,6 @@ elseif Args[1] == ";spec" then
 			workspace.CurrentCamera.CameraSubject = viewing.Character
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
-
+	end
 end
 end)
