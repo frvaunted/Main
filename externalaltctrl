@@ -479,7 +479,7 @@ elseif Args[1] == ";dbring" then
 
 			if TargetChar.BodyEffects["K.O"].Value == true then
 				repeat
-				Root.CFrame = TargetChar.UpperTorso.CFrame * CFrame.new(0,3,0)
+				Root.CFrame = TargetChar.LowerTorso.CFrame * CFrame.new(0,3,0)
 				task.wait(0.5)
 				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
 				until TargetPlr.Character.BodyEffects:FindFirstChild("Grabbed")
