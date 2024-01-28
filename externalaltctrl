@@ -482,7 +482,7 @@ elseif Args[1] == ";dbring" then
 				Root.CFrame = TargetChar.LowerTorso.CFrame * CFrame.new(0,3,0)
 				task.wait(0.5)
 				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
-				until TargetPlr.Character.BodyEffects:FindFirstChild("Grabbed")
+				until c.BodyEffects["Grabbed"].Value == TargetPlr
 				task.wait(0.3)
 				Root.CFrame = PrevCF
 				task.wait(0.8)
