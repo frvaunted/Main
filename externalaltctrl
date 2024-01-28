@@ -481,6 +481,7 @@ elseif Args[1] == ";dbring" then
 				repeat
 					Root.CFrame = TargetChar.LowerTorso.CFrame
 					game.Players.LocalPlayer.Character.Humanoid:ChangeState(2)
+					task.wait()
 				until 
 				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
 				task.wait(0.3)
