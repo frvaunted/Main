@@ -575,6 +575,7 @@ elseif Args[1] == ";dbring" then
 	game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
 	end
 end
+end
 
 end
 end)
