@@ -477,7 +477,7 @@ elseif Args[1] == ";dbring" then
 		local TargetChar = TargetPlr.Character
 		if TargetPlr and TargetPlr.Character and TargetPlr.Character:FindFirstChild("Humanoid") then
 
-			if c:FindFirstChild("BodyEffects") or c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or TargetChar or TargetChar:FindFirstChild("BodyEffects") or TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == true then
+			if TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == true then
 				game:GetService("StarterGui"):SetCore("SendNotification",{
 					Title = "Loaded",
 					Text = "i love hana",
