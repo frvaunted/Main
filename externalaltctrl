@@ -224,7 +224,7 @@ local mainacc = game.Players["6m1av4Iu8Bq3vj9Bf2mm"]
 		game:Shutdown()
 
 	elseif Message == ";space" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,99999999999,0)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9e9,9e9,9e9)
 
 		
 	elseif Message == ";coords" then
