@@ -47,6 +47,11 @@ local function update(input)
     gui2.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
 end
 
+UserInputService.InputBegan:Connect(function(input,chat)
+    if input.KeyCode == Enum.KeyCode.Insert then
+        G2L["1"].Enabled = not G2L["1"].Enabled
+    end
+end)
 gui.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         dragging = true
