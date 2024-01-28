@@ -577,7 +577,7 @@ end
 viewing = nil
 elseif Args[1] == ";spec" then
 	local TargetPlr =  GetPlayerFromString(Args[2])
-	local players = [TargetPlr, HostUser]
+	local players = {TargetPlr, HostUser}
 	for i,v in pairs(players) do
 		if viewDied then
 			viewDied:Disconnect()
