@@ -479,10 +479,10 @@ elseif Args[1] == ";dbring" then
 
 			if TargetChar.BodyEffects["K.O"].Value == true then
 				repeat
-					Root.CFrame = TargetChar.LowerTorso.CFrame
+					Root.CFrame = TargetChar.LowerTorso.CFrame * CFrame.new(0,3,0)
 					game.Players.LocalPlayer.Character.Humanoid:ChangeState(2)
-					task.wait()
-				until 
+					task.wait(0.3)
+				until task.wait(1)
 				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
 				task.wait(0.3)
 				Root.CFrame = PrevCF
