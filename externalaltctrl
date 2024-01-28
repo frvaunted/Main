@@ -237,7 +237,7 @@ elseif Message == ";secret" then
 elseif Message == ";tac" then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(495.036804, 113.399979, -667.521912, 0.421312213, -3.08546362e-08, 0.906915665, -1.24602986e-08, 1, 3.98100006e-08, -0.906915665, -2.80728791e-08, 0.421312213)
 elseif Message == ";sg" then
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-67.575989, 81.899826, -748.970337, -0.989977241, -8.39079295e-09, 0.141227067, -2.11933422e-08, 1, -8.91481662e-08, -0.141227067, -9.12477276e-08, -0.989977241)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-670.575989, 81.899826, -748.970337, -0.989977241, -8.39079295e-09, 0.141227067, -2.11933422e-08, 1, -8.91481662e-08, -0.141227067, -9.12477276e-08, -0.989977241)
 
 elseif Args[1] == "!s" then
 	local newStr = string.gsub(Message, "!s", "")
