@@ -332,7 +332,7 @@ elseif Args[1] == ";fling" then
 					task.wait(0.1)
 					player.Character.HumanoidRootPart.CFrame = CFrame.new(150,150,60)
 					player.Character.HumanoidRootPart.Anchored = true
-					task.wait(0.5)
+					task.wait(1)
 					player.Character.HumanoidRootPart.Anchored = false
 					player.Character.HumanoidRootPart.CFrame = CFrame.new(150,150,60)
 				end;
@@ -479,11 +479,10 @@ elseif Args[1] == ";dbring" then
 
 			if TargetChar.BodyEffects["K.O"].Value == true then
 				repeat
-					Root.CFrame = TargetChar.Head.CFrame
+					Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
 					game.Players.LocalPlayer.Character.Humanoid:ChangeState(2)
 					task.wait(0.3)
-				until game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == TargetChar.Head.CFrame
-				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
+				until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
 				task.wait(0.3)
 				Root.CFrame = PrevCF
 				task.wait(0.8)
