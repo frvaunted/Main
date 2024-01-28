@@ -254,8 +254,8 @@ local mainacc = game.Players["6m1av4Iu8Bq3vj9Bf2mm"]
 						local FlingEnemy = FoundPlayer.Character
 						if FlingEnemy and player.Character then
 							FlingTorso = FlingEnemy.UpperTorso
-							local dis = 3.85
-							local increase = 6.5
+							local dis = 4.85
+							local increase = 7
 							if FlingEnemy.Humanoid.MoveDirection.X < 0 then
 								xchange = -increase
 							elseif FlingEnemy.Humanoid.MoveDirection.X > 0  then
@@ -484,7 +484,7 @@ local mainacc = game.Players["6m1av4Iu8Bq3vj9Bf2mm"]
 			CmdSettings["IsLocking"] = true
 
 			c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
-			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,-4,2)
+			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,-1,1)
 
 			repeat wait()
 				Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,-4,2)
