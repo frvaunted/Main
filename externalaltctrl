@@ -478,11 +478,15 @@ elseif Args[1] == ";dbring" then
 		if TargetPlr and TargetPlr.Character and TargetPlr.Character:FindFirstChild("Humanoid") then
 
 			if TargetChar.BodyEffects["K.O"].Value == true then
-				game:GetService("StarterGui"):SetCore("SendNotification",{
-					Title = "Loaded",
-					Text = "i love hana",
-					Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
-				})
+				repeat
+				Root.CFrame = TargetChar.UpperTorso.CFrame * CFrame.new(0,3,0)
+				task.wait(0.5)
+				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
+				until TargetPlr.Character.BodyEffects:FindFirstChild("Grabbed")
+				task.wait(0.3)
+				Root.CFrame = PrevCF
+				task.wait(0.8)
+				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
 			else
 
 		CmdSettings["IsLocking"] = true
