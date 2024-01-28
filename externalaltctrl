@@ -175,6 +175,12 @@ elseif Args[1] == ";tp" then
 if FoundPlayer then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FoundPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,2,0)
 end
+--[[elseif Args[1] == ";view" then
+	viewing = true
+	local FoundPlayer = GetPlayerFromString(Args[2])
+if FoundPlayer then
+game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = FoundPlayer.Character:FindFirstChild("Humanoid")
+end]]
 
 elseif Message == ";unview" then
 	if viewing == true then
@@ -219,13 +225,6 @@ elseif Message == ";boom" then
 	CurrAnim = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(Anim)
 	CurrAnim:Play()
 	CurrAnim:AdjustSpeed()
-
-elseif Args[1] == ";view" then
-	viewing = true
-	local FoundPlayer = GetPlayerFromString(Args[2])
-if FoundPlayer then
-game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = FoundPlayer.Character:FindFirstChild("Humanoid")
-end
 
 elseif Message == ";log" then
 	game:Shutdown()
@@ -575,8 +574,25 @@ elseif Args[1] == ";dbring" then
 	game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
 	end
 end
-elseif Args[1] == ";temp" then
-
+viewing = nil
+elseif Args[1] == ";spec" then
+	local player =  GetPlayerFromString(Args[2])
+	for i,v in pairs(player) do
+		if viewDied then
+			viewDied:Disconnect()
+			viewChanged:Disconnect()
+		end
+		viewing = player[v]
+		workspace.CurrentCamera.CameraSubject = viewing.Character
+		local function viewDiedFunc()
+			repeat wait() until Players[v].Character ~= nil and getRoot(Players[v].Character)
+			workspace.CurrentCamera.CameraSubject = viewing.Character
+		end
+		viewDied = Players[v].CharacterAdded:Connect(viewDiedFunc)
+		local function viewChangedFunc()
+			workspace.CurrentCamera.CameraSubject = viewing.Character
+		end
+		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
 
 end
 end)
