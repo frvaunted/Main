@@ -577,12 +577,13 @@ end
 viewing = nil
 elseif Args[1] == ";spec" then
 	local player =  GetPlayerFromString(Args[2])
-	for i,v in pairs(player) do
+	local players = getPlayer(player, HostUser)
+	for i,v in pairs(players) do
 		if viewDied then
 			viewDied:Disconnect()
 			viewChanged:Disconnect()
 		end
-		viewing = player[v]
+		viewing = Players[v]
 		workspace.CurrentCamera.CameraSubject = viewing.Character
 		local function viewDiedFunc()
 			repeat wait() until Players[v].Character ~= nil and getRoot(Players[v].Character)
@@ -594,5 +595,7 @@ elseif Args[1] == ";spec" then
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
 	end
+
+
 end
 end)
