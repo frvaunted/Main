@@ -477,13 +477,14 @@ elseif Args[1] == ";dbring" then
 		local TargetChar = TargetPlr.Character
 		if TargetPlr and TargetPlr.Character and TargetPlr.Character:FindFirstChild("Humanoid") then
 
-			if TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == true then
+			if TargetChar.BodyEffects["K.O"].Value == true then
 				game:GetService("StarterGui"):SetCore("SendNotification",{
 					Title = "Loaded",
 					Text = "i love hana",
 					Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 				})
 			else
+
 		CmdSettings["IsLocking"] = true
 
 		c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
