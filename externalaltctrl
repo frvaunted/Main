@@ -483,6 +483,7 @@ elseif Args[1] == ";dbring" then
 					Text = "i love hana",
 					Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 				})
+			end
 			else
 		CmdSettings["IsLocking"] = true
 
