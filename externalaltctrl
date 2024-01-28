@@ -483,7 +483,7 @@ elseif Args[1] == ";dbring" then
 					Text = "i love hana",
 					Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 				})
-			end
+			else
 		CmdSettings["IsLocking"] = true
 
 		c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
@@ -542,6 +542,7 @@ elseif Args[1] == ";dbring" then
 
 	game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
 	end
+end
 
 end
 end)
