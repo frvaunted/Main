@@ -606,13 +606,7 @@ elseif Message == ";armor" then
 		fireclickdetector(ClickDetector)
 	end
 	repeat buy() until game.Players.LocalPlayer.Character.BodyEffects.Armor.Value == 130 or game.Players.LocalPlayer.DataFolder.Currency.Value <= ItemCost or game.Players.LocalPlayer.Character.BodyEffects.Armor:FindFirstChild('God')
-	player.Character.HumanoidRootPart.CFrame = OldCFrame
-	--[[prevCF = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-932.958557, -24.3498287, 570.07843)
-	task.wait(0.1)
-	fireclickdetector(game.Workspace.Ignored.Shop["[High-Medium Armor] - $2440"].ClickDetector)
-	task.wait(0.5)
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = prevCF]]
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 
 end
 end)
