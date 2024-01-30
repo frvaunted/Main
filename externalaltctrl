@@ -142,6 +142,16 @@ function Arrest(Player, Time)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 	workspace.CurrentCamera.CFrame = savedcamcf
 end
+game.Workspace.Ignored.ChildAdded:Connect(function(child)
+    if child.Name == 'Launcher' and HostUser.Character:FindFirstChild('[RPG]') then
+        child.Name = 'MyLauncher' 
+    end
+end)
+--Rpg Variables--
+DS = 75
+DT = 5
+RpgTimer = DS
+Distance = DT
 local mainacc = game.Players["6m1av4Iu8Bq3vj9Bf2mm"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
@@ -608,5 +618,32 @@ elseif Message == ";armor" then
 	repeat buy() until game.Players.LocalPlayer.Character.BodyEffects.Armor.Value == 130 or game.Players.LocalPlayer.DataFolder.Currency.Value <= ItemCost or game.Players.LocalPlayer.Character.BodyEffects.Armor:FindFirstChild('God')
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 
+elseif Message == ";textures" then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/remove%20textures"))()
+
+elseif Args[1] == ";rpg" then
+local TargetPlr =  GetPlayerFromString(Args[2])
+local Launcher = game:GetService('Workspace'):FindFirstChild('Ignored'):FindFirstChild('Launcher') or game:GetService('Workspace'):FindFirstChild('Ignored'):FindFirstChild('MyLauncher')
+local TargetRPG1 = game:GetService('Workspace').Players:FindFirstChild(TargetPlr)
+if Launcher and TargetRPG1 then
+	local TargetRPG = TargetRPG1:FindFirstChild('HumanoidRootPart')
+		if TargetRPG then
+			if RpgTimer >= 0 then
+                            Launcher.CFrame = CFrame.new(TargetRPG.Position.X, TargetRPG.Position.Y + 5, TargetRPG.Position.Z)
+                            RpgTimer = RpgTimer - 1
+                        else
+                            Launcher.CFrame = CFrame.new(TargetRPG.Position.X, TargetRPG.Position.Y + Distance, TargetRPG.Position.Z)
+                            Distance = Distance - 1
+                        end
+						  end
+                    else
+                        RpgTimer = DS 
+                        Distance = DT
+                    end
+                else
+                    RpgTimer = DS 
+                    Distance = DT
+                end
+            end
 end
 end)
