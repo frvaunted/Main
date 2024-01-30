@@ -654,7 +654,7 @@ local Pause = function()
 	Loop:Disconnect()
 end
 Start()
-repeat wait() until not player.Character or player.Character:FindFirstChildOfClass('Humanoid').Died == true
+repeat wait() until not game.Players.LocalPlayer.Character or game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Died == true
 Pause()
 
 
