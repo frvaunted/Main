@@ -592,6 +592,9 @@ elseif Args[1] == ";dbring" then
 	game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
 	end
 end
+elseif Message == ";rspy" then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/78n/SimpleSpy/main/SimpleSpySource.lua"))()
 
+elseif Message == ";temp" then
 end
 end)
