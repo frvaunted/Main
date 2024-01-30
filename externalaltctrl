@@ -149,7 +149,7 @@ game.Workspace.Ignored.ChildAdded:Connect(function(child)
     end
 end)
 --Rpg Variables--
-DS = 75
+DS = 5
 DT = 5
 RpgTimer = DS
 Distance = DT
@@ -654,9 +654,5 @@ local Pause = function()
 	Loop:Disconnect()
 end
 Start()
-repeat wait() until not game.Players.LocalPlayer.Character or game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Died == true
-Pause()
-
-
 end
 end)
