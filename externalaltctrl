@@ -547,14 +547,16 @@ elseif Args[1] == ";dbring" then
 		CmdSettings["IsLocking"] = true
 
 		c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
-		Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
+		--Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 
 		repeat task.wait()
-			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
+			
 				if not c:FindFirstChild("Combat") then
 					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)     
 				end
 			c.Combat:Activate()
+			task.wait(5)
+			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 		until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == true
 		Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
 		if c.BodyEffects.Grabbed.Value ~= nil then
@@ -622,24 +624,8 @@ elseif Message == ";armor" then
 elseif Message == ";textures" then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/remove%20textures"))()
 
-elseif Args[1] == ";grenade" then
+elseif Args[1] == ";temp" then
 local TargetPlr =  GetPlayerFromString(Args[2])
-local Loop
-local loopFunction = function()
-	local Handle = game.Workspace['Ignored']:FindFirstChild('Handle')
-	local FindPlayer = TargetPlr
-	if Handle and FindPlayer then
-		if FindPlayer.Character then
-			Handle.Position = FindPlayer.Character.UpperTorso.Position
-		end
-	end
-		end
-local Start = function()
-	Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
-end
-local Pause = function()
-	Loop:Disconnect()
-end
-Start()
+
 end
 end)
