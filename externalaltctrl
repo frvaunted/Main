@@ -600,7 +600,7 @@ elseif Message == ";armor" then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-932.958557, -24.3498287, 570.07843)
 	task.wait(0.1)
 	fireclickdetector(game.Workspace.Ignored.Shop["[High-Medium Armor] - $2440"].ClickDetector)
-	task.wait(0.2)
+	task.wait(0.5)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = prevCF
 
 end
