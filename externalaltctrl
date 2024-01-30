@@ -552,7 +552,8 @@ elseif Args[1] == ";dbring" then
 			c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)     
 		end
 		c.Combat:Activate()
-		task.wait(2.7)
+		task.wait(1.5)
+		Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 		repeat task.wait()
 			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 
