@@ -595,6 +595,14 @@ end
 elseif Message == ";rspy" then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/78n/SimpleSpy/main/SimpleSpySource.lua"))()
 
-elseif Message == ";temp" then
+elseif Message == ";armor" then
+	prevCF = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	repeat
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-932.958557, -24.3498287, 570.07843)
+	task.wait(0.1)
+	FireClickDetector(workspace.Ignored.Shop["[High-Medium Armor]"])
+	until game.Workspace.Players.pieasehang4.BodyEffects.Armor.Value == "130"
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = prevCF
+	
 end
 end)
