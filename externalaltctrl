@@ -632,10 +632,10 @@ local loopFunction = function()
 				local TargetRPG = TargetRPG1:FindFirstChild('HumanoidRootPart')
 				if TargetRPG then
 					if RpgTimer >= 0 then
-						Launcher.Position = CFrame.new(TargetRPG.Position.X, TargetRPG.Position.Y + 5, TargetRPG.Position.Z)
+						Launcher.CFrame = CFrame.new(TargetRPG.Position.X, TargetRPG.Position.Y + 5, TargetRPG.Position.Z)
 						RpgTimer = RpgTimer - 1
 					else
-						Launcher.Position = CFrame.new(TargetRPG.Position.X, TargetRPG.Position.Y + Distance, TargetRPG.Position.Z)
+						Launcher.CFrame = CFrame.new(TargetRPG.Position.X, TargetRPG.Position.Y + Distance, TargetRPG.Position.Z)
 						Distance = Distance - 1
 					end
 				else
