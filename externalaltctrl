@@ -649,13 +649,14 @@ local TargetPlr =  GetPlayerFromString(Args[2])
     end
     local Start = function()
         Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction)
-    end;
+    end
     local Pause = function()
         Loop:Disconnect()
-    end;
+    end
     Start()	
-    repeat wait() until not player.Character or player.Character:FindFirstChildOfClass('Humanoid').Died == true
+    repeat wait() until not game.Players.LocalPlayer.Character or game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Died == true
     Pause()
+end
 
 end
 end)
