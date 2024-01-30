@@ -149,7 +149,7 @@ game.Workspace.Ignored.ChildAdded:Connect(function(child)
     end
 end)
 --Rpg Variables--
-DS = 5
+DS = 75
 DT = 5
 RpgTimer = DS
 Distance = DT
@@ -631,8 +631,13 @@ local loopFunction = function()
 			if Launcher and TargetRPG1 then
 				local TargetRPG = TargetRPG1.Character:FindFirstChild('HumanoidRootPart')
 				if TargetRPG then
+					if RpgTimer >= 0 then
 						Launcher.CFrame = CFrame.new(TargetRPG.Position.X, TargetRPG.Position.Y + 5, TargetRPG.Position.Z)
+						RpgTimer = RpgTimer - 1
+					else
+						Launcher.CFrame = CFrame.new(TargetRPG.Position.X, TargetRPG.Position.Y + Distance, TargetRPG.Position.Z)
 						Distance = Distance - 1
+					end
 				else
 					RpgTimer = DS 
 					Distance = DT
