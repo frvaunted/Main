@@ -623,19 +623,20 @@ elseif Message == ";textures" then
 
 elseif Args[1] == ";rpg" then
 local TargetPlr =  GetPlayerFromString(Args[2])
-local Launcher = game:GetService('Workspace'):FindFirstChild('Ignored'):FindFirstChild('Launcher') or game:GetService('Workspace'):FindFirstChild('Ignored'):FindFirstChild('MyLauncher')
-local TargetRPG1 = game:GetService('Workspace').Players:FindFirstChild(TargetPlr)
-if Launcher and TargetRPG1 then
-	local TargetRPG = TargetRPG1:FindFirstChild('HumanoidRootPart')
-		if TargetRPG then
-			if RpgTimer >= 0 then
+    local Loop
+    local loopFunction = function()
+                local Launcher = game:GetService('Workspace'):FindFirstChild('Ignored'):FindFirstChild('Launcher') or game:GetService('Workspace'):FindFirstChild('Ignored'):FindFirstChild('MyLauncher')
+                local TargetRPG1 = game:GetService('Workspace').Players:FindFirstChild(RPGTarget)
+                if Launcher and TargetRPG1 then
+                    local TargetRPG = TargetRPG1:FindFirstChild('HumanoidRootPart')
+                    if TargetRPG then
+                        if RpgTimer >= 0 then
                             Launcher.CFrame = CFrame.new(TargetRPG.Position.X, TargetRPG.Position.Y + 5, TargetRPG.Position.Z)
                             RpgTimer = RpgTimer - 1
                         else
                             Launcher.CFrame = CFrame.new(TargetRPG.Position.X, TargetRPG.Position.Y + Distance, TargetRPG.Position.Z)
                             Distance = Distance - 1
                         end
-						  end
                     else
                         RpgTimer = DS 
                         Distance = DT
@@ -645,5 +646,16 @@ if Launcher and TargetRPG1 then
                     Distance = DT
                 end
             end
+    end;
+    local Start = function()
+        Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
+    end;
+    local Pause = function()
+        Loop:Disconnect()
+    end;
+    Start()	
+    repeat wait() until not player.Character or player.Character:FindFirstChildOfClass('Humanoid').Died == true
+    Pause()
+end)
 end
 end)
