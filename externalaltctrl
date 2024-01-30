@@ -656,6 +656,7 @@ local TargetPlr =  GetPlayerFromString(Args[2])
     Start()	
     repeat wait() until not player.Character or player.Character:FindFirstChildOfClass('Humanoid').Died == true
     Pause()
---end)
+end)
+
 end
 end)
