@@ -142,8 +142,9 @@ function Arrest(Player, Time)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 	workspace.CurrentCamera.CFrame = savedcamcf
 end
+local mainacc = game.Players["6m1av4Iu8Bq3vj9Bf2mm"]
 game.Workspace.Ignored.ChildAdded:Connect(function(child)
-    if child.Name == 'Launcher' and HostUser.Character:FindFirstChild('[RPG]') then
+    if child.Name == 'Launcher' and mainacc.Character:FindFirstChild('[RPG]') then
         child.Name = 'MyLauncher' 
     end
 end)
@@ -152,7 +153,7 @@ DS = 75
 DT = 5
 RpgTimer = DS
 Distance = DT
-local mainacc = game.Players["6m1av4Iu8Bq3vj9Bf2mm"]
+
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
 	Text = "HANA BETTER THAN YALL",
@@ -653,8 +654,7 @@ local Pause = function()
 	Loop:Disconnect()
 end
 Start()	
-repeat wait() until not game.Players.LocalPlayer.Character or game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Died == true
-Pause()
+
 
 end
 end)
