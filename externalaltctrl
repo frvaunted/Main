@@ -148,7 +148,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 	Text = "HANA BETTER THAN YALL",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
-loadstring(game:HttpGet("https://pastebin.com/raw/nzXicwc1", true))() -- Chatspy
+loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/chatspy", true))() -- Chatspy
 local vu = game:GetService("VirtualUser") -- AntiAfk
 game:GetService("Players").LocalPlayer.Idled:connect(function()
     vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
