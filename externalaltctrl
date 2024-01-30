@@ -646,9 +646,9 @@ local TargetPlr =  GetPlayerFromString(Args[2])
                     Distance = DT
                 end
             end
-    end;
+    end
     local Start = function()
-        Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
+        Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction)
     end;
     local Pause = function()
         Loop:Disconnect()
