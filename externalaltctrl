@@ -143,18 +143,6 @@ function Arrest(Player, Time)
 	workspace.CurrentCamera.CFrame = savedcamcf
 end
 local mainacc = game.Players["6m1av4Iu8Bq3vj9Bf2mm"]
-if game.PlaceId == "2788229376" then
-game.Workspace.Ignored.ChildAdded:Connect(function(child)
-    if child.Name == 'Launcher' and mainacc.Character:FindFirstChild('[RPG]') then
-        child.Name = 'MyLauncher' 
-    end
-end)
-else
---Rpg Variables--
-DS = 75
-DT = 5
-RpgTimer = DS
-Distance = DT
 
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
@@ -633,6 +621,5 @@ elseif Message == ";textures" then
 elseif Args[1] == ";temp" then
 local TargetPlr =  GetPlayerFromString(Args[2])
 
-end
 end
 end)
