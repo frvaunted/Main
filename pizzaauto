@@ -309,14 +309,15 @@ rightCamBtn.MouseButton1Click:Connect(function()
 	end
 end)
 
-local supplyCounts = {TomatoSauce=99,Cheese=99,Sausage=99,Pepperoni=99,Dough=99,Box=99,Dew=99}
-for name in pairs(supplyCounts) do
-	local lbl = workspace.SupplyCounters.Model[name=="Dew" and "CounterMountainDew" or "Counter"..name].a.SG.Counter
-	supplyCounts[name]=tonumber(lbl.Text)
-	lbl.Changed:Connect(function()
-		supplyCounts[name]=tonumber(lbl.Text)
-	end)
-end
+--//subroutines
+--local supplyCounts = {TomatoSauce=99,Cheese=99,Sausage=99,Pepperoni=99,Dough=99,Box=99,Dew=99}
+--for name in pairs(supplyCounts) do
+	--local lbl = workspace.SupplyCounters[name=="Dew" and "CounterMountainDew" or "Counter"..name].a.SG.Counter
+	--supplyCounts[name]=tonumber(lbl.Text)
+	--lbl.Changed:Connect(function()
+		--supplyCounts[name]=tonumber(lbl.Text)
+	--end)
+--end
 
 local function FindFirstCustomer()
 	local children = workspace.Customers:GetChildren()
