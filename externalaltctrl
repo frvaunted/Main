@@ -1,4 +1,4 @@
-getgenv().HostUser = "6m1av4Iu8Bq3vj9Bf2mm"
+getgenv().HostUser = "hanaforevermine"
 
 local Connections = {}
 local Services = {
@@ -142,7 +142,7 @@ function Arrest(Player, Time)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 	workspace.CurrentCamera.CFrame = savedcamcf
 end
-local mainacc = game.Players["6m1av4Iu8Bq3vj9Bf2mm"]
+local mainacc = game.Players["hanaforevermine"]
 
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
