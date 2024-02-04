@@ -251,7 +251,7 @@ elseif Message == ";log" then
 elseif Message == ";space" then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9e9,9e9,9e9)
 
-elseif Args[1] == ".fling" then
+elseif Args[1] == ".ufling" then
 	game.Players.LocalPlayer.Character.Humanoid:ChangeState(14)
 	tping = true
 	local FoundPlayer = GetPlayerFromString(Args[2])
