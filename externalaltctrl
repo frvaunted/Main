@@ -1,4 +1,4 @@
-getgenv().HostUser = "hanaforevermine"
+getgenv().HostUser = "siteraider"
 
 local Connections = {}
 local Services = {
@@ -142,7 +142,7 @@ function Arrest(Player, Time)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 	workspace.CurrentCamera.CFrame = savedcamcf
 end
-local mainacc = game.Players["hanaforevermine"]
+local mainacc = game.Players["siteraider"]
 
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
@@ -251,7 +251,63 @@ elseif Message == ";log" then
 elseif Message == ";space" then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9e9,9e9,9e9)
 
-	
+elseif Args[1] == ".fling" then
+	game.Players.LocalPlayer.Character.Humanoid:ChangeState(14)
+	tping = true
+	local FoundPlayer = GetPlayerFromString(Args[2])
+   if FoundPlayer then
+	local function LoopTp()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FoundPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-8,8),0,math.random(-8,8))
+	end
+	LoopTping = game:GetService("RunService").Stepped:Connect(LoopTp)
+   end
+	for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		if v:IsA("BasePart") then
+			v.CustomPhysicalProperties = PhysicalProperties.new(math.huge, 0.3, 0.5)
+		end
+	end
+	Clip = false
+	wait(0.1)
+	local function NoclipLoop()
+		if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+			Noclip = true
+			for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+					child.CanCollide = false
+				end
+			end
+		end
+	end
+	Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
+	wait(.1)
+	local bambam = Instance.new("BodyAngularVelocity")
+	bambam.Name = randomString()
+	bambam.Parent = getRoot(game.Players.LocalPlayer.Character)
+	bambam.AngularVelocity = Vector3.new(0,99999,0)
+	bambam.MaxTorque = Vector3.new(0,math.huge,0)
+	bambam.P = math.huge
+	local Char = game.Players.LocalPlayer.Character:GetChildren()
+	for i, v in next, Char do
+		if v:IsA("BasePart") then
+			v.CanCollide = false
+			v.Massless = true
+			v.Velocity = Vector3.new(0, 0, 0)
+		end
+	end
+	flinging = true
+	repeat
+		bambam.AngularVelocity = Vector3.new(0,99999,0)
+		wait(.2)
+		bambam.AngularVelocity = Vector3.new(0,0,0)
+		wait(.1)
+	until flinging == false
+
+elseif Message == ".unloop" then
+	if tping == true then
+		LoopTping:Disconnect()
+	end
+
+
 elseif Message == ";coords" then
 setclipboard(tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame))
 
