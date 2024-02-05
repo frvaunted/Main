@@ -1,0 +1,324 @@
+if game:GetService("CoreGui"):FindFirstChild("KAIOD") then
+    game:GetService("CoreGui"):FindFirstChild("KAIOD"):Destroy()
+ _G.loopkill = false
+end
+
+-- locals
+local p = game:GetService("Players").LocalPlayer
+local KAIOD = Instance.new("ScreenGui")
+local Frame = Instance.new("ImageLabel")
+local UIGradient = Instance.new("UIGradient")
+local Punish = Instance.new("TextButton")
+local Target = Instance.new("TextBox")
+local Kill = Instance.new("TextButton")
+local Bring = Instance.new("TextButton")
+local Goto = Instance.new("TextButton")
+local View = Instance.new("TextButton")
+local Reset = Instance.new("TextButton")
+local Unview = Instance.new("TextButton")
+local Loop = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+local ImageLabel = Instance.new("ImageLabel")
+local plr = game:GetService("Players").LocalPlayer
+local UIS = game:GetService('UserInputService')
+
+--coregui
+KAIOD.Name = "KAIOD"
+KAIOD.Parent = game:GetService("CoreGui")
+
+-- main
+Frame.Name = "Frame"
+Frame.Parent = KAIOD
+Frame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Frame.BackgroundTransparency = 0
+Frame.Position = UDim2.new(0, 1.5, 0.50, 0)
+Frame.Size = UDim2.new(0, 205, 0, 280)
+Frame.Image = "rbxassetid://3570695787"
+Frame.ScaleType = Enum.ScaleType.Slice
+Frame.SliceCenter = Rect.new(100, 100, 100, 100)
+Frame.SliceScale = -100
+Frame.Active = true
+Frame.Draggable = true
+Frame.Visible = true
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.51, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 25, 25))}
+UIGradient.Parent = Frame
+
+
+ImageLabel.Parent = Frame
+ImageLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BackgroundTransparency = 1
+ImageLabel.Position = UDim2.new(0.29, 0, -0.001, 0)
+ImageLabel.Size = UDim2.new(0, 84, 0, 84)
+ImageLabel.Image = ""
+
+
+Target.Name = "Target"
+Target.Parent = Frame
+Target.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Target.Position = UDim2.new(0.121, 0, 0.36, 0)
+Target.Size = UDim2.new(0, 150, 0, 45)
+Target.Font = Enum.Font.SourceSans
+Target.PlaceholderColor3 = Color3.fromRGB(355, 355, 355)
+Target.PlaceholderText = "User"
+Target.Text = ""
+Target.TextColor3 = Color3.fromRGB(355, 355, 355)
+Target.TextSize = 15
+Target.BackgroundTransparency = 0.7
+
+
+Punish.Name = "Punish"
+Punish.Parent = Frame
+Punish.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Punish.Position = UDim2.new(0.09, 0, 0.535, 0)
+Punish.Size = UDim2.new(0, 75, 0, 22)
+Punish.Text = "Punish"
+Punish.TextColor3 = Color3.fromRGB(355, 355, 355)
+Punish.TextScaled = true
+Punish.TextSize = 11.000
+Punish.TextWrapped = false
+Punish.BackgroundTransparency = 0.7
+
+
+Loop.Name = "Loop"
+Loop.Parent = Frame
+Loop.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Loop.Position = UDim2.new(0.53, 0, 0.535, 0)
+Loop.Size = UDim2.new(0, 75, 0, 22)
+Loop.Text = "Loop"
+Loop.TextColor3 = Color3.fromRGB(355, 355, 355)
+Loop.TextScaled = true
+Loop.TextSize = 11.000
+Loop.TextWrapped = false
+Loop.BackgroundTransparency = 0.7
+
+
+Kill.Name = "Kill"
+Kill.Parent = Frame
+Kill.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Kill.Position = UDim2.new(0.09, 0, 0.625, 0)
+Kill.Size = UDim2.new(0, 75, 0, 22)
+Kill.Text = "Kill"
+Kill.TextColor3 = Color3.fromRGB(355, 355, 355)
+Kill.TextScaled = true
+Kill.TextSize = 11.000
+Kill.TextWrapped = false
+Kill.BackgroundTransparency = 0.7
+
+
+Bring.Name = "Bring"
+Bring.Parent = Frame
+Bring.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Bring.Position = UDim2.new(0.53, 0, 0.625, 0)
+Bring.Size = UDim2.new(0, 75, 0, 22)
+Bring.Text = "Bring"
+Bring.TextColor3 = Color3.fromRGB(355, 355, 355)
+Bring.TextScaled = true
+Bring.TextSize = 11.000
+Bring.TextWrapped = false
+Bring.BackgroundTransparency = 0.7
+
+
+Goto.Name = "Goto"
+Goto.Parent = Frame
+Goto.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Goto.Position = UDim2.new(0.09, 0, 0.724, 0)
+Goto.Size = UDim2.new(0, 75, 0, 22)
+Goto.Text = "Goto"
+Goto.TextColor3 = Color3.fromRGB(355, 355, 355)
+Goto.TextScaled = true
+Goto.TextSize = 11.000
+Goto.TextWrapped = false
+Goto.BackgroundTransparency = 0.7
+
+View.Name = "View"
+View.Parent = Frame
+View.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+View.Position = UDim2.new(0.53, 0, 0.72, 0)
+View.Size = UDim2.new(0, 75, 0, 22)
+View.Text = "View"
+View.TextColor3 = Color3.fromRGB(355, 355, 355)
+View.TextScaled = true
+View.TextSize = 11.000
+View.TextWrapped = false
+View.BackgroundTransparency = 0.7
+
+
+Reset.Name = "Reset"
+Reset.Parent = Frame
+Reset.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Reset.Position = UDim2.new(0.09, 0, 0.82, 0)
+Reset.Size = UDim2.new(0, 75, 0, 22)
+Reset.Text = "Reset"
+Reset.TextColor3 = Color3.fromRGB(355, 355, 355)
+Reset.TextScaled = true
+Reset.TextSize = 11.000
+Reset.TextWrapped = false
+Reset.BackgroundTransparency = 0.7
+
+
+Unview.Name = "Unview"
+Unview.Parent = Frame
+Unview.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+Unview.Position = UDim2.new(0.53, 0, 0.817, 0)
+Unview.Size = UDim2.new(0, 75, 0, 22)
+Unview.Text = "Unview"
+Unview.TextColor3 = Color3.fromRGB(355, 355, 355)
+Unview.TextScaled = true
+Unview.TextSize = 11.000
+Unview.TextWrapped = false
+Unview.BackgroundTransparency = 0.7
+
+--toggle
+UIS.InputBegan:Connect(function(key) 
+    if key.KeyCode == Enum.KeyCode.RightControl then
+        if Frame.Visible == true then
+        Frame.Visible = false
+        else
+            Frame.Visible = true
+        end
+    end
+end)
+
+-- fill rest of the username
+local Player = function(Ev)
+ if Ev == "" then
+  return nil
+ elseif Ev == "random" then
+  return game:GetService("Players"):GetPlayers()[math.random(1, #game:GetService("Players"):GetPlayers())]
+ else
+  for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+   if v.Name:lower():sub(1, #Ev) == Ev:lower() or v.DisplayName:lower():sub(1, #Ev) == Ev then
+    return v
+   end
+  end
+ end
+end
+
+-- target image
+Target.Focused:Connect(function()
+ while Target:IsFocused() and wait() do
+  local User = Player(Target.Text)
+  if User ~= nil then
+   ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(User.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
+  end
+ end
+end)
+
+
+Target.FocusLost:Connect(function()
+ while wait() do
+  if Target:IsFocused() then break end
+  if Target.Text ~= "random" then break end
+  ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(Player(Target.Text).UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
+ end
+end)
+
+-- punish
+Punish.MouseButton1Click:Connect(function()
+ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(999999999999,99999999999999999999999,99999999999999999)
+ wait(0.4)
+ plr.Character.Humanoid:UnequipTools()
+ local Humanoid = plr.Character.Humanoid:Clone()
+ local Target = Player(Target.Text)
+ local Tool = plr.Backpack:FindFirstChildOfClass("Tool")
+
+ plr.Character.Animate.Disabled = true
+ plr.Character.Humanoid:Destroy()
+ Humanoid.Parent = plr.Character
+ Tool.Parent = plr.Character
+ game.Players.LocalPlayer.Character.Humanoid:ChangeState(13)
+ firetouchinterest(Target.Character.HumanoidRootPart, Tool.Handle, 0);
+end)
+
+-- loopkill
+Loop.MouseButton1Click:Connect(function()
+ if _G.loopkill then
+  _G.loopkill = false
+  Loop.Text = "Loop"
+ else
+  _G.loopkill = true
+  Loop.Text = "Unloop"
+  local Target = Player(Target.Text)
+  
+  repeat
+   if not game:GetService("Players"):FindFirstChild(Target.Name) then
+    _G.loopkill = false
+    game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Notification", Text = Target.Name .. " has left the game"})
+   end
+   
+   pcall(function()
+    plr.Character.Humanoid:UnequipTools()
+    local Humanoid = plr.Character.Humanoid:Clone()
+    local Tool = plr.Backpack:FindFirstChildOfClass("Tool")
+
+    plr.Character.Animate.Disabled = true
+    plr.Character.Humanoid:Destroy()
+    Humanoid.Parent = plr.Character
+    Tool.Parent = plr.Character
+    firetouchinterest(Target.Character.HumanoidRootPart, Tool.Handle, 0); wait(0.1)
+    plr.Character.Humanoid.Health = 0
+    plr.Character = nil
+   end)
+   
+   plr.CharacterAdded:Wait()
+   plr.Character:WaitForChild("Humanoid")
+  until not _G.loopkill
+ end
+end)
+
+-- kill
+Kill.MouseButton1Click:Connect(function()
+ plr.Character.Humanoid:UnequipTools()
+ local Humanoid = plr.Character.Humanoid:Clone()
+ local Target = Player(Target.Text)
+ local Tool = plr.Backpack:FindFirstChildOfClass("Tool")
+
+ plr.Character.Animate.Disabled = true
+ plr.Character.Humanoid:Destroy()
+ Humanoid.Parent = plr.Character
+ Tool.Parent = plr.Character
+ game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
+ firetouchinterest(Target.Character.HumanoidRootPart, Tool.Handle, 0);
+end)
+
+-- bring
+Bring.MouseButton1Click:Connect(function()
+ plr.Character.Humanoid:UnequipTools()
+ local Humanoid = plr.Character.Humanoid:Clone()
+ local Target = Player(Target.Text)
+ local Tool = plr.Backpack:FindFirstChildOfClass("Tool")
+
+ plr.Character.Animate.Disabled = true
+ plr.Character.Humanoid:Destroy()
+ Humanoid.Parent = plr.Character
+ Tool.Parent = plr.Character
+ game.Players.LocalPlayer.Character.Humanoid:ChangeState(13)
+ firetouchinterest(Target.Character.HumanoidRootPart, Tool.Handle, 0);
+end)
+
+-- goto
+Goto.MouseButton1Click:Connect(function()
+ local Target = Player(Target.Text)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame
+end)
+
+-- view
+View.MouseButton1Click:Connect(function()
+ local Target = Player(Target.Text)
+ game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = Target.Character:FindFirstChildWhichIsA('Humanoid')
+end)
+
+-- reset
+Reset.MouseButton1Click:Connect(function()
+for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+                if v:IsA("BasePart") then
+                    v:Destroy()
+                end
+end
+end)
+
+-- unview
+Unview.MouseButton1Click:Connect(function()
+game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid')
+end)
