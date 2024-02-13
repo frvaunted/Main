@@ -318,7 +318,7 @@ elseif Message == ";base" then
 elseif Message == ";tac" then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(495.036804, 113.399979, -667.521912)
 elseif Message == ";sg" then
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-670.575989, 81.899826, -748.970337)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
 elseif Message == ";rpg" then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(89.0373077, -25.8500366, -267.091187)
 elseif Message == ";db" then
