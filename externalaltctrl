@@ -210,7 +210,7 @@ function GetGun(Item, Ignore)
 	end)
 end
 function ChangeTeam(TeamPath,NoForce,Pos)
-	local Player, plr,Folder = game:GetService("Players").LocalPlayer
+	local Player, plr = game:GetService("Players").LocalPlayer
 	pcall(function()
 		repeat task.wait() until game:GetService("Players").LocalPlayer.Character
 		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
@@ -223,8 +223,8 @@ function ChangeTeam(TeamPath,NoForce,Pos)
 		repeat
 			game:GetService("RunService").Stepped:Wait()
 			if firetouchinterest then
-				firetouchinterest(plr.Character:FindFirstChildOfClass("Part"), game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1], 0)
-				firetouchinterest(plr.Character:FindFirstChildOfClass("Part"), game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1], 1)
+				firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Part"), game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1], 0)
+				firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Part"), game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1], 1)
 			end
 			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].Transparency = 1
 			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CanCollide = false
@@ -812,6 +812,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 3",
+	Text = "Version 4",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
