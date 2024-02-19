@@ -176,60 +176,71 @@ function CreateBulletTable(Amount, Hit, IsTrue)
 	return Args
 end
 local IsBringing = false
-function vtp(Target,TeleportTo)
-if not IsBringing and Target and Target.Character:FindFirstChildOfClass("Humanoid") and Target.Character:FindFirstChildOfClass("Humanoid").Health>0 and Target.Character:FindFirstChildOfClass("Humanoid").Sit == false then
+function vbring(Target,TeleportTo,MoreTP,DontBreakCar)
+	if not IsBringing and Target and Target.Character:FindFirstChildOfClass("Humanoid") and Target.Character:FindFirstChildOfClass("Humanoid").Health>0 and Target.Character:FindFirstChildOfClass("Humanoid").Sit == false then
 		if not TeleportTo then
 			TeleportTo = GetPosition()
 		end
-	local HostCF = GetPosition()
-	local Player, plr,Folder = game:GetService("Players").LocalPlayer
-	local CarPad = workspace.Prison_ITEMS.buttons["Car Spawner"]
-	local car = nil
-	local Seat = nil
-	local Failed = false
-	for i,v in pairs(game:GetService("Workspace").CarContainer:GetChildren()) do
-		if v then
-			if v:WaitForChild("Body"):WaitForChild("VehicleSeat").Occupant == nil then
-				car = v
+		local Orgin = GetPosition()
+		local CarPad = workspace.Prison_ITEMS.buttons["Car Spawner"]
+		local car = nil
+		local Seat = nil
+		local Failed = false
+		local CheckForBreak = function()
+			if not Target or not Target.Character:FindFirstChildOfClass("Humanoid") or Target.Character:FindFirstChildOfClass("Humanoid").Health<1 or Player.Character:FindFirstChildOfClass("Humanoid").Health<1 then
+				Failed = true
+				return true
+			else
+				return nil
 			end
 		end
-	end
-	if not car then
-		coroutine.wrap(function()
-			if not car then
-				car = game:GetService("Workspace").CarContainer.ChildAdded:Wait()
+
+		for i,v in pairs(game:GetService("Workspace").CarContainer:GetChildren()) do
+			if v then
+				if v:WaitForChild("Body"):WaitForChild("VehicleSeat").Occupant == nil then
+					car = v
+				end
 			end
-		end)()
-		repeat wait()
-			game:GetService("Players").LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-524, 55, 1777))
-			task.spawn(function()
-				workspace.Remote.ItemHandler:InvokeServer(game:GetService("Workspace").Prison_ITEMS.buttons:GetChildren()[7]["Car Spawner"])
-			end)
-		until car
-	end
-			car:WaitForChild("Body"):WaitForChild("VehicleSeat")
-			car.PrimaryPart = car.Body.VehicleSeat
-			Seat = car.Body.VehicleSeat
+		end
+		if not car then
+			coroutine.wrap(function()
+				if not car then
+					car = game:GetService("Workspace").CarContainer.ChildAdded:Wait()
+				end
+			end)()
 			repeat wait()
-				Seat:Sit(Player.Character:FindFirstChildOfClass("Humanoid"))
-			until Player.Character:FindFirstChildOfClass("Humanoid").Sit == true
-			wait() --// so it doesnt break
-			repeat game:GetService("RunService").Stepped:Wait()
-				if not Player.Character:FindFirstChildOfClass("Humanoid") or Player.Character:FindFirstChildOfClass("Humanoid").Sit == false then
+				game:GetService("Players").LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-524, 55, 1777))
+				task.spawn(function()
+					workspace.Remote.ItemHandler:InvokeServer(game:GetService("Workspace").Prison_ITEMS.buttons:GetChildren()[7]["Car Spawner"])
+				end)
+				if CheckForBreak() then
 					break
 				end
-				car.PrimaryPart = car.Body.VehicleSeat
-				if Target.Character:FindFirstChildOfClass("Humanoid").MoveDirection.Magnitude >0 then
-					car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-6))
-				else
-					car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-5))
-				end
-			until Target.Character:FindFirstChildOfClass("Humanoid").Sit == true
-			for i =1,10 do
-				car:SetPrimaryPartCFrame(HostCF)
-				game:GetService("RunService").Stepped:Wait()
+			until car
+		end
+		car:WaitForChild("Body"):WaitForChild("VehicleSeat")
+		car.PrimaryPart = car.Body.VehicleSeat
+		Seat = car.Body.VehicleSeat
+		repeat wait()
+			Seat:Sit(Player.Character:FindFirstChildOfClass("Humanoid"))
+		until Player.Character:FindFirstChildOfClass("Humanoid").Sit == true
+		wait() --// so it doesnt break
+		repeat game:GetService("RunService").Stepped:Wait()
+			if CheckForBreak() or not Player.Character:FindFirstChildOfClass("Humanoid") or Player.Character:FindFirstChildOfClass("Humanoid").Sit == false then
+				break
 			end
-end
+			car.PrimaryPart = car.Body.VehicleSeat
+			if Target.Character:FindFirstChildOfClass("Humanoid").MoveDirection.Magnitude >0 then
+				car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-6))
+			else
+				car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-5))
+			end
+		until Target.Character:FindFirstChildOfClass("Humanoid").Sit == true
+		for i =1,10 do
+			car:SetPrimaryPartCFrame(TeleportTo)
+			game:GetService("RunService").Stepped:Wait()
+		end
+		wait(.1)
 end
 function ArrestEvent(Player, Time)
 	for i = 1,Time do
@@ -810,11 +821,11 @@ elseif Message == ";textures" then
 
 elseif Args[1] == ";vbring" then
 local Player = GetPlayerFromString(Args[2])
-vtp(Player, Host.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
+vbring(Player, Host.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
 
 elseif Args[1] == ";vcrim" then
 	local Player = GetPlayerFromString(Args[2])
-	vtp(Player, CFrame.new(-858.08990478516, 94.476051330566, 2093.8288574219))
+	vbring(Player, CFrame.new(-858.08990478516, 94.476051330566, 2093.8288574219))
 	
 elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
@@ -825,6 +836,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 5.2",
+	Text = "Version 5.3",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
