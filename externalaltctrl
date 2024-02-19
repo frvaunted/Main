@@ -176,7 +176,7 @@ function CreateBulletTable(Amount, Hit, IsTrue)
 	return Args
 end
 local IsBringing = false
---[[function vbring(Target,TeleportTo,MoreTP,DontBreakCar)
+function vbring(Target,TeleportTo,MoreTP,DontBreakCar)
 	if not IsBringing and Target and Target.Character:FindFirstChildOfClass("Humanoid") and Target.Character:FindFirstChildOfClass("Humanoid").Health>0 and Target.Character:FindFirstChildOfClass("Humanoid").Sit == false then
 		if not TeleportTo then
 			TeleportTo = GetPosition()
@@ -240,8 +240,7 @@ local IsBringing = false
 			car:SetPrimaryPartCFrame(TeleportTo)
 			game:GetService("RunService").Stepped:Wait()
 		end
-	end
-end]]
+end
 function ArrestEvent(Player, Time)
 	for i = 1,Time do
 		workspace.Remote.arrest:InvokeServer(Player.Character.Head)
