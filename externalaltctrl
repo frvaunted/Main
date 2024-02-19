@@ -682,9 +682,14 @@ elseif Args[1] == ";cartp" then
 	local savedcf = GetPos()
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Prison_ITEMS.buttons["Car Spawner"]["Car Spawner"].CFrame
+	repeat wait() until game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == workspace.Prison_ITEMS.buttons["Car Spawner"]["Car Spawner"].CFrame
+	local args = {[1] = workspace:WaitForChild("Prison_ITEMS"):WaitForChild("buttons"):WaitForChild("Car Spawner"):WaitForChild("Car Spawner")}
+	workspace:WaitForChild("Remote"):WaitForChild("ItemHandler"):InvokeServer(unpack(args))
 	repeat wait() until workspace.CarContainer:FindFirstChild("Sedan")
-	local args = {[1] = workspace:WaitForChild("Prison_ITEMS"):WaitForChild("buttons"):WaitForChild("Car Spawner"):WaitForChild("Car Spawner")}workspace:WaitForChild("Remote"):WaitForChild("ItemHandler"):InvokeServer(unpack(args))
-	task.wait(0.2)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.CarContainer.Sedan.RWD.CFrame
+	
+elseif Args[1] == ";spawncar" then
+	local args = {[1] = workspace:WaitForChild("Prison_ITEMS"):WaitForChild("buttons"):WaitForChild("Car Spawner"):WaitForChild("Car Spawner")}
+	workspace:WaitForChild("Remote"):WaitForChild("ItemHandler"):InvokeServer(unpack(args))
 end
 end)
