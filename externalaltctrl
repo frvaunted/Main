@@ -114,8 +114,11 @@ function Teleport(Player, Position)
 	local savedcf = GetPos()
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Prison_ITEMS.buttons["Car Spawner"]["Car Spawner"].CFrame
-	task.wait(0.2)
-	-- make code for car tp
+	task.wait(0.1)
+	local args = {[1] = workspace:WaitForChild("Prison_ITEMS"):WaitForChild("buttons"):WaitForChild("Car Spawner"):WaitForChild("Car Spawner")}workspace:WaitForChild("Remote"):WaitForChild("ItemHandler"):InvokeServer(unpack(args))
+	task.wait until workspace.CarContainer:FindFirstChild("Sedan")
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.CarContainer.Sedan.RWD.CFrame
+
 end
 function ArrestEvent(Player, Time)
 	for i = 1,Time do
@@ -677,6 +680,12 @@ elseif Message == ";textures" then
 elseif Args[1] == ";cartp" then
 	--local Player = GetPlayerFromString(Args[2])
 	--Teleport(Player, CFrame.new(-976.672546, 130.188095, 1910.60913))
+	local savedcf = GetPos()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Prison_ITEMS.buttons["Car Spawner"]["Car Spawner"].CFrame
+	task.wait(0.1)
+	local args = {[1] = workspace:WaitForChild("Prison_ITEMS"):WaitForChild("buttons"):WaitForChild("Car Spawner"):WaitForChild("Car Spawner")}workspace:WaitForChild("Remote"):WaitForChild("ItemHandler"):InvokeServer(unpack(args))
+	task.wait until workspace.CarContainer:FindFirstChild("Sedan")
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.CarContainer.Sedan.RWD.CFrame
 end
 end)
