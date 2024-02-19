@@ -258,6 +258,7 @@ function CreateBulletTable(Amount, Hit, IsTrue)
 	return Args
 end
 function tKill(Target)
+	local Player = game.Players.LocalPlayer
 	local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
 	if not Target or not Target.Character or not Target.Character:FindFirstChildOfClass("Humanoid") or Target.Character:FindFirstChildOfClass("Humanoid").Health <1 then
 		return
