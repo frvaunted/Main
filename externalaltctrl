@@ -202,6 +202,7 @@ function GetPosition(Player)
 end
 function GetGun(Item, Ignore)
 	task.spawn(function()
+		local Player = game.Players.LocalPlayer
 		workspace:FindFirstChild("Remote")['ItemHandler']:InvokeServer({
 			Position = Player.Character.Head.Position,
 			Parent = workspace.Prison_ITEMS:FindFirstChild(Item, true)
@@ -812,6 +813,5 @@ cbring(Player)
 elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
 	tKill(Player)
-print(test)
 end
 end)
