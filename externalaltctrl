@@ -109,15 +109,15 @@ spawn(function()
 		end
 	end
 end)
+function API:swait()
+	game:GetService("RunService").Stepped:Wait()
+end
 function Teleport(Player, Position)
-	if Player == nil or Position == nil then return end
 	local savedcf = GetPos()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Prison_ITEMS.buttons["Car Spawner"]["Car Spawner"].CFrame
-	task.wait(0.1)
-	local args = {[1] = workspace:WaitForChild("Prison_ITEMS"):WaitForChild("buttons"):WaitForChild("Car Spawner"):WaitForChild("Car Spawner")}workspace:WaitForChild("Remote"):WaitForChild("ItemHandler"):InvokeServer(unpack(args))
-	task.wait(0.2)
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.CarContainer.Sedan.RWD.CFrame
+end
+function cbring(Player)
+	local savedcf = GetPos()
+
 end
 function ArrestEvent(Player, Time)
 	for i = 1,Time do
@@ -676,20 +676,56 @@ elseif Message == ";armor" then
 elseif Message == ";textures" then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/remove%20textures"))()
 
-elseif Args[1] == ";cartp" then
-	--local Player = GetPlayerFromString(Args[2])
-	--Teleport(Player, CFrame.new(-976.672546, 130.188095, 1910.60913))
-	local savedcf = GetPos()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Prison_ITEMS.buttons["Car Spawner"]["Car Spawner"].CFrame
-	repeat wait() until game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == workspace.Prison_ITEMS.buttons["Car Spawner"]["Car Spawner"].CFrame
-	local args = {[1] = workspace:WaitForChild("Prison_ITEMS"):WaitForChild("buttons"):WaitForChild("Car Spawner"):WaitForChild("Car Spawner")}
-	workspace:WaitForChild("Remote"):WaitForChild("ItemHandler"):InvokeServer(unpack(args))
-	repeat wait() until workspace.CarContainer:FindFirstChild("Sedan")
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.CarContainer.Sedan.RWD.CFrame
-	
-elseif Args[1] == ";spawncar" then
-	local args = {[1] = workspace:WaitForChild("Prison_ITEMS"):WaitForChild("buttons"):WaitForChild("Car Spawner"):WaitForChild("Car Spawner")}
-	workspace:WaitForChild("Remote"):WaitForChild("ItemHandler"):InvokeServer(unpack(args))
+elseif Args[1] == ";cbring" then
+local Target = GetPlayerFromString(Args[2])
+local HostCF = Host.Character.HumanoidRootPart.CFrame * CFrame.new(4,0,0)
+local Player = game:GetService("Players").LocalPlayer
+local CarPad = workspace.Prison_ITEMS.buttons["Car Spawner"]
+local car = nil
+local Seat = nil
+local Failed = false
+for i,v in pairs(game:GetService("Workspace").CarContainer:GetChildren()) do
+	if v then
+		if v:WaitForChild("Body"):WaitForChild("VehicleSeat").Occupant == nil then
+			car = v
+		end
+	end
+end
+if not car then
+	coroutine.wrap(function()
+		if not car then
+			car = game:GetService("Workspace").CarContainer.ChildAdded:Wait()
+		end
+	end)()
+	repeat wait()
+		game:GetService("Players").LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-524, 55, 1777))
+		task.spawn(function()
+			workspace.Remote.ItemHandler:InvokeServer(game:GetService("Workspace").Prison_ITEMS.buttons:GetChildren()[7]["Car Spawner"])
+		end)
+	until car
+end
+		car:WaitForChild("Body"):WaitForChild("VehicleSeat")
+		car.PrimaryPart = car.Body.VehicleSeat
+		Seat = car.Body.VehicleSeat
+		repeat wait()
+			Seat:Sit(Player.Character:FindFirstChildOfClass("Humanoid"))
+		until Player.Character:FindFirstChildOfClass("Humanoid").Sit == true
+		wait() --// so it doesnt break
+		repeat game:GetService("RunService").Stepped:Wait()
+			if not Player.Character:FindFirstChildOfClass("Humanoid") or Player.Character:FindFirstChildOfClass("Humanoid").Sit == false then
+				break
+			end
+			car.PrimaryPart = car.Body.VehicleSeat
+			if Target.Character:FindFirstChildOfClass("Humanoid").MoveDirection.Magnitude >0 then
+				car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-6))
+			else
+				car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-5))
+			end
+		until Target.Character:FindFirstChildOfClass("Humanoid").Sit == true
+		for i =1,10 do
+			car:SetPrimaryPartCFrame(HostCF)
+			game:GetService("RunService").Stepped:Wait()
+		end
+
 end
 end)
