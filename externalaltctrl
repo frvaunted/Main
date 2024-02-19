@@ -657,7 +657,7 @@ elseif Message == ";ammo" then
 									Req["AmmoPerClip"] = Req["AmmoPerClip"]
 									Req["CurrentAmmo"] = Req["CurrentAmmo"]
 									Req["FireRate"] = -math.huge
-									Req["Bullets"] = 25
+									Req["Bullets"] = 26
 									Req["Range"] = math.huge
 									Req["Damage"] = math.huge
 									Req["ReloadTime"] = -math.huge
