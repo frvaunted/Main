@@ -810,9 +810,9 @@ elseif Message == ";textures" then
 
 elseif Args[1] == ";vbring" then
 local Player = GetPlayerFromString(Args[2])
-vtp(Player)
+vtp(Player, Host.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
 
-elseif Args[1] == ";vtp crim" then
+elseif Args[1] == ";vcrim" then
 	local Player = GetPlayerFromString(Args[2])
 	vtp(Player, CFrame.new(-858.08990478516, 94.476051330566, 2093.8288574219))
 	
@@ -825,6 +825,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 5.1",
+	Text = "Version 5.2",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
