@@ -113,8 +113,8 @@ end)
 function Teleport(Player, Position)
 	local savedcf = GetPos()
 end
-function cbring(Target)
-	local HostCF = Host.Character.HumanoidRootPart.CFrame * CFrame.new(4,0,0)
+function vtp(Target)
+	local HostCF = nil
 	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	local CarPad = workspace.Prison_ITEMS.buttons["Car Spawner"]
 	local car = nil
@@ -805,13 +805,20 @@ elseif Message == ";armor" then
 elseif Message == ";textures" then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/remove%20textures"))()
 
-elseif Args[1] == ";cbring" then
+elseif Args[1] == ";vbring" then
 local Player = GetPlayerFromString(Args[2])
-cbring(Player)
+local hostCF = Host.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5)
+vtp(Player)
 
+elseif Args[1] == ";vtp crim" then
+	local Player = GetPlayerFromString(Args[2])
+	local hostCF = CFrame.new(-898.337646, 94.1270294, 2138.08789)
+	vtp(Player)
+	
 elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
 	tKill(Player)
+
 end
 end)
 local mainacc = game.Players["vhounded"]
