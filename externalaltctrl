@@ -42,6 +42,7 @@ Players = game:GetService("Players")
 local Admin = {}
 local LoopKill = {}
 local States = {}
+local Player, plr,Folder = game:GetService("Players").LocalPlayer
 local function GetPos()
 	return game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 end
@@ -812,6 +813,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 4",
+	Text = "Version 4.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
