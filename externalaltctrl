@@ -232,7 +232,7 @@ function ChangeTeam(TeamPath,NoForce,Pos)
 			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].Transparency = 1
 			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CanCollide = false
 			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CFrame = GetPosition()
-		until plr.Team == game:GetService("Teams").Criminals
+		until game.Players.LocalPlayer.Team == "Criminals"
 		game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CFrame = CFrame.new(0, 3125, 0)
 	else
 		if TeamPath == game.Teams.Neutral then
@@ -815,6 +815,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 4.6",
+	Text = "Version 4.7",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
