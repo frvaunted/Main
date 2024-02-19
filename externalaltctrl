@@ -275,11 +275,13 @@ function tKill(Target)
 	repeat game:GetService("RunService").Stepped:Wait() until not Target.Character:FindFirstChildOfClass("ForceField")
 	local CurrentTeam = nil
 	if Target.Team == Player.Team then
-		if Target.Team~= game.Teams.Criminals then
+		if Target.Team == game.Teams.Inmates then
 			CurrentTeam = Player.Team
+			task.wait(0.1)
 			ChangeTeam(game.Teams.Criminals,true)
 		elseif Target.Team == game.Teams.Criminals then
 			CurrentTeam = Player.Team
+			task.wait(0.1)
 			ChangeTeam(game.Teams.Inmates,true)
 		end
 	end
@@ -815,6 +817,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 4.7",
+	Text = "Version 4.8",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
