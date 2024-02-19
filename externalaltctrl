@@ -190,10 +190,12 @@ function Arrest(Player, Time)
 	workspace.CurrentCamera.CFrame = savedcamcf
 end
 function GetPart(Target)
+	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 	return Target.Character:FindFirstChild("HumanoidRootPart") or Target.Character:FindFirstChild("Head")
 end
 function GetPosition(Player)
+	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 	if Player then
 		return GetPart(Player).CFrame
@@ -813,6 +815,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 4.5",
+	Text = "Version 4.6",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
