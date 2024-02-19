@@ -338,6 +338,7 @@ local Args = string.split(Message," ")
 local AmountOfArgs = #Args
 
 if Args[1] == ";bring" then
+	game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit = False
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Host.Character.Head.CFrame * CFrame.new(0,1,0)
 
 elseif Message == ";rejoin" then
@@ -854,7 +855,8 @@ elseif Args[1] == ";vgas" then
 elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
 	tKill(Player)
-
+--elseif Args[1] == ";cmds" then
+--print("WIP")
 end
 end)
 local mainacc = game.Players["vhounded"]
