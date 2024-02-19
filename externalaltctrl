@@ -801,11 +801,11 @@ elseif Message == ";textures" then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/remove%20textures"))()
 
 elseif Args[1] == ";cbring" then
-local Target = GetPlayerFromString(Args[2])
-cbring(Target)
+local Player = GetPlayerFromString(Args[2])
+cbring(Player)
 
 elseif Args[1] == ";tkill" then
-	local Target = GetPlayerFromString(Args[2])
-	tKill(Target)
+	local Player = GetPlayerFromString(Args[2])
+	tKill(Player)
 end
 end)
