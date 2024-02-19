@@ -802,7 +802,7 @@ elseif Message == ";textures" then
 
 elseif Args[1] == ";cbring" then
 local Player = GetPlayerFromString(Args[2])
-print("who")
+print(Player.Character.HumanoidRootPart)
 
 elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
