@@ -812,5 +812,6 @@ cbring(Player)
 elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
 	tKill(Player)
+print(test)
 end
 end)
