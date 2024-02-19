@@ -114,7 +114,7 @@ function Teleport(Player, Position)
 end
 function cbring(Target)
 	local HostCF = Host.Character.HumanoidRootPart.CFrame * CFrame.new(4,0,0)
-	local Player = game:GetService("Players").LocalPlayer
+	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	local CarPad = workspace.Prison_ITEMS.buttons["Car Spawner"]
 	local car = nil
 	local Seat = nil
@@ -202,7 +202,7 @@ function GetPosition(Player)
 end
 function GetGun(Item, Ignore)
 	task.spawn(function()
-		local Player = game.Players.LocalPlayer
+		local Player, plr,Folder = game:GetService("Players").LocalPlayer
 		workspace:FindFirstChild("Remote")['ItemHandler']:InvokeServer({
 			Position = Player.Character.Head.Position,
 			Parent = workspace.Prison_ITEMS:FindFirstChild(Item, true)
@@ -210,7 +210,7 @@ function GetGun(Item, Ignore)
 	end)
 end
 function ChangeTeam(TeamPath,NoForce,Pos)
-	local Player = game.Players.LocalPlayer
+	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	pcall(function()
 		repeat task.wait() until game:GetService("Players").LocalPlayer.Character
 		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
@@ -264,7 +264,7 @@ function CreateBulletTable(Amount, Hit, IsTrue)
 	return Args
 end
 function tKill(Target)
-	local Player = game.Players.LocalPlayer
+	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
 	if not Target or not Target.Character or not Target.Character:FindFirstChildOfClass("Humanoid") or Target.Character:FindFirstChildOfClass("Humanoid").Health <1 then
 		return
@@ -812,6 +812,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 2",
+	Text = "Version 3",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
