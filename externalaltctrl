@@ -188,12 +188,16 @@ function Arrest(Player, Time)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 	workspace.CurrentCamera.CFrame = savedcamcf
 end
+function GetPart(Target)
+	game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+	return Target.Character:FindFirstChild("HumanoidRootPart") or Target.Character:FindFirstChild("Head")
+end
 function GetPosition(Player)
 	game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 	if Player then
-		return API:GetPart(Player).CFrame
+		return GetPart(Player).CFrame
 	elseif not Player then
-		return API:GetPart(plr).CFrame
+		return GetPart(plr).CFrame
 	end
 end
 function GetGun(Item, Ignore)
@@ -222,7 +226,7 @@ function ChangeTeam(TeamPath,NoForce,Pos)
 			end
 			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].Transparency = 1
 			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CanCollide = false
-			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CFrame = API:GetPosition()
+			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CFrame = GetPosition()
 		until plr.Team == game:GetService("Teams").Criminals
 		game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CFrame = CFrame.new(0, 3125, 0)
 	else
@@ -268,15 +272,15 @@ function tKill(Target)
 	if Target.Team == Player.Team then
 		if Target.Team~= game.Teams.Criminals then
 			CurrentTeam = Player.Team
-			API:ChangeTeam(game.Teams.Criminals,true)
+			ChangeTeam(game.Teams.Criminals,true)
 		elseif Target.Team == game.Teams.Criminals then
 			CurrentTeam = Player.Team
-			API:ChangeTeam(game.Teams.Inmates,true)
+			ChangeTeam(game.Teams.Inmates,true)
 		end
 	end
 
 	local Gun = Player.Backpack:FindFirstChild("Remington 870") or Player.Character:FindFirstChild("Remington 870")
-	API:GetGun("Remington 870")
+	GetGun("Remington 870")
 	repeat game:GetService("RunService").Stepped:Wait()Gun = Player.Backpack:FindFirstChild("Remington 870") or Player.Character:FindFirstChild("Remington 870") until Gun
 	task.spawn(function()
 		game:GetService("ReplicatedStorage").ShootEvent:FireServer(Bullets, Gun)
