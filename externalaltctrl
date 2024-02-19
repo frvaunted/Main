@@ -826,6 +826,30 @@ vbring(Player, Host.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
 elseif Args[1] == ";vcrim" then
 	local Player = GetPlayerFromString(Args[2])
 	vbring(Player, CFrame.new(-858.08990478516, 94.476051330566, 2093.8288574219))
+elseif Args[1] == ";vlunch" then
+	local Player = GetPlayerFromString(Args[2])
+	vbring(Player, CFrame.new(905, 100, 2226))
+elseif Args[1] == ";vnexus" then
+	local Player = GetPlayerFromString(Args[2])
+	vbring(Player, CFrame.new(-362.340332, 54.2398224, 1984.19775))
+elseif Args[1] == ";vprison" then
+	local Player = GetPlayerFromString(Args[2])
+	vbring(Player, CFrame.new(918.028381, 99.9899826, 2371.59741))
+elseif Args[1] == ";vroof" then
+	local Player = GetPlayerFromString(Args[2])
+	vbring(Player, CFrame.new(820.480591, 120.989983, 2311.49097))
+elseif Args[1] == ";vyard" then
+	local Player = GetPlayerFromString(Args[2])
+	vbring(Player, CFrame.new(780.588379, 97.9999237, 2485.39795))
+elseif Args[1] == ";vguard" then
+	local Player = GetPlayerFromString(Args[2])
+	vbring(Player, CFrame.new(833.242981, 99.9899826, 2266.13501))
+elseif Args[1] == ";vbase1" then
+	local Player = GetPlayerFromString(Args[2])
+	vbring(Player, CFrame.new(-43.2018013, 11.0993261, 1301.39001))
+elseif Args[1] == ";vgas" then
+	local Player = GetPlayerFromString(Args[2])
+	vbring(Player, CFrame.new(-518, 54, 1655))
 	
 elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
@@ -836,6 +860,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 5.3",
+	Text = "Version 5.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
