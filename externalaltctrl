@@ -229,9 +229,9 @@ function ChangeTeam(TeamPath,NoForce,Pos)
 				firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Part"), game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1], 0)
 				firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Part"), game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1], 1)
 			end
-			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].Transparency = 1
+			--[[game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].Transparency = 1
 			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CanCollide = false
-			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CFrame = GetPosition()
+			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CFrame = GetPosition()]]
 		until game.Players.LocalPlayer.Team == "Criminals"
 		game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CFrame = CFrame.new(0, 3125, 0)
 	else
@@ -274,7 +274,7 @@ function tKill(Target)
 	end
 	repeat game:GetService("RunService").Stepped:Wait() until not Target.Character:FindFirstChildOfClass("ForceField")
 	local CurrentTeam = nil
-	if Target.Team == Player.Team then
+	--[[if Target.Team == Player.Team then
 		if Target.Team == game.Teams.Inmates then
 			CurrentTeam = Player.Team
 			task.wait(0.1)
@@ -284,7 +284,7 @@ function tKill(Target)
 			task.wait(0.1)
 			ChangeTeam(game.Teams.Inmates,true)
 		end
-	end
+	end]]
 
 	local Gun = Player.Backpack:FindFirstChild("Remington 870") or Player.Character:FindFirstChild("Remington 870")
 	GetGun("Remington 870")
@@ -301,10 +301,10 @@ function tKill(Target)
 			end
 		end)
 	end)()
-	if CurrentTeam and not Player.Team == CurrentTeam then
+	--[[if CurrentTeam and not Player.Team == CurrentTeam then
 		wait(.3)
 		ChangeTeam(CurrentTeam,true)
-	end
+	end]]
 end
 loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/chatspy", true))() -- Chatspy
 local vu = game:GetService("VirtualUser") -- AntiAfk
@@ -817,6 +817,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 4.8",
+	Text = "Version 4.9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
