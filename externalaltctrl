@@ -98,97 +98,6 @@ pcall(function()
 		game:GetService("ReplicatedStorage").ShootEvent:FireServer(FireEvent, Gun)
 	end)
 end
-spawn(function()
-	while wait() do
-		for i,v in pairs(LoopKill) do
-			pcall(function()
-				if v.Player and v.Player.Character and v.Player.Character.Head and v.Player.Character.Humanoid.Health ~= 0 then
-					task.wait(0.5)
-					Kill(v.Player)
-				end
-			end)
-		end
-	end
-end)
-function Teleport(Player, Position)
-	local savedcf = GetPos()
-end
-function vtp(Target)
-	local HostCF = nil
-	local Player, plr,Folder = game:GetService("Players").LocalPlayer
-	local CarPad = workspace.Prison_ITEMS.buttons["Car Spawner"]
-	local car = nil
-	local Seat = nil
-	local Failed = false
-	for i,v in pairs(game:GetService("Workspace").CarContainer:GetChildren()) do
-		if v then
-			if v:WaitForChild("Body"):WaitForChild("VehicleSeat").Occupant == nil then
-				car = v
-			end
-		end
-	end
-	if not car then
-		coroutine.wrap(function()
-			if not car then
-				car = game:GetService("Workspace").CarContainer.ChildAdded:Wait()
-			end
-		end)()
-		repeat wait()
-			game:GetService("Players").LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-524, 55, 1777))
-			task.spawn(function()
-				workspace.Remote.ItemHandler:InvokeServer(game:GetService("Workspace").Prison_ITEMS.buttons:GetChildren()[7]["Car Spawner"])
-			end)
-		until car
-	end
-			car:WaitForChild("Body"):WaitForChild("VehicleSeat")
-			car.PrimaryPart = car.Body.VehicleSeat
-			Seat = car.Body.VehicleSeat
-			repeat wait()
-				Seat:Sit(Player.Character:FindFirstChildOfClass("Humanoid"))
-			until Player.Character:FindFirstChildOfClass("Humanoid").Sit == true
-			wait() --// so it doesnt break
-			repeat game:GetService("RunService").Stepped:Wait()
-				if not Player.Character:FindFirstChildOfClass("Humanoid") or Player.Character:FindFirstChildOfClass("Humanoid").Sit == false then
-					break
-				end
-				car.PrimaryPart = car.Body.VehicleSeat
-				if Target.Character:FindFirstChildOfClass("Humanoid").MoveDirection.Magnitude >0 then
-					car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-6))
-				else
-					car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-5))
-				end
-			until Target.Character:FindFirstChildOfClass("Humanoid").Sit == true
-			for i =1,10 do
-				car:SetPrimaryPartCFrame(HostCF)
-				game:GetService("RunService").Stepped:Wait()
-			end
-
-end
-function ArrestEvent(Player, Time)
-	for i = 1,Time do
-		workspace.Remote.arrest:InvokeServer(Player.Character.Head)
-	end
-end
-function Arrest(Player, Time)
-	local Time = Time or 1
-	local savedcf = GetPos()
-	local savedcamcf = GetCamPos()
-	local savedteam = GetTeam()
-	if Player then
-		repeat wait()
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
-			for i = 1,Time do
-				coroutine.wrap(function()
-					workspace.Remote.arrest:InvokeServer(Player.Character.Head)
-				end)()
-			end
-		until Player.Character:FindFirstChild("Head"):FindFirstChild("handcuffedGui")
-		wait()
-	end
-	game.Players.LocalPlayer.Character.Humanoid.Sit = false
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
-	workspace.CurrentCamera.CFrame = savedcamcf
-end
 function GetPart(Target)
 	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
@@ -266,6 +175,88 @@ function CreateBulletTable(Amount, Hit, IsTrue)
 	end
 	return Args
 end
+local IsBringing = false
+function bring(Target,TeleportTo)
+if not IsBringing and Target and Target.Character:FindFirstChildOfClass("Humanoid") and Target.Character:FindFirstChildOfClass("Humanoid").Health>0 and Target.Character:FindFirstChildOfClass("Humanoid").Sit == false then
+		if not TeleportTo then
+			TeleportTo = GetPosition()
+		end
+	local HostCF = GetPosition()
+	local Player, plr,Folder = game:GetService("Players").LocalPlayer
+	local CarPad = workspace.Prison_ITEMS.buttons["Car Spawner"]
+	local car = nil
+	local Seat = nil
+	local Failed = false
+	for i,v in pairs(game:GetService("Workspace").CarContainer:GetChildren()) do
+		if v then
+			if v:WaitForChild("Body"):WaitForChild("VehicleSeat").Occupant == nil then
+				car = v
+			end
+		end
+	end
+	if not car then
+		coroutine.wrap(function()
+			if not car then
+				car = game:GetService("Workspace").CarContainer.ChildAdded:Wait()
+			end
+		end)()
+		repeat wait()
+			game:GetService("Players").LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-524, 55, 1777))
+			task.spawn(function()
+				workspace.Remote.ItemHandler:InvokeServer(game:GetService("Workspace").Prison_ITEMS.buttons:GetChildren()[7]["Car Spawner"])
+			end)
+		until car
+	end
+			car:WaitForChild("Body"):WaitForChild("VehicleSeat")
+			car.PrimaryPart = car.Body.VehicleSeat
+			Seat = car.Body.VehicleSeat
+			repeat wait()
+				Seat:Sit(Player.Character:FindFirstChildOfClass("Humanoid"))
+			until Player.Character:FindFirstChildOfClass("Humanoid").Sit == true
+			wait() --// so it doesnt break
+			repeat game:GetService("RunService").Stepped:Wait()
+				if not Player.Character:FindFirstChildOfClass("Humanoid") or Player.Character:FindFirstChildOfClass("Humanoid").Sit == false then
+					break
+				end
+				car.PrimaryPart = car.Body.VehicleSeat
+				if Target.Character:FindFirstChildOfClass("Humanoid").MoveDirection.Magnitude >0 then
+					car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-6))
+				else
+					car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-5))
+				end
+			until Target.Character:FindFirstChildOfClass("Humanoid").Sit == true
+			for i =1,10 do
+				car:SetPrimaryPartCFrame(HostCF)
+				game:GetService("RunService").Stepped:Wait()
+			end
+end
+end
+function ArrestEvent(Player, Time)
+	for i = 1,Time do
+		workspace.Remote.arrest:InvokeServer(Player.Character.Head)
+	end
+end
+function Arrest(Player, Time)
+	local Time = Time or 1
+	local savedcf = GetPos()
+	local savedcamcf = GetCamPos()
+	local savedteam = GetTeam()
+	if Player then
+		repeat wait()
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+			for i = 1,Time do
+				coroutine.wrap(function()
+					workspace.Remote.arrest:InvokeServer(Player.Character.Head)
+				end)()
+			end
+		until Player.Character:FindFirstChild("Head"):FindFirstChild("handcuffedGui")
+		wait()
+	end
+	game.Players.LocalPlayer.Character.Humanoid.Sit = false
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
+	workspace.CurrentCamera.CFrame = savedcamcf
+end
+
 function tKill(Target)
 	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
@@ -306,6 +297,18 @@ function tKill(Target)
 		ChangeTeam(CurrentTeam,true)
 	end]]
 end
+spawn(function()
+	while wait() do
+		for i,v in pairs(LoopKill) do
+			pcall(function()
+				if v.Player and v.Player.Character and v.Player.Character.Head and v.Player.Character.Humanoid.Health ~= 0 then
+					task.wait(0.5)
+					tKill(v.Player)
+				end
+			end)
+		end
+	end
+end)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/chatspy", true))() -- Chatspy
 local vu = game:GetService("VirtualUser") -- AntiAfk
 game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -807,13 +810,11 @@ elseif Message == ";textures" then
 
 elseif Args[1] == ";vbring" then
 local Player = GetPlayerFromString(Args[2])
-local hostCF = Host.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5)
 vtp(Player)
 
 elseif Args[1] == ";vtp crim" then
 	local Player = GetPlayerFromString(Args[2])
-	local hostCF = CFrame.new(-898.337646, 94.1270294, 2138.08789)
-	vtp(Player)
+	vtp(Player, CFrame.new(-858.08990478516, 94.476051330566, 2093.8288574219))
 	
 elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
@@ -824,6 +825,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 4.9",
+	Text = "Version 5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
