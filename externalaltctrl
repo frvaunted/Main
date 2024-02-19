@@ -210,6 +210,7 @@ function GetGun(Item, Ignore)
 	end)
 end
 function ChangeTeam(TeamPath,NoForce,Pos)
+	local Player = game.Players.LocalPlayer
 	pcall(function()
 		repeat task.wait() until game:GetService("Players").LocalPlayer.Character
 		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
@@ -815,4 +816,4 @@ elseif Args[1] == ";tkill" then
 	tKill(Player)
 end
 end)
-print("test1")
+print("Version 2")
