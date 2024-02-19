@@ -240,7 +240,7 @@ function vbring(Target,TeleportTo,MoreTP,DontBreakCar)
 			car:SetPrimaryPartCFrame(TeleportTo)
 			game:GetService("RunService").Stepped:Wait()
 		end
-		wait(.1)
+	end
 end
 function ArrestEvent(Player, Time)
 	for i = 1,Time do
