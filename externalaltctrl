@@ -176,7 +176,7 @@ function CreateBulletTable(Amount, Hit, IsTrue)
 	return Args
 end
 local IsBringing = false
-function bring(Target,TeleportTo)
+function vtp(Target,TeleportTo)
 if not IsBringing and Target and Target.Character:FindFirstChildOfClass("Humanoid") and Target.Character:FindFirstChildOfClass("Humanoid").Health>0 and Target.Character:FindFirstChildOfClass("Humanoid").Sit == false then
 		if not TeleportTo then
 			TeleportTo = GetPosition()
@@ -825,6 +825,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 5",
+	Text = "Version 5.1",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
