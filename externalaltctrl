@@ -919,8 +919,6 @@ if workspace:FindFirstChild("HIGHLIGHTS_1000") then
 end
 local Group = Instance.new("Model",workspace)
 Group.Name = "HIGHLIGHTS_1000"
-local esp =Instance.new("Highlight",Group)
-Temp.ESP = esp
 
 local function EspToggle(v)
 if not Temp.EspConnection  then
