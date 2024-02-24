@@ -947,7 +947,7 @@ task.spawn(function()
 			v2.Font = Enum.Font.Legacy
 			v2.TextSize = 15
 			v2.Text = v.Name
-			v.Character.Parent = Group
+			--v.Character.Parent = Group
 			end
 		end)
 	end)
