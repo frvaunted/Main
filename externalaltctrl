@@ -293,7 +293,7 @@ function SpamArrest(Player)
 		end
 	until not game.Players[Player.Name] or not States.SpamArrest
 end
-end
+
 function vDestroy(v)
 	v:Remove()
 	pcall(function()
@@ -1007,7 +1007,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded!",
-	Text = "Version 6.8",
+	Title = "Loaded test1",
+	Text = "Version 6.7",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
