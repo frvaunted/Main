@@ -1019,7 +1019,7 @@ elseif Args[1] == ";tesp" then
 						TextLabel.Text = (v.Name)
 						TextLabel.BackgroundTransparency = 1
 						TextLabel.Size = UDim2.new(1,0,1,0)
-						TextLabel.TextColor3 = Color3.new(0,255,0)
+						TextLabel.TextColor3 = v.TeamColor.Color
 					end
 				end
 			end
@@ -1027,7 +1027,7 @@ elseif Args[1] == ";tesp" then
 	end
 elseif Args[1] == ";untesp" then
 	States.Testesp = nil
-	for _,v in pairs(game:GetService('Players'):GetChildren()) do
+	for _,v in pairs(game.Workspace:GetDescendants()) do
 		if v.Character then
 			if v.Character.Head:FindFirstChild('ESP') then
 				v.Character.Head:FindFirstChild('ESP'):Destroy()
@@ -1039,7 +1039,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded test4",
+	Title = "Loaded test5",
 	Text = "Version 6.9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
