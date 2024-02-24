@@ -1028,18 +1028,16 @@ elseif Args[1] == ";tesp" then
 elseif Args[1] == ";untesp" then
 	States.Testesp = nil
 	for _,v in pairs(game.Workspace:GetDescendants()) do
-		if v.Character then
-			if v.Character.Head:FindFirstChild('ESP') then
-				v.Character.Head:FindFirstChild('ESP'):Destroy()
-			end
-		end
+		if v.Name == "ESP" and v.Size = UDim2.new(1,0,1,0) then
+			v:Destroy()
+		end	
 	end
 
 end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded test5",
+	Title = "Loaded test6",
 	Text = "Version 6.9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
