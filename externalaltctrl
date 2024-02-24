@@ -42,7 +42,18 @@ Players = game:GetService("Players")
 local Admin = {}
 local LoopKill = {}
 local States = {}
+local Temp = {}
+Temp.Esps = {}
 local Player, plr,Folder = game:GetService("Players").LocalPlayer
+repeat wait() until game:IsLoaded()
+game:GetService("Players").PlayerAdded:Connect(function(player)
+		game.StarterGui:SetCore("SendNotification",{
+		Title = player.DisplayName,
+		Text = player.Name.. " joined!",
+		Icon = game:GetService("Players"):GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
+		Duration = 5
+		})
+end)
 local function GetPos()
 	return game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 end
@@ -267,7 +278,12 @@ function Arrest(Player, Time)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 	workspace.CurrentCamera.CFrame = savedcamcf
 end
-
+function Destroy(v)
+	v:Destroy()
+	pcall(function()
+		v:Remove()
+	end)
+end
 function tKill(Target)
 	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
@@ -855,10 +871,119 @@ elseif Args[1] == ";vgas" then
 elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
 	tKill(Player)
+
+elseif Args[1] == ";freeze" then
+	local a = game:GetService("RunService").Stepped:Connect(function()
+		pcall(function()
+			plr.Character:Destroy()
+		end)
+	end)
+	local a2 = plr.CharacterAdded:Connect(function(a)
+		pcall(function()
+			a:Destroy()
+		end)
+		pcall(function()
+			plr.Character:Destroy()
+		end)
+	end)
+	for i =1,1500 do
+		task.spawn(function()
+			workspace.Remote.TeamEvent:FireServer("Bright orange")
+		end)
+	end
+	wait(8)
+	a:Disconnect()
+	a2:Disconnect()
+	wait(.7)
+	task.spawn(function()
+		workspace.Remote.TeamEvent:FireServer("Bright orange")
+	end)
+end,nil,"",true)
+
+elseif Args[1] == ";esp" then
+	local value = print("Esp Turned On")
+	if value then
+		if workspace:FindFirstChild("HIGHLIGHTS_1000") then
+			return 
+		end
+		local Group = Instance.new("Model",workspace)
+		Group.Name = "HIGHLIGHTS_1000"
+		local esp =Instance.new("Highlight",Group)
+		esp.FillColor = BrickColor.White().Color
+
+		Temp.ESP = esp
+		local function EspToggle(v)
+			if not Temp.EspConnection  then
+				return
+			end
+			task.spawn(function()
+				pcall(function()
+					if v.Character and v.Character:FindFirstChild("Head") then
+						if v.Character.Parent == Group then
+							return
+						end
+						v.Character.Archivable = true
+						local v1 = Instance.new("BillboardGui",v.Character:FindFirstChild("Head"))
+						local v2 = Instance.new("TextLabel",v1)
+						table.insert(Temps.Esp, v1)
+						table.insert(Temps.Esp, v2)
+						v1.Adornee = v.Character.Head
+						v1.Name = "123123123123"
+						v1.Size = UDim2.new(0, 100, 0, 150)
+						v1.StudsOffset = Vector3.new(0, 2, 0)
+						v1.AlwaysOnTop = true
+						v2.BackgroundTransparency = 1
+						v2.TextColor3 = v.TeamColor.Color
+						v2.TextStrokeTransparency = 0
+						v2.TextYAlignment = Enum.TextYAlignment.Bottom
+						v2.Position = UDim2.new(0, 0, 0, -50)
+						v2.Size = UDim2.new(0, 120, 0, 120)
+						v2.Font = Enum.Font.SourceSans
+						v2.TextSize = 15
+						v2.Text = v.Name
+						v.Character.Parent = Group
+					end
+				end)
+			end)
+		end
+		Temp.EspConnection=true
+		repeat wait(.5)
+			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+				if v and v~= game:GetService("Players").LocalPlayer then
+					EspToggle(v)
+				end
+			end
+			for i,v in pairs(Temp.Esps) do
+				if v.Parent == nil then
+					Destroy(v)
+				end
+			end
+		until Temp.EspConnection == nil
+	else
+		if workspace:FindFirstChild("HIGHLIGHTS_1000") then
+			Destroy(Temp.ESP)
+			Temp.EspConnection = nil
+			wait(.1)
+			for i,v in pairs(workspace:FindFirstChild("HIGHLIGHTS_1000"):GetChildren()) do
+				v.Parent = workspace
+			end
+			for i,v in pairs(Temp.Esps) do
+				Destroy(v)
+			end
+			Destroy(workspace:FindFirstChild("HIGHLIGHTS_1000"))
+
+		end
+	end
+end
+
+elseif Args[1] == ";lklist" then
+	print(LoopKill)
+
 --elseif Args[1] == ";cmds" then
 --print("WIP")
 end
 end)
+
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
