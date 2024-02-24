@@ -284,6 +284,20 @@ function Destroy(v)
 		v:Remove()
 	end)
 end
+local ChangeState = function(Type,StateType)
+	local Value = nil
+	if Type and typeof(Type):lower() == "string" and (Type):lower() == "on" then
+		Value = true
+	elseif Type and typeof(Type):lower() == "string" and (Type):lower() == "off" then
+		Value = false
+	elseif typeof(Type):lower() == "boolean" then
+		Value = Type
+	else
+		Value = not States[StateType]
+	end
+	States[StateType] = Value
+	return Value
+end
 function tKill(Target)
 	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
@@ -974,11 +988,7 @@ elseif Args[1] == ";esp" then
 
 		end
 	end
-end
-end
-
-elseif Args[1] == ";lklist" then
-	print(LoopKill)
+end,nil,"[ON/OFF]")
 
 end
 end)
