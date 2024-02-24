@@ -968,7 +968,7 @@ Temp.EspConnection=true
 
 elseif Args[1] == ";unesp" then
 		Destroy(Temp.ESP)
-		--Temp.EspConnection = nil
+		Temp.EspConnection = nil
 		wait(.1)
 		for i,v in pairs(Temp.Esps) do
 			Destroy(v)
