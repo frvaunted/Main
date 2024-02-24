@@ -913,7 +913,7 @@ elseif Args[1] == ";freeze" then
 		workspace.Remote.TeamEvent:FireServer("Bright orange")
 	end)
 end
-
+end
 elseif Args[1] == ";esp" then
 if workspace:FindFirstChild("HIGHLIGHTS_1000") then
 	return 
