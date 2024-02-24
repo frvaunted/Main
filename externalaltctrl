@@ -922,7 +922,7 @@ if workspace:FindFirstChild("HIGHLIGHTS_1000") then
 end
 local Group = Instance.new("Model",workspace)
 Group.Name = "HIGHLIGHTS_1000"
-
+Temp.ESP = esp
 local function EspToggle(v)
 if not Temp.EspConnection  then
 	return
@@ -990,6 +990,6 @@ end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded!",
-	Text = "Version 6.6",
+	Text = "Version 6.7",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
