@@ -1003,11 +1003,43 @@ elseif Args[1] == ";sa" then
 local Player = GetPlayerFromString(Args[2])
 	SpamArrest(Player)
 
+elseif Args[1] == ";testesp" then
+	States.Testesp = true
+	if States.Testesp then
+		repeat game:GetService("RunService").Stepped:Wait()
+			for _,v in pairs(game:GetService('Players'):GetChildren()) do
+				if v.Character then
+					if not v.Character.UpperTorso:FindFirstChild('ESP') then
+						local ESP = Instance.new('BillboardGui', v.Character.UpperTorso)
+						ESP.StudsOffset = Vector3.new(0,3,0)
+						ESP.Size = UDim2.new(4,0,1,0)
+						ESP.AlwaysOnTop = true
+						ESP.Name = 'ESP'
+						local TextLabel = Instance.new('TextLabel', ESP)
+						TextLabel.Text = (v.Name)
+						TextLabel.BackgroundTransparency = 1
+						TextLabel.Size = UDim2.new(1,0,1,0)
+						TextLabel.TextColor3 = green
+					end
+				end
+			end
+		until not States.Testesp
+	end
+elseif Args[1] == ";untestesp" then
+	States.Testesp = nil
+	for _,v in pairs(game:GetService('Players'):GetChildren()) do
+		if v.Character then
+			if v.Character.UpperTorso:FindFirstChild('ESP') then
+				v.Character.UpperTorso:FindFirstChild('ESP'):Destroy()
+			end
+		end
+	end
+
 end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded test1",
-	Text = "Version 6.7",
+	Text = "Version 6.9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
