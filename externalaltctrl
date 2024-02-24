@@ -1,12 +1,5 @@
 getgenv().HostUser = "doxesh"
 
-local mainacc = game.Players["doxesh"]
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded test1",
-	Text = "Version 6",
-	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
-})
-
 local Connections = {}
 local Services = {
 	["RP"] = game:GetService("ReplicatedStorage"),
@@ -919,8 +912,7 @@ elseif Args[1] == ";freeze" then
 	task.spawn(function()
 		workspace.Remote.TeamEvent:FireServer("Bright orange")
 	end)
-end
-end
+
 elseif Args[1] == ";esp" then
 if workspace:FindFirstChild("HIGHLIGHTS_1000") then
 	return 
@@ -993,3 +985,9 @@ elseif Args[1] == ";unesp" then
 		
 end
 end)
+local mainacc = game.Players["doxesh"]
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "Loaded test1",
+	Text = "Version 6",
+	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
+})
