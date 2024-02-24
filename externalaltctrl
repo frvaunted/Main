@@ -975,12 +975,11 @@ elseif Args[1] == ";esp" then
 		end
 	end
 end
+end
 
 elseif Args[1] == ";lklist" then
 	print(LoopKill)
 
---elseif Args[1] == ";cmds" then
---print("WIP")
 end
 end)
 
