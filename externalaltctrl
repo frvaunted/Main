@@ -278,6 +278,22 @@ function Arrest(Player, Time)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 	workspace.CurrentCamera.CFrame = savedcamcf
 end
+function SpamArrest(Player)
+	States.SpamArrest = true
+	repeat wait()
+		if game.Players[Player.Name] and States.SpamArrest then
+				repeat game:GetService("RunService").Stepped:Wait()
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+					for i = 1,1000 do
+						coroutine.wrap(function()
+							ArrestEvent(Player, math.huge)
+						end)()
+					end
+				until Player.Character.Head:FindFirstChild("handcuffedGui") or not game.Players[Player.Name]
+		end
+	until not game.Players[Player.Name] or not States.SpamArrest
+end
+end
 function vDestroy(v)
 	v:Remove()
 	pcall(function()
@@ -982,14 +998,16 @@ elseif Args[1] == ";unesp" then
 			vDestroy(v)
 		end
 		vDestroy(workspace:FindFirstChild("HIGHLIGHTS_1000"))
-
 	end
-		
+elseif Args[1] == ";sa" then
+local Player = GetPlayerFromString(Args[2])
+	SpamArrest(Player)
+
 end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded!",
-	Text = "Version 6.7",
+	Text = "Version 6.8",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
