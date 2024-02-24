@@ -279,7 +279,7 @@ function Arrest(Player, Time)
 	workspace.CurrentCamera.CFrame = savedcamcf
 end
 function vDestroy(v)
-	v:Destroy()
+	v:Remove()
 	pcall(function()
 		v:Remove()
 	end)
@@ -990,6 +990,6 @@ end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded!",
-	Text = "Version 6.5",
+	Text = "Version 6.6",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
