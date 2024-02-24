@@ -1,5 +1,12 @@
 getgenv().HostUser = "doxesh"
 
+local mainacc = game.Players["doxesh"]
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "Loaded test1",
+	Text = "Version 6",
+	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
+})
+
 local Connections = {}
 local Services = {
 	["RP"] = game:GetService("ReplicatedStorage"),
@@ -986,10 +993,3 @@ elseif Args[1] == ";unesp" then
 		
 end
 end)
-
-local mainacc = game.Players["doxesh"]
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded",
-	Text = "Version 6",
-	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
-})
