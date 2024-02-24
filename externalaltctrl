@@ -1003,7 +1003,7 @@ elseif Args[1] == ";sa" then
 local Player = GetPlayerFromString(Args[2])
 	SpamArrest(Player)
 
-elseif Args[1] == ";testesp" then
+elseif Args[1] == ";tesp" then
 	States.Testesp = true
 	if States.Testesp then
 		repeat game:GetService("RunService").Stepped:Wait()
@@ -1025,7 +1025,7 @@ elseif Args[1] == ";testesp" then
 			end
 		until not States.Testesp
 	end
-elseif Args[1] == ";untestesp" then
+elseif Args[1] == ";untesp" then
 	States.Testesp = nil
 	for _,v in pairs(game:GetService('Players'):GetChildren()) do
 		if v.Character then
@@ -1039,7 +1039,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded test1",
+	Title = "Loaded test2",
 	Text = "Version 6.9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
