@@ -1,4 +1,4 @@
-getgenv().HostUser = "Infusade"
+getgenv().HostUser = "vhounded"
 
 local Connections = {}
 local Services = {
@@ -859,7 +859,7 @@ elseif Args[1] == ";tkill" then
 --print("WIP")
 end
 end)
-local mainacc = game.Players["Infusade"]
+local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
 	Text = "Version 5.5",
