@@ -987,6 +987,6 @@ end)
 local mainacc = game.Players["vhounded"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded",
-	Text = "Version 5.5",
+	Text = "Version 6",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
