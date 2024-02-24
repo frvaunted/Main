@@ -898,7 +898,7 @@ elseif Args[1] == ";freeze" then
 	task.spawn(function()
 		workspace.Remote.TeamEvent:FireServer("Bright orange")
 	end)
-end,nil,"",true)
+end
 
 elseif Args[1] == ";esp" then
 	local value = print("Esp Turned On")
