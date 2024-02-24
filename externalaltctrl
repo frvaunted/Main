@@ -917,11 +917,11 @@ elseif Args[1] == ";esp" then
 if workspace:FindFirstChild("HIGHLIGHTS_1000") then
 	return 
 end
-local Group = Instance.new("Model",workspace)
+--[[local Group = Instance.new("Model",workspace)
 Group.Name = "HIGHLIGHTS_1000"
 local esp =Instance.new("Highlight",Group)
 esp.FillColor = BrickColor.White().Color
-Temp.ESP = esp
+Temp.ESP = esp]]
 
 local function EspToggle(v)
 if not Temp.EspConnection  then
@@ -933,7 +933,7 @@ task.spawn(function()
 			if v.Character.Parent == Group then
 				return
 			end
-			--v.Character.Archivable = true
+			v.Character.Archivable = true
 			local v1 = Instance.new("BillboardGui",v.Character:FindFirstChild("Head"))
 			local v2 = Instance.new("TextLabel",v1)
 			v1.Adornee = v.Character.Head
