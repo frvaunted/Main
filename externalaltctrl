@@ -917,11 +917,10 @@ elseif Args[1] == ";esp" then
 if workspace:FindFirstChild("HIGHLIGHTS_1000") then
 	return 
 end
---[[local Group = Instance.new("Model",workspace)
+local Group = Instance.new("Model",workspace)
 Group.Name = "HIGHLIGHTS_1000"
 local esp =Instance.new("Highlight",Group)
-esp.FillColor = BrickColor.White().Color
-Temp.ESP = esp]]
+Temp.ESP = esp
 
 local function EspToggle(v)
 if not Temp.EspConnection  then
@@ -981,7 +980,7 @@ elseif Args[1] == ";unesp" then
 			Destroy(v)
 		end
 		--Destroy(workspace:FindFirstChild("HIGHLIGHTS_1000"))
-	end
+	--end
 		
 end
 end)
