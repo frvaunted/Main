@@ -970,17 +970,17 @@ Temp.EspConnection=true
 			until Temp.EspConnection == nil
 
 elseif Args[1] == ";unesp" then
-	if workspace:FindFirstChild("HIGHLIGHTS_1000") then
+	--if workspace:FindFirstChild("HIGHLIGHTS_1000") then
 		Destroy(Temp.ESP)
 		Temp.EspConnection = nil
 		wait(.1)
-		for i,v in pairs(workspace:FindFirstChild("HIGHLIGHTS_1000"):GetChildren()) do
+		--[[for i,v in pairs(workspace:FindFirstChild("HIGHLIGHTS_1000"):GetChildren()) do
 			v.Parent = workspace
-		end
+		end]]
 		for i,v in pairs(Temp.Esps) do
 			Destroy(v)
 		end
-		Destroy(workspace:FindFirstChild("HIGHLIGHTS_1000"))
+		--Destroy(workspace:FindFirstChild("HIGHLIGHTS_1000"))
 	end
 		
 end
