@@ -967,18 +967,26 @@ Temp.EspConnection=true
 			until Temp.EspConnection == nil
 
 elseif Args[1] == ";unesp" then
+	if workspace:FindFirstChild("HIGHLIGHTS_1000") then
 		Destroy(Temp.ESP)
 		Temp.EspConnection = nil
 		wait(.1)
+		for i,v in pairs(workspace:FindFirstChild("HIGHLIGHTS_1000"):GetChildren()) do
+			v.Parent = workspace
+			Destroy(v2)
+		end
 		for i,v in pairs(Temp.Esps) do
 			Destroy(v)
 		end
+		Destroy(workspace:FindFirstChild("HIGHLIGHTS_1000"))
+
+	end
 		
 end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded!",
-	Text = "Version 6.2",
+	Text = "Version 6.3",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
