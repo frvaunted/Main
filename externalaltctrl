@@ -886,7 +886,7 @@ elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
 	tKill(Player)
 
---[[elseif Args[1] == ";freeze" then
+elseif Args[1] == ";freeze" then
 	local a = game:GetService("RunService").Stepped:Connect(function()
 		pcall(function()
 			plr.Character:Destroy()
@@ -912,7 +912,7 @@ elseif Args[1] == ";tkill" then
 	task.spawn(function()
 		workspace.Remote.TeamEvent:FireServer("Bright orange")
 	end)
-end]]
+end
 
 elseif Args[1] == ";esp" then
 if workspace:FindFirstChild("HIGHLIGHTS_1000") then
@@ -934,7 +934,7 @@ task.spawn(function()
 			if v.Character.Parent == Group then
 				return
 			end
-			v.Character.Archivable = true
+			--v.Character.Archivable = true
 			local v1 = Instance.new("BillboardGui",v.Character:FindFirstChild("Head"))
 			local v2 = Instance.new("TextLabel",v1)
 			v1.Adornee = v.Character.Head
@@ -948,7 +948,7 @@ task.spawn(function()
 			v2.TextYAlignment = Enum.TextYAlignment.Bottom
 			v2.Position = UDim2.new(0, 0, 0, -50)
 			v2.Size = UDim2.new(0, 120, 0, 120)
-			v2.Font = Enum.Font.SourceSans
+			v2.Font = Enum.Font.Legacy
 			v2.TextSize = 15
 			v2.Text = v.Name
 			v.Character.Parent = Group
