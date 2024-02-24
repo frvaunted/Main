@@ -881,7 +881,10 @@ elseif Args[1] == ";vbase1" then
 elseif Args[1] == ";vgas" then
 	local Player = GetPlayerFromString(Args[2])
 	vbring(Player, CFrame.new(-518, 54, 1655))
-	
+elseif Args[1] == ";vheaven" then
+	local Player = GetPlayerFromString(Args[2])
+	vbring(Player, CFrame.new(2^7,5^34,4^7))
+
 elseif Args[1] == ";tkill" then
 	local Player = GetPlayerFromString(Args[2])
 	tKill(Player)
@@ -987,6 +990,6 @@ end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded!",
-	Text = "Version 6.4",
+	Text = "Version 6.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
