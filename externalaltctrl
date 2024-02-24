@@ -1009,8 +1009,8 @@ elseif Args[1] == ";tesp" then
 		repeat game:GetService("RunService").Stepped:Wait()
 			for _,v in pairs(game:GetService('Players'):GetChildren()) do
 				if v.Character then
-					if not v.Character.UpperTorso:FindFirstChild('ESP') then
-						local ESP = Instance.new('BillboardGui', v.Character.UpperTorso)
+					if not v.Character.Head:FindFirstChild('ESP') then
+						local ESP = Instance.new('BillboardGui', v.Character.Head)
 						ESP.StudsOffset = Vector3.new(0,3,0)
 						ESP.Size = UDim2.new(4,0,1,0)
 						ESP.AlwaysOnTop = true
@@ -1029,8 +1029,8 @@ elseif Args[1] == ";untesp" then
 	States.Testesp = nil
 	for _,v in pairs(game:GetService('Players'):GetChildren()) do
 		if v.Character then
-			if v.Character.UpperTorso:FindFirstChild('ESP') then
-				v.Character.UpperTorso:FindFirstChild('ESP'):Destroy()
+			if v.Character.Head:FindFirstChild('ESP') then
+				v.Character.Head:FindFirstChild('ESP'):Destroy()
 			end
 		end
 	end
@@ -1039,7 +1039,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded test2",
+	Title = "Loaded test3",
 	Text = "Version 6.9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
