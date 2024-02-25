@@ -800,17 +800,17 @@ elseif Args[1] == ";dbring" then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 		end
 		if not c:FindFirstChild("[Bat]") then
-			c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["Bat"])     
+			c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Bat]"])     
 		end
-		c["Bat"]:Activate()
+		c["[Bat]"]:Activate()
 		task.wait(1.5)
 		Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 		repeat task.wait()
 			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(math.random(-8,8),1,math.random(-8,8))
 				if not c:FindFirstChild("[Bat]") then
-					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["Bat"])     
+					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Bat]"])     
 				end
-			c["Bat"]:Activate()
+			c["[Bat]"]:Activate()
 		until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == true
 		Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
 		if c.BodyEffects.Grabbed.Value ~= nil then
@@ -989,7 +989,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test3",
+	Title = "Loaded! test4",
 	Text = "Version 7.1",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
