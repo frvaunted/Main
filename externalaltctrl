@@ -786,18 +786,31 @@ elseif Args[1] == ";dbring" then
 
 		c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
 		--Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
-		if not c:FindFirstChild("Combat") then
-			c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)     
+		if not c.Backpack:FindFirstChild("[Bat]") or not c:FindFirstChild("[Bat]") then
+			local ItemCost = 265
+			local ClickDetector = game:GetService("Workspace").Ignored.Shop["[Bat]-$265"].ClickDetector
+			local Location = game:GetService("Workspace").Ignored.Shop["[Bat]-$265"].ClickDetector.Parent.Head.Position
+			OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			local function buy()
+				wait()
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Location)
+				fireclickdetector(ClickDetector)
+			end
+			repeat buy() until game.Players.LocalPlayer.Character.Backpack:FindFirstChild("[Bat]") or game.Players.LocalPlayer.Character:FindFirstChild("[Bat]")
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 		end
-		c.Combat:Activate()
+		if not c:FindFirstChild("[Bat]") then
+			c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["Bat"])     
+		end
+		c["Bat"]:Activate()
 		task.wait(1.5)
 		Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 		repeat task.wait()
 			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(math.random(-8,8),1,math.random(-8,8))
-				if not c:FindFirstChild("Combat") then
-					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)     
+				if not c:FindFirstChild("[Bat]") then
+					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["Bat"])     
 				end
-			c.Combat:Activate()
+			c["Bat"]:Activate()
 		until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == true
 		Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
 		if c.BodyEffects.Grabbed.Value ~= nil then
@@ -977,6 +990,6 @@ end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded!",
-	Text = "Version 7.1",
+	Text = "Version 7.2",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
