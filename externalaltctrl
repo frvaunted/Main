@@ -1052,7 +1052,7 @@ elseif Args[1] == ";tbring" then
 					zchange = 0
 				end
 				if game.Players.LocalPlayer.Character then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(BringTorso.Position.X + dis) + xchange, BringTorso.Position.Y, BringTorso.Position.Z + dis + zchange)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(BringTorso.Position.X + dis + xchange, BringTorso.Position.Y, BringTorso.Position.Z + dis + zchange)
 				end
 			end
 				if not c:FindFirstChild("[Bat]") then
@@ -1111,7 +1111,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test7",
+	Title = "Loaded! test8",
 	Text = "Version 7.1",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
