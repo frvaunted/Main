@@ -806,7 +806,7 @@ elseif Args[1] == ";dbring" then
 		task.wait(1.5)
 		Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 		repeat task.wait()
-			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(math.random(-8,8),1,math.random(-8,8))
+			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 				if not c:FindFirstChild("[Bat]") then
 					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Bat]"])     
 				end
@@ -983,13 +983,132 @@ elseif Args[1] == ";unesp" then
 			end
 		end
 	end
-elseif Args[1] == ";" then
+elseif Args[1] == ";tbring" then
+	local CmdSettings = {}
+		local TargetPlr =  GetPlayerFromString(Args[2])
+		local BringEnemy = TargetPlr.Character
+		local c = game.Players.LocalPlayer.Character
+		local Root = c.HumanoidRootPart
+		local PrevCF = Root.CFrame
+		local TargetChar = TargetPlr.Character
+		if TargetPlr and TargetPlr.Character and TargetPlr.Character:FindFirstChild("Humanoid") then
 
+			if TargetChar.BodyEffects["K.O"].Value == true then
+				repeat
+					Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
+					game.Players.LocalPlayer.Character.Humanoid:ChangeState(2)
+					task.wait(0.3)
+					game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
+					task.wait(0.3)
+					Root.CFrame = PrevCF
+					task.wait(0.8)
+				until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
+				task.wait(0.3)
+				Root.CFrame = PrevCF
+				task.wait(0.8)
+				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
+			else
+
+		CmdSettings["IsLocking"] = true
+
+		c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+		--Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
+		if not game.Players.LocalPlayer.Backpack:FindFirstChild("[Bat]") or not c:FindFirstChild("[Bat]") then
+			local ItemCost = 265
+			local ClickDetector = game:GetService("Workspace").Ignored.Shop["[Bat] - $265"].ClickDetector
+			local Location = game:GetService("Workspace").Ignored.Shop["[Bat] - $265"].ClickDetector.Parent.Head.Position
+			OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			local function buy()
+				wait()
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Location)
+				fireclickdetector(ClickDetector)
+			end
+			repeat buy() until game.Players.LocalPlayer.Backpack:FindFirstChild("[Bat]") or game.Players.LocalPlayer.Character:FindFirstChild("[Bat]")
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
+		end
+		if not c:FindFirstChild("[Bat]") then
+			c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Bat]"])     
+		end
+		c["[Bat]"]:Activate()
+		task.wait(1.5)
+		Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
+		repeat task.wait()
+			if BringEnemy and player.Character then
+				BringTorso = BringEnemy.UpperTorso
+				local dis = 4.85
+				local increase = 7
+				if BringEnemy.Humanoid.MoveDirection.X < 0 then
+					xchange = -increase
+				elseif BringEnemy.Humanoid.MoveDirection.X > 0  then
+					xchange = increase
+				else
+					xchange = 0
+				end
+				if BringEnemy.Humanoid.MoveDirection.Z < 0 then
+					zchange = -increase
+				elseif BringEnemy.Humanoid.MoveDirection.Z > 0 then
+					zchange = increase
+				else
+					zchange = 0
+				end 
+			end       
+				if not c:FindFirstChild("[Bat]") then
+					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Bat]"])     
+				end
+			c["[Bat]"]:Activate()
+		until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == true
+		Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
+		if c.BodyEffects.Grabbed.Value ~= nil then
+
+		else
+		if not (not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false ) then
+			local args = {
+				[1] = "Grabbing",
+				[2] = false
+			}
+
+			game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
+		end
+
+	end
+		repeat wait(0.35)
+		if not (not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false ) then
+			for i,v in pairs(game:GetService("Workspace").MAP.Indestructible:GetDescendants()) do
+			if v:IsA("Part") then
+			v.CanCollide = true
+			end
+		end
+		Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
+		if c.BodyEffects.Grabbed.Value ~= nil then
+			else
+				if not (not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or TargetChar.BodyEffects["K.O"].Value == false)  then
+					local args = {
+						[1] = "Grabbing",
+						[2] = false
+					}
+					game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
+				end
+			end
+		end
+	until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false 
+
+	Root.CFrame = PrevCF
+
+	CmdSettings["IsLocking"] = nil
+	wait(1.5)
+	local args = {
+		[1] = "Grabbing",
+		[2] = false
+	}
+
+	game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
+	end
+end
 end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test4",
+	Title = "Loaded! test5",
 	Text = "Version 7.1",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
