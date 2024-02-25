@@ -793,7 +793,7 @@ elseif Args[1] == ";dbring" then
 		task.wait(1.5)
 		Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 		repeat task.wait()
-			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(math.random(-5,5),1,math.random(-5,5))
+			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(math.random(-8,8),1,math.random(-8,8))
 				if not c:FindFirstChild("Combat") then
 					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)     
 				end
