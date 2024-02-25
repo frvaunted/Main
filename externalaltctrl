@@ -788,8 +788,8 @@ elseif Args[1] == ";dbring" then
 		--Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 		if not game.Players.LocalPlayer.Backpack:FindFirstChild("[Bat]") or not c:FindFirstChild("[Bat]") then
 			local ItemCost = 265
-			local ClickDetector = game:GetService("Workspace").Ignored.Shop["[Bat]-$265"].ClickDetector
-			local Location = game:GetService("Workspace").Ignored.Shop["[Bat]-$265"].ClickDetector.Parent.Head.Position
+			local ClickDetector = game:GetService("Workspace").Ignored.Shop["[Bat] - $265"].ClickDetector
+			local Location = game:GetService("Workspace").Ignored.Shop["[Bat] - $265"].ClickDetector.Parent.Head.Position
 			OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 			local function buy()
 				wait()
@@ -989,7 +989,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test2",
+	Title = "Loaded! test3",
 	Text = "Version 7.1",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
