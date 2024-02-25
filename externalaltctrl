@@ -1026,20 +1026,20 @@ elseif Args[1] == ";tesp" then
 		until not States.Testesp
 	end
 
-elseif Args[1] == ";untesp" then
+-[[elseif Args[1] == ";untesp" then
 	States.Testesp = nil
 	for _,v in pairs(game.Workspace:GetDescendants()) do
 		if v.Name == "ESP"then
 			v:Destroy()
 		end
 	end
-end
+end]]
 
 end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded test6",
+	Title = "Loaded test7",
 	Text = "Version 6.9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
