@@ -1035,7 +1035,7 @@ elseif Args[1] == ";tbring" then
 		repeat task.wait()
 			if BringEnemy and game.Players.LocalPlayer.Character then
 				BringTorso = BringEnemy.UpperTorso
-				local dis = 4.85
+				local dis = 5.4
 				local increase = 7
 				if BringEnemy.Humanoid.MoveDirection.X < 0 then
 					xchange = -increase
@@ -1052,7 +1052,7 @@ elseif Args[1] == ";tbring" then
 					zchange = 0
 				end
 				if game.Players.LocalPlayer.Character then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(BringTorso.Position.X + math.random(-dis,dis) + xchange, BringTorso.Position.Y, BringTorso.Position.Z + math.random(-dis,dis) + zchange) * CFrame.Angles(math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.X + 350),math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.Y + 200),math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.Z + 240))
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(BringTorso.Position.X + math.random(-dis,dis) + xchange, BringTorso.Position.Y, BringTorso.Position.Z + math.random(-dis,dis) + zchange)
 				end
 			end
 				if not c:FindFirstChild("[Bat]") then
@@ -1111,7 +1111,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test6",
+	Title = "Loaded! test7",
 	Text = "Version 7.1",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
