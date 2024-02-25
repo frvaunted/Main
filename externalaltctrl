@@ -1026,7 +1026,7 @@ elseif Args[1] == ";tesp" then
 		until not States.Testesp
 	end
 
--[[elseif Args[1] == ";untesp" then
+--[[elseif Args[1] == ";untesp" then
 	States.Testesp = nil
 	for _,v in pairs(game.Workspace:GetDescendants()) do
 		if v.Name == "ESP"then
