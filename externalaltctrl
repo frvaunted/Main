@@ -793,8 +793,7 @@ elseif Args[1] == ";dbring" then
 		task.wait(1.5)
 		Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 		repeat task.wait()
-			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
-
+			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(math.random(-5,5),1,math.random(-5,5))
 				if not c:FindFirstChild("Combat") then
 					c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)     
 				end
@@ -971,12 +970,13 @@ elseif Args[1] == ";unesp" then
 			end
 		end
 	end
+elseif Args[1] == ";" then
 
 end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded!",
-	Text = "Version 7",
+	Text = "Version 7.1",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
