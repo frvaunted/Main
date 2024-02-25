@@ -898,8 +898,8 @@ elseif Args[1] == ";pbring" then
 		repeat game:GetService("RunService").Stepped:Wait()
 			if BringEnemy and game.Players.LocalPlayer.Character then
 				BringTorso = BringEnemy.UpperTorso
-				local dis = 4.84
-				local increase = 7
+				local dis = 3.85
+				local increase = 5
 				if BringEnemy.Humanoid.MoveDirection.X < 0 then
 					xchange = -increase
 				elseif BringEnemy.Humanoid.MoveDirection.X > 0  then
@@ -1099,7 +1099,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test2",
+	Title = "Loaded! test3",
 	Text = "Version 7.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
