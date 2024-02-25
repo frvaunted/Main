@@ -905,7 +905,7 @@ elseif Args[1] == ";pbring" then
 			c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Pitchfork]"])     
 		end
 		c["[Pitchfork]"]:Activate()
-		task.wait(1.5)
+		task.wait(1.3)
 		Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 		repeat game:GetService("RunService").Stepped:Wait()
 			if BringEnemy and game.Players.LocalPlayer.Character then
@@ -1116,6 +1116,6 @@ end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded!",
-	Text = "Version 8",
+	Text = "Version 8.1",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
