@@ -1025,13 +1025,15 @@ elseif Args[1] == ";tesp" then
 			end
 		until not States.Testesp
 	end
+
 elseif Args[1] == ";untesp" then
 	States.Testesp = nil
 	for _,v in pairs(game.Workspace:GetDescendants()) do
-		if v.Name == "ESP" and v.Size = UDim2.new(1,0,1,0) then
+		if v.Name == "ESP"then
 			v:Destroy()
-		end	
+		end
 	end
+end
 
 end
 end)
