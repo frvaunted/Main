@@ -475,8 +475,8 @@ elseif Args[1] == ";ufling" then
 	local FoundPlayer = GetPlayerFromString(Args[2])
    if FoundPlayer then
 	local function LoopTp()
-	if player.Character:FindFirstChildOfClass("Humanoid").Sit == true then
-		player.Character.Humanoid.Sit = false
+	if  game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit == true then
+		game.Players.LocalPlayer.Character.Humanoid.Sit = false
 	else
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FoundPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-8,8),0,math.random(-8,8))
 	end
@@ -568,10 +568,10 @@ elseif Args[1] == ";fling" then
 		local loopFunction = function()
 			player = game.Players.LocalPlayer
 			local Loop
-			local OldFlingPos = player.Character.HumanoidRootPart.Position
+			local OldFlingPos =  game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 				local success,err = pcall(function()
 					local FlingEnemy = FoundPlayer.Character
-					if FlingEnemy and player.Character then
+					if FlingEnemy and  game.Players.LocalPlayer.Character then
 						FlingTorso = FlingEnemy.UpperTorso
 						local dis = 4.85
 						local increase = 7
@@ -589,12 +589,12 @@ elseif Args[1] == ";fling" then
 						else
 							zchange = 0
 						end          
-						if player.Character then
-							if player.Character:FindFirstChildOfClass("Humanoid").Sit == true then
-								player.Character.Humanoid.Sit = false
+						if  game.Players.LocalPlayer.Character then
+							if  game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit == true then
+								game.Players.LocalPlayer.Character.Humanoid.Sit = false
 							else
-							player.Character.HumanoidRootPart.CFrame = CFrame.new(FlingTorso.Position.X + math.random(-dis,dis) + xchange, FlingTorso.Position.Y, FlingTorso.Position.Z + math.random(-dis,dis) + zchange) * CFrame.Angles(math.rad(player.Character.HumanoidRootPart.Orientation.X + 350),math.rad(player.Character.HumanoidRootPart.Orientation.Y + 200),math.rad(player.Character.HumanoidRootPart.Orientation.Z + 240))
-							player.Character.HumanoidRootPart.Velocity = Vector3.new(500000,500000,500000)
+								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(FlingTorso.Position.X + math.random(-dis,dis) + xchange, FlingTorso.Position.Y, FlingTorso.Position.Z + math.random(-dis,dis) + zchange) * CFrame.Angles(math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.X + 350),math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.Y + 200),math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.Z + 240))
+								game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(500000,500000,500000)
 							end
 						end
 					end
@@ -606,20 +606,20 @@ elseif Args[1] == ";fling" then
 			local Pause = function()
 				Loop:Disconnect()
 				local vectorZero = Vector3.new(0, 0, 0)
-				player.Character.PrimaryPart.Velocity = vectorZero
-				player.Character.PrimaryPart.RotVelocity = vectorZero
-				player.Character.HumanoidRootPart.CFrame = CFrame.new(OldFlingPos) * CFrame.Angles(math.rad(0),math.rad(137.92),math.rad(0))
+				game.Players.LocalPlayer.Character.PrimaryPart.Velocity = vectorZero
+				game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = vectorZero
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(OldFlingPos) * CFrame.Angles(math.rad(0),math.rad(137.92),math.rad(0))
 			end;
 			Start()
 		end
 	elseif Message == ";stopfling" then
 			local loopFunction = function()
-				player = game.Players.LocalPlayer
+				game.Players.LocalPlayer = game.Players.LocalPlayer
 				local Loop
-				local OldFlingPos = player.Character.HumanoidRootPart.CFrame
+				local OldFlingPos =  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 					local success,err = pcall(function()
 						local FlingEnemy = FoundPlayer.Character
-						if FlingEnemy and player.Character then
+						if FlingEnemy and  game.Players.LocalPlayer.Character then
 							FlingTorso = FlingEnemy.UpperTorso
 							local dis = 3.85
 							local increase = 6
@@ -637,9 +637,9 @@ elseif Args[1] == ";fling" then
 							else
 								zchange = 0
 							end          
-							if player.Character then
-								player.Character.HumanoidRootPart.CFrame = CFrame.new(FlingTorso.Position.X + math.random(-dis,dis) + xchange, FlingTorso.Position.Y, FlingTorso.Position.Z + math.random(-dis,dis) + zchange) * CFrame.Angles(math.rad(player.Character.HumanoidRootPart.Orientation.X + 350),math.rad(player.Character.HumanoidRootPart.Orientation.Y + 200),math.rad(player.Character.HumanoidRootPart.Orientation.Z + 240))
-								player.Character.HumanoidRootPart.Velocity = Vector3.new(500000,500000,500000)
+							if  game.Players.LocalPlayer.Character then
+								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(FlingTorso.Position.X + math.random(-dis,dis) + xchange, FlingTorso.Position.Y, FlingTorso.Position.Z + math.random(-dis,dis) + zchange) * CFrame.Angles(math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.X + 350),math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.Y + 200),math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.Z + 240))
+								game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(500000,500000,500000)
 							end
 						end
 					end)
@@ -650,14 +650,14 @@ elseif Args[1] == ";fling" then
 				local Pause = function()
 					Loop:Disconnect()
 					local vectorZero = Vector3.new(0, 0, 0)
-					player.Character.PrimaryPart.Velocity = vectorZero
-					player.Character.PrimaryPart.RotVelocity = vectorZero
+					game.Players.LocalPlayer.Character.PrimaryPart.Velocity = vectorZero
+					game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = vectorZero
 					task.wait(0.1)
-					player.Character.HumanoidRootPart.CFrame = CFrame.new(150,150,60)
-					player.Character.HumanoidRootPart.Anchored = true
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(150,150,60)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
 					task.wait(1)
-					player.Character.HumanoidRootPart.Anchored = false
-					player.Character.HumanoidRootPart.CFrame = CFrame.new(150,150,60)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(150,150,60)
 				end;
 				Pause()
 	elseif Args[1] == ";kill" then
@@ -801,8 +801,8 @@ elseif Args[1] == ";dbring" then
 		task.wait(1.5)
 		Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 		repeat task.wait()
-			if player.Character:FindFirstChildOfClass("Humanoid").Sit == true then
-				player.Character.Humanoid.Sit = false
+			if  game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit == true then
+				game.Players.LocalPlayer.Character.Humanoid.Sit = false
 			else
 			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 				if not c:FindFirstChild("Combat") then
@@ -927,8 +927,8 @@ elseif Args[1] == ";pbring" then
 					zchange = 0
 				end
 				if game.Players.LocalPlayer.Character then
-					if player.Character:FindFirstChildOfClass("Humanoid").Sit == true then
-						player.Character.Humanoid.Sit = false
+					if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit == true then
+						game.Players.LocalPlayer.Character.Humanoid.Sit = false
 					else
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(BringTorso.Position.X + dis + xchange, BringTorso.Position.Y, BringTorso.Position.Z + dis + zchange)
 					end
@@ -1115,7 +1115,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test4",
-	Text = "Version 7.5",
+	Title = "Loaded!",
+	Text = "Version 8",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
