@@ -910,8 +910,8 @@ elseif Args[1] == ";pbring" then
 		repeat game:GetService("RunService").Stepped:Wait()
 			if BringEnemy and game.Players.LocalPlayer.Character then
 				BringTorso = BringEnemy.UpperTorso
-				local dis = 3.85
-				local increase = 5
+				local dis = 4
+				local increase = 6
 				if BringEnemy.Humanoid.MoveDirection.X < 0 then
 					xchange = -increase
 				elseif BringEnemy.Humanoid.MoveDirection.X > 0  then
