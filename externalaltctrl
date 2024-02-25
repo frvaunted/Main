@@ -932,78 +932,11 @@ elseif Args[1] == ";freeze" then
 		workspace.Remote.TeamEvent:FireServer("Bright orange")
 	end)
 
-elseif Args[1] == ";esp" then
-if workspace:FindFirstChild("HIGHLIGHTS_1000") then
-	return 
-end
-local Group = Instance.new("Model",workspace)
-Group.Name = "HIGHLIGHTS_1000"
-Temp.ESP = esp
-local function EspToggle(v)
-if not Temp.EspConnection  then
-	return
-end
-task.spawn(function()
-	pcall(function()
-		if v.Character and v.Character:FindFirstChild("Head") then
-			if v.Character.Parent == Group then
-				return
-			end
-			v.Character.Archivable = true
-			local v1 = Instance.new("BillboardGui",v.Character:FindFirstChild("Head"))
-			local v2 = Instance.new("TextLabel",v1)
-			v1.Adornee = v.Character.Head
-			v1.Name = "123123123123"
-			v1.Size = UDim2.new(0, 100, 0, 150)
-			v1.StudsOffset = Vector3.new(0, 2, 0)
-			v1.AlwaysOnTop = true
-			v2.BackgroundTransparency = 1
-			v2.TextColor3 = v.TeamColor.Color
-			v2.TextStrokeTransparency = 0
-			v2.TextYAlignment = Enum.TextYAlignment.Bottom
-			v2.Position = UDim2.new(0, 0, 0, -50)
-			v2.Size = UDim2.new(0, 120, 0, 120)
-			v2.Font = Enum.Font.Legacy
-			v2.TextSize = 15
-			v2.Text = v.Name
-			--v.Character.Parent = Group
-			end
-		end)
-	end)
-end
-Temp.EspConnection=true
-			repeat wait(.5)
-				for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-					if v and v~= game:GetService("Players").LocalPlayer then
-						EspToggle(v)
-					end
-				end
-				for i,v in pairs(Temp.Esps) do
-					if v.Parent == nil then
-						vDestroy(v)
-					end
-				end
-			until Temp.EspConnection == nil
-
-elseif Args[1] == ";unesp" then
-	if workspace:FindFirstChild("HIGHLIGHTS_1000") then
-		vDestroy(Temp.ESP)
-		Temp.EspConnection = nil
-		wait(.1)
-		for i,v in pairs(workspace:FindFirstChild("HIGHLIGHTS_1000"):GetChildren()) do
-			v.Parent = workspace
-			vDestroy(v2)
-		end
-		for i,v in pairs(Temp.Esps) do
-			vDestroy(v)
-		end
-		vDestroy(workspace:FindFirstChild("HIGHLIGHTS_1000"))
-	end
 elseif Args[1] == ";sa" then
 local Player = GetPlayerFromString(Args[2])
 	SpamArrest(Player)
 
-elseif Args[1] == ";tesp" then
+elseif Args[1] == ";esp" then
 	States.Testesp = true
 	if States.Testesp then
 		repeat game:GetService("RunService").Stepped:Wait()
@@ -1026,13 +959,15 @@ elseif Args[1] == ";tesp" then
 		until not States.Testesp
 	end
 
-elseif Args[1] == ";untesp" then
+elseif Args[1] == ";unesp" then
 	States.Testesp = nil
-	for _,v in pairs(Players:GetChildren()) do
-		if v.Character then
-			if v.Character.Head:FindFirstChild('ESP') then
-				v.Character.Head:FindFirstChild('ESP'):Destroy()
-				game:GetService("RunService").Stepped:Wait()
+	if not States.Testesp then
+		for _,v in pairs(Players:GetChildren()) do
+			if v.Character then
+				if v.Character.Head:FindFirstChild('ESP') then
+					v.Character.Head:FindFirstChild('ESP'):Destroy()
+					game:GetService("RunService").Stepped:Wait()
+				end
 			end
 		end
 	end
@@ -1041,7 +976,7 @@ end
 end)
 local mainacc = game.Players["doxesh"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded test8",
-	Text = "Version 6.9",
+	Title = "Loaded!",
+	Text = "Version 7",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
