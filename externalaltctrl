@@ -1169,16 +1169,14 @@ elseif Args[1] == ";bag" then
 					end
 				end
 				c["[BrownBag]"]:Activate()
-			until not TargetPlr or not TargetChar or not c or TargetChar:FindFirstChild:("Christmas_Sock")
+			until not TargetPlr or not TargetChar or not c or TargetChar:FindFirstChild("Christmas_Sock")
 				Root.CFrame = CFrame.new(PrevCF)
-			end
-		end
 
 end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test1",
-	Text = "Version 8.3",
+	Title = "Loaded!",
+	Text = "Version 8.4",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
