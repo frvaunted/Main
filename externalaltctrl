@@ -650,9 +650,9 @@ elseif Args[1] == ";fling" then
 				local Pause = function()
 					Loop:Disconnect()
 					local vectorZero = Vector3.new(0, 0, 0)
-					game.Players.LocalPlayer.Character.PrimaryPart.Velocity = vectorZero
-					game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = vectorZero
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(OldFlingPos) * CFrame.Angles(math.rad(0),math.rad(137.92),math.rad(0))
+					game.Players.LocalPlayer.Character.PrimaryPart.Velocity = Vector3.new(0, 0, 0)
+					game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = Vector3.new(0, 0, 0)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(OldFlingPos)
 				end;
 				Pause()
 	elseif Args[1] == ";kill" then
@@ -1143,9 +1143,9 @@ elseif Args[1] == ";bag" then
 			repeat game:GetService("RunService").Stepped:Wait()
 				if BringEnemy and game.Players.LocalPlayer.Character then
 					BringTorso = BringEnemy.UpperTorso
-					local dis = 4.84
+					local dis = 1
 					local increase = 6
-					local below = -3
+					local below = -5
 					if BringEnemy.Humanoid.MoveDirection.X < 0 then
 						xchange = -increase
 					elseif BringEnemy.Humanoid.MoveDirection.X > 0  then
