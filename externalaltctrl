@@ -573,7 +573,7 @@ elseif Args[1] == ";fling" then
 					local FlingEnemy = FoundPlayer.Character
 					if FlingEnemy and  game.Players.LocalPlayer.Character then
 						FlingTorso = FlingEnemy.UpperTorso
-						local dis = 4.85
+						local dis = 5.4
 						local increase = 7
 						if FlingEnemy.Humanoid.MoveDirection.X < 0 then
 							xchange = -increase
