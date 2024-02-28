@@ -1180,7 +1180,7 @@ elseif Args[1] == ";bag" then
 elseif Args[1] == ";cash" then
 local Player = GetPlayerFromString(Args[2])
 local CashAmount = Player.Character.DataFolder.Currency.Value
-local ohString1 = ..Player.Name.."has $"..CashAmount..
+local ohString1 = ""..Player.Name.." ""has"..CashAmount.."$"
 local ohString2 = "All"
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ohString1, ohString2)
 
@@ -1197,7 +1197,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test1",
+	Title = "Loaded! test2",
 	Text = "Version 9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
