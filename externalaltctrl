@@ -1,5 +1,7 @@
+spawn(function()
+print("test5")
+end)
 getgenv().HostUser = "Infusade"
-print("test4")
 local Connections = {}
 local Services = {
 	["RP"] = game:GetService("ReplicatedStorage"),
@@ -1176,15 +1178,15 @@ elseif Args[1] == ";bag" then
 				end
 			until not TargetPlr or not TargetChar or not c or TargetChar:FindFirstChild("Christmas_Sock")
 				Root.CFrame = CFrame.new(PrevCF)
-		--end
+		end
 
-elseif Args[1] == ";cash" then
+--[[ppelseif Args[1] == ";cash" then
 local Player = GetPlayerFromString(Args[2])
 local CashAmount = Player.Character.DataFolder.Currency.Value
 local ohString1 = ""..Player.Name.."has $"..CashAmount..
 local ohString2 = "All"
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ohString1, ohString2)
-
+]]
 
 --[[elseif Args[1] == ";dropcash" then
 local Amount = Args[2]
@@ -1198,7 +1200,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test4",
+	Title = "Loaded! test5",
 	Text = "Version 9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
