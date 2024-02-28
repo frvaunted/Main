@@ -1176,8 +1176,8 @@ elseif Args[1] == ";bag" then
 				end
 			until not TargetPlr or not TargetChar or not c or TargetChar:FindFirstChild("Christmas_Sock")
 				Root.CFrame = CFrame.new(PrevCF)
-
-
+		end
+		
 elseif Args[1] == ";cash" then
 local Player = GetPlayerFromString(Args[2])
 local CashAmount = Player.Character.DataFolder.Currency.Value
@@ -1189,7 +1189,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test7",
+	Title = "Loaded! test8",
 	Text = "Version 9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
