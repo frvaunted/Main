@@ -1,5 +1,5 @@
 getgenv().HostUser = "Infusade"
-
+print("test4")
 local Connections = {}
 local Services = {
 	["RP"] = game:GetService("ReplicatedStorage"),
@@ -1198,7 +1198,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test3",
+	Title = "Loaded! test4",
 	Text = "Version 9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
