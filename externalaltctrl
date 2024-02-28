@@ -1180,8 +1180,8 @@ elseif Args[1] == ";bag" then
 
 elseif Args[1] == ";cash" then
 local Player = GetPlayerFromString(Args[2])
-local CashAmount = Player.Character.DataFolder.Currency.Value
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Player"..Player.Name.."has"..CashAmount.."Cash", "All")
+local CashAmount = Player.Character.DataFolder.Currency
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Player has"..CashAmount.Value.."Cash", "All")
 
 end
 end)
