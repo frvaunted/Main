@@ -652,7 +652,7 @@ elseif Args[1] == ";fling" then
 					local vectorZero = Vector3.new(0, 0, 0)
 					game.Players.LocalPlayer.Character.PrimaryPart.Velocity = Vector3.new(0, 0, 0)
 					game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = Vector3.new(0, 0, 0)
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(OldFlingPos)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
 				end;
 				Pause()
 	elseif Args[1] == ";kill" then
@@ -1142,9 +1142,10 @@ elseif Args[1] == ";bag" then
 			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
 			repeat game:GetService("RunService").Stepped:Wait()
 				if BringEnemy and game.Players.LocalPlayer.Character then
+					c["[BrownBag]"]:Activate()
 					BringTorso = BringEnemy.UpperTorso
 					local dis = 1
-					local increase = 6
+					local increase = 8
 					local below = -5
 					if BringEnemy.Humanoid.MoveDirection.X < 0 then
 						xchange = -increase
@@ -1168,7 +1169,6 @@ elseif Args[1] == ";bag" then
 						end
 					end
 				end
-				c["[BrownBag]"]:Activate()
 			until not TargetPlr or not TargetChar or not c or TargetChar:FindFirstChild("Christmas_Sock")
 				Root.CFrame = CFrame.new(PrevCF)
 		end
@@ -1177,6 +1177,6 @@ end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded!",
-	Text = "Version 8.5",
+	Text = "Version 8.6",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
