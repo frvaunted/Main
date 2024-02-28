@@ -573,7 +573,7 @@ elseif Args[1] == ";fling" then
 					local FlingEnemy = FoundPlayer.Character
 					if FlingEnemy and  game.Players.LocalPlayer.Character then
 						FlingTorso = FlingEnemy.UpperTorso
-						local dis = 5.4
+						local dis = 5.7
 						local increase = 7
 						if FlingEnemy.Humanoid.MoveDirection.X < 0 then
 							xchange = -increase
@@ -1116,6 +1116,6 @@ end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Loaded!",
-	Text = "Version 8.1",
+	Text = "Version 8.2",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
