@@ -1,6 +1,4 @@
-spawn(function()
-	print("test6")
-	end)
+
 	getgenv().HostUser = "Infusade"
 	local Connections = {}
 	local Services = {
@@ -1186,21 +1184,12 @@ elseif Args[1] == ";cash" then
 	local ohString1 = ""..Player.Name.."has $"..CashAmount..
 	local ohString2 = "All"
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ohString1, ohString2)
-	
-	
-	--[[elseif Args[1] == ";dropcash" then
-	local Amount = Args[2]
-	local args = {
-	[1] = "DropMoney",
-	[2] = Amount
-	}
-	game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))]]
-end
+
 end
 end)
 	local mainacc = game.Players["Infusade"]
 	game:GetService("StarterGui"):SetCore("SendNotification",{
-		Title = "Loaded!",
+		Title = "Loaded! test1",
 		Text = "Version 9",
 		Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 	})
