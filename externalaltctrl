@@ -1171,6 +1171,7 @@ elseif Args[1] == ";bag" then
 				c["[BrownBag]"]:Activate()
 			until not TargetPlr or not TargetChar or not c or TargetChar:FindFirstChild:("Christmas_Sock")
 				Root.CFrame = CFrame.new(PrevCF)
+			end
 		end
 
 end
