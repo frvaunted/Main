@@ -315,20 +315,6 @@ local ChangeState = function(Type,StateType)
 	return Value
 end
 
-local CashPlayer = function(Ev)
-	if Ev == "" then
-	 return nil
-	elseif Ev == "random" then
-	 return game:GetService("Players"):GetPlayers()[math.random(1, #game:GetService("Players"):GetPlayers())]
-	else
-	 for _, v in pairs(game:GetService("Players"):GetPlayers()) do
-	  if v.Name:lower():sub(1, #Ev) == Ev:lower() or v.DisplayName:lower():sub(1, #Ev) == Ev then
-	   return v
-	  end
-	 end
-	end
-   end
-
 function tKill(Target)
 	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
@@ -1194,8 +1180,10 @@ elseif Args[1] == ";bag" then
 		end
 		
 elseif Args[1] == ";cash" then
-local Player = CashPlayer(Args[2])
-local CashAmount = Player.Character.DataFolder.Currency.Value
+local Player = GetPlayerFromString(Args[2])
+local PlayerName = Player.Name
+local GamePlayer = game.Players[PlayerName]
+local CashAmount = GamePlayer.Character.DataFolder.Currency.Value
 local chat1 = "Player has"..CashAmount
 local chat2 = "All"
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat1, chat2)
@@ -1204,7 +1192,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test11",
+	Title = "Loaded! test12",
 	Text = "Version 9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
