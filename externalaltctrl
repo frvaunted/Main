@@ -1179,7 +1179,8 @@ elseif Args[1] == ";bag" then
 		end
 		
 elseif Args[1] == ";cash" then
-local Player =game[Args[2]]
+local Target = GetPlayerFromString(Args[2])
+local Player =game.Players[Target]
 local CashAmount = Player.Character.DataFolder.Currency.Value
 local chat1 = "Player has"..CashAmount
 local chat2 = "All"
@@ -1190,7 +1191,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test10",
+	Title = "Loaded! test11",
 	Text = "Version 9",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
