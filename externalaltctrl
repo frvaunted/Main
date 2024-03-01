@@ -1254,7 +1254,7 @@ local loopFunction = function()
 			zchange = 0
 		end
 		pos = Vector3.new(enemy.Head.Position.X + enemy.Humanoid.MoveDirection.X + xchange, enemy.Head.Position.Y, enemy.Head.Position.Z + enemy.Humanoid.MoveDirection.Z + zchange)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.CFrame * CFrame.new(math.random(-8,8),0,math.random(-8,8))
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-8,8),0,math.random(-8,8))
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("GunCombatToggle",true)
 	else
 		pos = mouse.Hit.p
@@ -1274,7 +1274,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 2",
+	Title = "Loaded! test 3",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })	
