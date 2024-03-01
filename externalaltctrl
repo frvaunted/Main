@@ -1226,7 +1226,8 @@ Aimlocked = Player.Name
 if not game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]") then
 	game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Revolver]"])     
 end
-repeat wait()
+local Loop = nil
+local loopFunction = function()
 	local enemy = Player.Character
 	if enemy then
 		local pingvalue = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
@@ -1264,8 +1265,15 @@ repeat wait()
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("Reload",game:GetService("Players").LocalPlayer:WaitForChild("[Revolver]"))
 	end
-	
-until enemy.BodyEffects["K.O"].Value == true
+	local Start = function()
+		Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
+	end;
+	local Pause = function()
+		Loop:Disconnect()
+	end;
+	Start()	
+repeat task.wait() until enemy.BodyEffects["K.O"].Value == true
+	Pause()
 task.wait(0.1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.UpperTorso.CFrame * CFrame.new(0,3,0)
 	game.Players.LocalPlayer.Character.Humanoid:ChangeState(2)
@@ -1278,7 +1286,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 16",
+	Title = "Loaded! test 17",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })	
