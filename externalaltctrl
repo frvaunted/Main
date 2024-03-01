@@ -1236,13 +1236,13 @@ local loopFunction = function()
 		local xchange
 		local zchange
 		if ping < 70 then
-			increase = 0.6
+			increase = 0.7
 		elseif ping < 140 then
-			increase = 0.75
-		elseif ping < 200 then
 			increase = 0.85
+		elseif ping < 200 then
+			increase = 0.95
 		elseif ping < 350 then
-			increase = 1.5
+			increase = 1.7
 		else 
 			increase = 1.8
 		end
@@ -1260,7 +1260,7 @@ local loopFunction = function()
 		else
 			zchange = 0
 		end
-		pos = Vector3.new(enemy.Head.Position.X + enemy.Humanoid.MoveDirection.X + xchange, enemy.Head.Position.Y, enemy.Head.Position.Z + enemy.Humanoid.MoveDirection.Z + zchange)
+		pos = Vector3.new(enemy.UpperTorso.Position.X + enemy.Humanoid.MoveDirection.X + xchange, enemy.UpperTorso.Position.Y, enemy.UpperTorso.Position.Z + enemy.Humanoid.MoveDirection.Z + zchange)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.HumanoidRootPart.CFrame * CFrame.new(0,6,4)
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("Reload",game:GetService("Players").LocalPlayer:WaitForChild("[Revolver]"))
@@ -1273,7 +1273,7 @@ end
 		Loop:Disconnect()
 	end;
 	Start()	
-repeat task.wait() until enemy.BodyEffects["K.O"].Value == true
+repeat task.wait() until enemy.Humanoid.Health < 7
 	Pause()
 task.wait(0.1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.UpperTorso.CFrame * CFrame.new(0,3,0)
@@ -1287,7 +1287,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 18",
+	Title = "Loaded! test 19",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })	
