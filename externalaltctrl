@@ -1276,14 +1276,14 @@ local Pause = function()
 	Loop:Disconnect()
 end;
 Start()	
-repeat wait() until not enemy or not game.Players.LocalPlayer.Character or game.Players.LocalPlayer.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value ~= nil or enemy.BodyEffects["K.O"].Value == true
+repeat task.wait() until game.Players.LocalPlayer.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value ~= nil or enemy.BodyEffects["K.O"].Value == true or enemy.BodyEffects.Grabbed.Value ~= nil
 Pause()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 7",
+	Title = "Loaded! test 8",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })	
