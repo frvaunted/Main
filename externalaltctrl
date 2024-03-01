@@ -1226,7 +1226,7 @@ Aimlocked = Player.Name
 if not game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]") then
 	game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Revolver]"])     
 end
-local Loop = nil
+local Loop
 local loopFunction = function()
 	local enemy = Player.Character
 	if enemy then
@@ -1265,6 +1265,7 @@ local loopFunction = function()
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("Reload",game:GetService("Players").LocalPlayer:WaitForChild("[Revolver]"))
 	end
+end
 	local Start = function()
 		Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
 	end;
@@ -1286,7 +1287,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 17",
+	Title = "Loaded! test 18",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })	
