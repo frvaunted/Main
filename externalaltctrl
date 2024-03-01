@@ -313,8 +313,24 @@ local ChangeState = function(Type,StateType)
 	end
 	States[StateType] = Value
 	return Value
-end
 
+end
+mouse = game.Players.LocalPlayer:GetMouse()
+local mt = getrawmetatable(game) -- aimlok
+pos = Vector3.new(0,0,0)
+local old = mt.__namecall
+setreadonly(mt,false)
+mt.__namecall = newcclosure(function(self, ...)
+  local args = {...}
+  if getnamecallmethod() == 'FireServer' and self.Name == 'MainEvent' then
+    if tostring(args[1]) == 'UpdateMousePos' then
+        if Aimlocked ~= nil then
+            args[2] = pos
+        end
+     end
+  end
+  return old(self, unpack(args))
+end)
 function tKill(Target)
 	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
@@ -1179,17 +1195,82 @@ elseif Args[1] == ";bag" then
 				Root.CFrame = CFrame.new(PrevCF)
 		end
 		
-elseif Args[1] == ";cash" then
-local CashAmount = game.Players[Args[2]].Character.DataFolder.Currency.Value
-local chat1 = "Player has"..CashAmount
-local chat2 = "All"
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat1, chat2)
+elseif Args[1] == ";revbring" then
+local Player = GetPlayerFromString(Args[2])
 
+c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+if not game.Players.LocalPlayer.Backpack:FindFirstChild("[Revolver]") or not c:FindFirstChild("[Revolver]") then
+local ItemCost = 339
+local ClickDetector = game:GetService("Workspace").Ignored.Shop["[Revolver] - $1379"].ClickDetector
+local Location = game:GetService("Workspace").Ignored.Shop["[Revolver] - $1379"].ClickDetector.Parent.Head.Position
+OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+local function buy()
+	wait()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Location)
+	fireclickdetector(ClickDetector)
+end
+
+repeat buy() until game.Players.LocalPlayer.Backpack:FindFirstChild("[Revolver]") or game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
+end
+
+Aimlocked = Player.Name
+
+local Loop
+local loopFunction = function()
+	local enemy = Player.Character
+	if enemy then
+		local pingvalue = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+		local split = string.split(pingvalue,'(')
+		local ping = tonumber(split[1]) 
+		local xchange
+		local zchange
+		if ping < 70 then
+			increase = 0.4
+		elseif ping < 140 then
+			increase = 0.57
+		elseif ping < 200 then
+			increase = 0.7
+		elseif ping < 350 then
+			increase = 1.2
+		else 
+			increase = 1.6
+		end
+		if enemy.Humanoid.MoveDirection.X < 0 then
+			xchange = -increase
+		elseif enemy.Humanoid.MoveDirection.X > 0 then
+			xchange = increase
+		else
+			xchange = 0
+		end
+		if enemy.Humanoid.MoveDirection.Z < 0 then
+			zchange = -increase
+		elseif enemy.Humanoid.MoveDirection.Z > 0 then
+			zchange = increase
+		else
+			zchange = 0
+		end
+		pos = Vector3.new(enemy.Head.Position.X + enemy.Humanoid.MoveDirection.X + xchange, enemy.Head.Position.Y, enemy.Head.Position.Z + enemy.Humanoid.MoveDirection.Z + zchange)
+		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("GunCombatToggle",true)
+	else
+		pos = mouse.Hit.p
+	end
+end;
+local Start = function()
+	Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
+end;
+local Pause = function()
+	Loop:Disconnect()
+end;
+Start()	
+repeat wait() until Args[1] == ";stopbring"
+Pause()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test17",
-	Text = "Version 9",
+	Title = "Loaded!",
+	Text = "Version 9.1",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
