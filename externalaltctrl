@@ -1273,7 +1273,7 @@ end
 		Loop:Disconnect()
 	end;
 	Start()	
-repeat task.wait() until enemy.Humanoid.Health < 7
+repeat task.wait() until Player.Character.Humanoid.Health < 7
 	Pause()
 task.wait(0.1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.UpperTorso.CFrame * CFrame.new(0,3,0)
@@ -1287,7 +1287,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 19",
+	Title = "Loaded! test 20",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })	
