@@ -1267,14 +1267,13 @@ local loopFunction = function()
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
-		coroutine.wrap(function()
-				local junkrev = game.Players:WaitForChild("LocalPlayer").Character:WaitForChild("[Revolver]")
+		spawn(function()
 				local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
-				if rev and rev.Ammo.Value == 2 then
+				if rev and rev.Ammo.Value < 3 then
 					local args = {[1] = "Reload",[2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("[Revolver]")}
 					game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
 				end
-		end)()
+		end)
 	end
 end
 	local Start = function()
@@ -1299,7 +1298,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 29",
+	Title = "Loaded! test 30",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
