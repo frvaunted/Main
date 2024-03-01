@@ -1238,7 +1238,7 @@ local loopFunction = function()
 		if ping < 70 then
 			increase = 0.7
 		elseif ping < 140 then
-			increase = 1.1
+			increase = 1.25
 		elseif ping < 200 then
 			increase = 0.95
 		elseif ping < 350 then
@@ -1267,8 +1267,14 @@ local loopFunction = function()
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
-		local args = {[1] = "Reload",[2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("[Revolver]")}
-		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
+			spawn(function()
+				local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
+				if rev.Ammo.Value = 2 then
+					local args = {[1] = "Reload",[2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("[Revolver]")}
+					game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
+				end
+	    	end)
+		end
 	end
 end
 	local Start = function()
@@ -1293,7 +1299,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 24",
+	Title = "Loaded! test 25",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
