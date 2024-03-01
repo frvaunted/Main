@@ -1238,7 +1238,7 @@ local loopFunction = function()
 		if ping < 70 then
 			increase = 0.7
 		elseif ping < 140 then
-			increase = 0.85
+			increase = 1.1
 		elseif ping < 200 then
 			increase = 0.95
 		elseif ping < 350 then
@@ -1262,12 +1262,13 @@ local loopFunction = function()
 		end
 		pos = Vector3.new(enemy.UpperTorso.Position.X + enemy.Humanoid.MoveDirection.X + xchange, enemy.UpperTorso.Position.Y, enemy.UpperTorso.Position.Z + enemy.Humanoid.MoveDirection.Z + zchange)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.HumanoidRootPart.CFrame * CFrame.new(0,6,4)
-		local args = {
-			[1] = "Reload",
-			[2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("[Revolver]")
-		}
-		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
+
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
+		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
+		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
+		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
+		local args = {[1] = "Reload",[2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("[Revolver]")}
+		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
 	end
 end
 	local Start = function()
@@ -1292,7 +1293,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 23",
+	Title = "Loaded! test 24",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
