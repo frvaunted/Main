@@ -1267,7 +1267,6 @@ repeat game:GetService("RunService").Stepped:Wait()
 	else
 		pos = mouse.Hit.p
 	end
-end;
 until game.Players.LocalPlayer.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value ~= nil or enemy.BodyEffects["K.O"].Value == true or enemy.BodyEffects.Grabbed.Value ~= nil
 task.wait(0.1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.UpperTorso.CFrame * CFrame.new(0,3,0)
@@ -1281,7 +1280,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 9",
+	Title = "Loaded! test 10",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })	
