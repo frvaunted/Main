@@ -1198,7 +1198,7 @@ elseif Args[1] == ";bag" then
 elseif Args[1] == ";revbring" then
 local Player = GetPlayerFromString(Args[2])
 
-c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
 if not game.Players.LocalPlayer.Backpack:FindFirstChild("[Revolver]") or not c:FindFirstChild("[Revolver]") then
 local ItemCost = 339
 local ClickDetector = game:GetService("Workspace").Ignored.Shop["[Revolver] - $1379"].ClickDetector
@@ -1270,7 +1270,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded!",
-	Text = "Version 9.1",
+	Title = "Loaded! test 1",
+	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
