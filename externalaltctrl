@@ -1273,21 +1273,22 @@ end
 		Loop:Disconnect()
 	end;
 	Start()	
-repeat task.wait() until wait(6)
-	Pause()
-task.wait(0.1)
+repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true
+Pause()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
+--[[task.wait(0.1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.UpperTorso.CFrame * CFrame.new(0,3,0)
 	game.Players.LocalPlayer.Character.Humanoid:ChangeState(2)
 		task.wait(0.3)
 			game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
-		task.wait(0.3)
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
+		task.wait(0.3)]]
+
 
 end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 21",
+	Title = "Loaded! test 22",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })	
