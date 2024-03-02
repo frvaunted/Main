@@ -1274,7 +1274,7 @@ local loopFunction = function()
 					game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
 				end
 		end)
-		--[[spawn(function()
+		spawn(function()
 			local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
 			if rev and rev.Ammo.Value < 50 then
 				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
@@ -1287,7 +1287,7 @@ local loopFunction = function()
 				repeat buy() until game.Players.LocalPlayer.Backpack["[Revolver]"].Ammo.Value > 140
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 			end
-		end)]]
+		end)
 	end
 end
 	local Start = function()
@@ -1312,7 +1312,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 33",
+	Title = "Loaded! test 34",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
