@@ -1299,7 +1299,7 @@ local Start = function()
 	Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction)
 end
 spawn(function()
-local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame.AmmoText
+local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame:FindFirstChild("AmmoText")
 local ammotext = tonumber(revammo.Text)
 	if ammotext < 13 then
 		Pause()
@@ -1312,19 +1312,18 @@ local ammotext = tonumber(revammo.Text)
 		repeat buyammo() until wait(10)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 		Start()
-		repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.Humanoid.Health < 10
-		Pause()
 	end
 end)
 Start()
 repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.Humanoid.Health < 10
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
+Pause()
 
 end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 60",
+	Title = "Loaded! test 61",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
