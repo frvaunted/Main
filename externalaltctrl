@@ -1310,8 +1310,8 @@
 			Pause()
 			if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
 				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame * CFrame.new(0,-3,0)
 				repeat task.wait()
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame * CFrame.new(0,-3,0)
 			fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
 			--Noclipping = RunService.Stepped:Connect(NoclipLoop)
 				until wait(6)
@@ -1333,7 +1333,7 @@
 	end)
 	local mainacc = game.Players["Infusade"]
 	game:GetService("StarterGui"):SetCore("SendNotification",{
-		Title = "Loaded! test 79",
+		Title = "Loaded! test 80",
 		Text = "Version 9.5",
 		Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 	})
