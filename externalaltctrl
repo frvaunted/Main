@@ -1294,37 +1294,40 @@ Start()
 repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true
 Pause()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
+coroutine.wrap(function() 
+	local junkrev = game.Players.LocalPlayer.Character:WaitForChild("[Revolver]")
+	local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
+	if rev and rev.Ammo.Value < 3 then
+		local args = {[1] = "Reload",[2] = game:GetService("Players").LocalPlayer:WaitForChild("[Revolver]")}
+		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
+	end
+end)()	
 
-
-	spawn(function()
-		local junkrev = game.Players.LocalPlayer.Character:WaitForChild("[Revolver]")
-		local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
+coroutine.wrap(function()
 		local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame.AmmoText
 		local ammotext = tonumber(revammo.Text)
-		if rev and rev.Ammo.Value < 3 then
-			local args = {[1] = "Reload",[2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("[Revolver]")}
-			game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
-		elseif ammotext < 13 then
+		if ammotext < 13 then
 			Pause()
 			game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 			local ClickDetector = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector
 			OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-			local function buy()wait()
-
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-639.797913, 23.0472107, -98.6729279)
+			local function buy()ammo task.wait()
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-640.432434, 24.1509247, -97.1651764)
 			fireclickdetector(ClickDetector)
 			end
-			repeat buy() until wait(5)
+			repeat buy() until wait(10)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 			Start()
+			until Player.Character.BodyEffects["K.O"].Value == true
+			Pause()
 		end
-	end)
+	end)()
 
 end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 46",
+	Title = "Loaded! test 48",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
