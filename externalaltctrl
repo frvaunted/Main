@@ -1320,7 +1320,7 @@ local ammotext = tonumber(revammo.Text)
 	end
 end)
 Start()
-repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.Humanoid.Health < 10 or game.Players.LocalPlayer.Character["[Revolver]"].Ammo.Value == 0
+repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.Humanoid.Health < 10 --or game.Players.LocalPlayer.Character["[Revolver]"].Ammo.Value == 0
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 Pause()
 
@@ -1328,7 +1328,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 69",
+	Title = "Loaded! test 70",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
