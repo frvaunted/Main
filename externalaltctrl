@@ -1236,9 +1236,7 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 end
 Aimlocked = Player.Name
 
-if not game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]") then
-	game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Revolver]"])     
-end
+
 local Loop
 local loopFunction = function()
 	local enemy = Player.Character
@@ -1251,7 +1249,7 @@ local loopFunction = function()
 		if ping < 70 then
 			increase = 0.9
 		elseif ping < 140 then
-			increase = 1.45
+			increase = 1.65
 		elseif ping < 200 then
 			increase = 0.95
 		elseif ping < 350 then
@@ -1274,6 +1272,9 @@ local loopFunction = function()
 			zchange = 0
 		end
 		pos = Vector3.new(enemy.UpperTorso.Position.X + enemy.Humanoid.MoveDirection.X + xchange, enemy.UpperTorso.Position.Y, enemy.UpperTorso.Position.Z + enemy.Humanoid.MoveDirection.Z + zchange)
+		if not game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]") then
+			game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Revolver]"])     
+		end
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.HumanoidRootPart.CFrame * CFrame.new(0,6,4)
 
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
@@ -1307,6 +1308,10 @@ local ammotext = tonumber(revammo.Text)
 		local function buyammo() task.wait()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-640.432434, 24.1509247, -97.1651764)
 		fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
+		fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
+		fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
+		fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
+		fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
 		end
 		repeat buyammo() until wait(10)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
@@ -1322,7 +1327,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 62",
+	Title = "Loaded! test 63",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
