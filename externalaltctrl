@@ -1344,13 +1344,13 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 73",
+	Title = "Loaded! test 75",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
 --safety
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
-repeat wait()
+--[[repeat wait()
 for i,v in pairs(game.Players:GetChildren()) do
 	if v.FollowUserId == "0" then --3453075190
 		local ohString1 = "/w Infusade"..v.Name.."Has joined you!"
@@ -1359,4 +1359,4 @@ for i,v in pairs(game.Players:GetChildren()) do
 		task.wait()
 	end
 end
-until chattingjoin == false
+until chattingjoin == false]]
