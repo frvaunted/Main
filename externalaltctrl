@@ -1278,11 +1278,11 @@ local loopFunction = function()
 			local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
 			if rev and rev.Ammo.Value < 50 then
 				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
-				local ClickDetector = game:GetService("Workspace").Ignored.Shop["12[Revolver Ammo] - $80"].ClickDetector
-				local Location = game:GetService("Workspace").Ignored.Shop["12[Revolver Ammo] - $80"].ClickDetector.Parent.Head.Position * Vector3.new(0, -6, 0)
+				local ClickDetector = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector
+				local Location = 
 				OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 				local function buy()wait()
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Location)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.Position * Vector3.new(0, -6, 0))
 				fireclickdetector(ClickDetector)
 				end
 				repeat buy() until game.Players.LocalPlayer.Backpack["[Revolver]"].Ammo.Value > 140
@@ -1313,7 +1313,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 32",
+	Title = "Loaded! test 33",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
