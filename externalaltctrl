@@ -1319,9 +1319,9 @@ local ammotext = tonumber(revammo.Text)
 	end
 end)
 Start()
-repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.Humanoid.Health < 10
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
+repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.Humanoid.Health < 10 or game.Players.LocalPlayer.Character["[Revolver]"].Ammo.Value = 0 then
 Pause()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 
 end
 end)
