@@ -1307,7 +1307,7 @@ local ammotext = tonumber(revammo.Text)
 		OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 		local function buyammo() task.wait()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-640.432434, 24.1509247, -97.1651764)
-		fireclickdetector(game.Workspace.Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
+		fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
 		end
 		repeat buyammo() until wait(10)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
@@ -1325,7 +1325,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 56",
+	Title = "Loaded! test 57",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
