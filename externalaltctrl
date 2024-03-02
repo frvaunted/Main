@@ -1241,10 +1241,6 @@ if not game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]") then
 end
 local Loop
 local loopFunction = function()
-
-local Pause = function()
-	Loop:Disconnect()
-end
 	local enemy = Player.Character
 	if enemy then
 		local pingvalue = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
@@ -1298,6 +1294,9 @@ end
 local Start = function()
 	Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction)
 end
+local Pause = function()
+	Loop:Disconnect()
+end
 spawn(function()
 local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame:FindFirstChild("AmmoText")
 local ammotext = tonumber(revammo.Text)
@@ -1323,7 +1322,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 61",
+	Title = "Loaded! test 62",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
