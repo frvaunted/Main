@@ -331,6 +331,19 @@ mt.__namecall = newcclosure(function(self, ...)
   end
   return old(self, unpack(args))
 end)
+
+local cmdp = game:GetService("Players")
+local cmdlp = cmdp.LocalPlayer
+    function NoclipLoop()
+        if  cmdlp.Character ~= nil then
+            for _, child in pairs(cmdlp.Character:GetDescendants()) do
+                if child:IsA("BasePart") and child.CanCollide == true then
+                    child.CanCollide = false
+                end
+            end
+        end
+    end
+
 function tKill(Target)
 	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
@@ -1288,7 +1301,8 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.UpperTorso.CF
 			game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
 		task.wait(0.3)]]
 	spawn(function()
-			local rev = game.Players.LocalPlayer.Character:WaitForChild("[Revolver]")
+			local junkrev = game.Players.LocalPlayer.Character:WaitForChild("[Revolver]")
+			local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
 			if rev and rev.Ammo.Value < 3 then
 				local args = {[1] = "Reload",[2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("[Revolver]")}
 				game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
@@ -1299,19 +1313,16 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.UpperTorso.CF
 		local ammotext = tonumber(revammo.Text)
 		if ammotext < 13 then
 			Pause()
-			local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
+			game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 			local ClickDetector = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector
 			OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 			local function buy()wait()
-			for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-				if child:IsA("BasePart") and child.CanCollide == true then
-						child.CanCollide = false
-				end
-			end
+			Noclipping = game:GetService('RunService').Stepped:connect(NoclipLoop)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame * CFrame.new(0,-5,0)
 			fireclickdetector(ClickDetector)
 			end
 			repeat buy() until wait(5)
+			Noclipping:Disconnect()
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 			Start()
 		end
@@ -1321,7 +1332,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 44",
+	Title = "Loaded! test 45",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
