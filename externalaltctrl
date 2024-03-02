@@ -1278,6 +1278,7 @@ local loopFunction = function()
 			local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
 			if rev and rev.Ammo.Value < 50 then
 				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+				Pause()
 				local ClickDetector = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector
 				local Location = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.Position * Vector3.new(0, -6, 0)
 				OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
@@ -1287,6 +1288,7 @@ local loopFunction = function()
 				end
 				repeat buy() until game.Players.LocalPlayer.Backpack["[Revolver]"].Ammo.Value > 140
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
+				Start()
 			end
 		end)
 	end
