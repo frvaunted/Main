@@ -43,6 +43,7 @@ local Admin = {}
 local LoopKill = {}
 local States = {}
 local Temp = {}
+local chattingjoin = false
 Temp.Esps = {}
 local Player, plr,Folder = game:GetService("Players").LocalPlayer
 repeat wait() until game:IsLoaded()
@@ -1334,13 +1335,28 @@ repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyE
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 Pause()
 
+elseif Args[1] == ";chatjoins" then
+chattingjoin = true
+elseif Args[1] == ";stopchatjoins" then
+chattingjoin = false
+
 end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 72",
+	Title = "Loaded! test 73",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
 --safety
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
+repeat wait()
+for i,v in pairs(game.Players:GetChildren()) do
+	if v.FollowUserId == "0" then --3453075190
+		local ohString1 = "/w Infusade"..v.Name.."Has joined you!"
+		local ohString2 = "All"
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ohString1, ohString2)
+		task.wait()
+	end
+end
+until chattingjoin = false
