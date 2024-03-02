@@ -1303,7 +1303,7 @@ local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame:FindF
 local ammotext = tonumber(revammo.Text)
 	if ammotext < 13 then
 		Pause()
-		if game.Players.LocalPlayer.Character:FindFIrstChildOfClass("Tool") then
+		if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
 			game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 		else
 			local function buyammo() task.wait()
@@ -1328,7 +1328,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 70",
+	Title = "Loaded! test 71",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
