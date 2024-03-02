@@ -1279,7 +1279,6 @@ local loopFunction = function()
 			if rev and rev.Ammo.Value < 50 then
 				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 				local ClickDetector = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector
-				local Location = 
 				OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 				local function buy()wait()
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.Position * Vector3.new(0, -6, 0))
