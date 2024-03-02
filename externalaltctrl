@@ -1247,8 +1247,6 @@ local Pause = function()
 end
 	local enemy = Player.Character
 	if enemy then
-		local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame.AmmoText
-		local ammotext = tonumber(revammo.Text)
 		local pingvalue = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
 		local split = string.split(pingvalue,'(')
 		local ping = tonumber(split[1]) 
@@ -1292,18 +1290,6 @@ end
 				[2] = game:GetService("Players").LocalPlayer.Character["[Revolver]"]
 			}
 			game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
-			if ammotext < 13 then
-				Pause()
-				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
-				local ClickDetector = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector
-				OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-				local function buyammo() task.wait()
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-640.432434, 24.1509247, -97.1651764)
-				fireclickdetector(ClickDetector)
-				end
-				repeat buyammo() until wait(10)
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
-			end
 		end
 	end
 end
@@ -1312,6 +1298,24 @@ end
 local Start = function()
 	Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction)
 end
+spawn(function()
+local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame.AmmoText
+local ammotext = tonumber(revammo.Text)
+	if ammotext < 13 then
+		Pause()
+		game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+		OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+		local function buyammo() task.wait()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-640.432434, 24.1509247, -97.1651764)
+		fireclickdetector(game.Workspace.Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
+		end
+		repeat buyammo() until wait(10)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
+		Start()
+		Player.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.Humanoid.Health < 10
+		Pause()
+	end
+end)
 Start()	
 repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.Humanoid.Health < 10
 Pause()
@@ -1321,7 +1325,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 55",
+	Title = "Loaded! test 56",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
