@@ -344,15 +344,7 @@
 				end
 			end
 		end
-function BuyRevAmmo()
-	task.wait()
-	fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
-	fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
-	fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
-	fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
-	fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-640.432434, 24.1509247, -97.1651764)
-end
+
 	function tKill(Target)
 		local Player, plr,Folder = game:GetService("Players").LocalPlayer
 		local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
@@ -1308,15 +1300,20 @@ end
 		Loop:Disconnect()
 	end
 	spawn(function()
+
 	local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame:FindFirstChild("AmmoText")
 	local ammotext = tonumber(revammo.Text)
 		if ammotext < 13 then
+			if not game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]") then
+				game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Revolver]"])     
+			end
 			Pause()
 			if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
 				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
-				repeat BuyRevAmmo() until wait(10)
-			else
-				repeat BuyRevAmmo() until wait(10)
+				repeat task.wait()
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.Position
+			fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
+				until wait(6)
 			end
 			Start()
 		end
@@ -1335,7 +1332,7 @@ end
 	end)
 	local mainacc = game.Players["Infusade"]
 	game:GetService("StarterGui"):SetCore("SendNotification",{
-		Title = "Loaded! test 76",
+		Title = "Loaded! test 77",
 		Text = "Version 9.5",
 		Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 	})
