@@ -1359,4 +1359,4 @@ for i,v in pairs(game.Players:GetChildren()) do
 		task.wait()
 	end
 end
-until chattingjoin = false
+until chattingjoin == false
