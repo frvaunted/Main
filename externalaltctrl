@@ -1288,7 +1288,7 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.UpperTorso.CF
 			game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
 		task.wait(0.3)]]
 	spawn(function()
-			local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
+			local rev = game.Players.LocalPlayer.Character:WaitForChild("[Revolver]")
 			if rev and rev.Ammo.Value < 3 then
 				local args = {[1] = "Reload",[2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("[Revolver]")}
 				game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
@@ -1296,16 +1296,21 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.UpperTorso.CF
 	end)
 	spawn(function()
 		local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame.AmmoText
-		if revammo.Text < 60 then
+		if revammo.Text < 13 then
 			Pause()
 			local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
 			local ClickDetector = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector
 			OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 			local function buy()wait()
+			for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true then
+						child.CanCollide = false
+				end
+			end
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame * CFrame.new(0,-5,0)
 			fireclickdetector(ClickDetector)
 			end
-			repeat buy() until wait(4)
+			repeat buy() until wait(5)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 			Start()
 		end
@@ -1315,7 +1320,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 42",
+	Title = "Loaded! test 43",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
