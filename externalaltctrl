@@ -1294,16 +1294,17 @@ Start()
 repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true
 Pause()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
-coroutine.wrap(function() 
+local revreload = coroutine.create(function()
 	local junkrev = game.Players.LocalPlayer.Character:WaitForChild("[Revolver]")
 	local rev = game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
 	if rev and rev.Ammo.Value < 3 then
 		local args = {[1] = "Reload",[2] = game:GetService("Players").LocalPlayer:WaitForChild("[Revolver]")}
 		game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
 	end
-end)()	
+end)
+coroutine.resume(revreload)
 
-coroutine.wrap(function()
+--[[coroutine.wrap(function()
 		local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame.AmmoText
 		local ammotext = tonumber(revammo.Text)
 		if ammotext < 13 then
@@ -1321,7 +1322,7 @@ coroutine.wrap(function()
 			until Player.Character.BodyEffects["K.O"].Value == true
 			Pause()
 		end
-	end)()
+	end)()]]
 
 end
 end)
