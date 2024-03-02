@@ -1311,7 +1311,7 @@
 			if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
 				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 				repeat task.wait()
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.Position
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame
 			fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
 				until wait(6)
 			end
@@ -1332,7 +1332,7 @@
 	end)
 	local mainacc = game.Players["Infusade"]
 	game:GetService("StarterGui"):SetCore("SendNotification",{
-		Title = "Loaded! test 77",
+		Title = "Loaded! test 78",
 		Text = "Version 9.5",
 		Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 	})
