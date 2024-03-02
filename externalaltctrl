@@ -1229,9 +1229,6 @@ end
 local Loop
 local loopFunction = function()
 
-local Start = function()
-	Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
-end
 local Pause = function()
 	Loop:Disconnect()
 end
@@ -1299,7 +1296,10 @@ end
 		end)
 	end
 end
-	Start()	
+local Start = function()
+	Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
+end
+Start()	
 repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true
 Pause()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
@@ -1315,7 +1315,7 @@ end
 end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded! test 36",
+	Title = "Loaded! test 37",
 	Text = "Version 9.5",
 	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
