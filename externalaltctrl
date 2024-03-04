@@ -645,17 +645,17 @@ end
 							end
 						end
 					end)
-				end;
+				end
 				local Start = function()    
-					Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
-				end;
+					Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction)
+				end
 				local Pause = function()
 					Loop:Disconnect()
 					local vectorZero = Vector3.new(0, 0, 0)
 					game.Players.LocalPlayer.Character.PrimaryPart.Velocity = vectorZero
 					game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = vectorZero
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(OldFlingPos) * CFrame.Angles(math.rad(0),math.rad(137.92),math.rad(0))
-				end;
+				end
 				Start()
 			end
 		elseif Message == ";stopfling" then
@@ -689,10 +689,10 @@ end
 								end
 							end
 						end)
-					end;
+					end
 					local Start = function()    
-						Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
-					end;
+						Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction)
+					end
 					local Pause = function()
 						Loop:Disconnect()
 						local vectorZero = Vector3.new(0, 0, 0)
@@ -700,7 +700,7 @@ end
 						game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = Vector3.new(0, 0, 0)
 						task.wait(0.3)
 						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
-					end;
+					end
 					Pause()
 		elseif Args[1] == ";kill" then
 		local Player = GetPlayerFromString(Args[2])
