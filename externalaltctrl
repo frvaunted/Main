@@ -345,7 +345,7 @@
 			end
 		end
 function AntiStompLoop()
-	if game.Players.LocalPlayer.Character.Humanoid.Health < 25 or game.Players.LocalPlayer.Character.BodyEffects["K.O"].Value == true then
+	if game.Players.LocalPlayer:WaitForChild("Character").Humanoid.Health < 45 then
 		game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(10000, 10000, 10000)
 		game:FindService'RunService'.RenderStepped:wait()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
@@ -1342,12 +1342,7 @@ end
 	chattingjoin = false
 
 elseif Args[1] == ";antiauto" then
-if game.Workspace:FindFirstChild("AntiAutoKill") then
-game.Players.LocalPlayer.Character.PrimaryPart.Velocity = Vector3.new(0, 0, 0)
-game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = Vector3.new(0, 0, 0)
-task.wait()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-897.6600952148438, -655.0717163085938, -709.875732421875)
-else
+
 game.Workspace.FallenPartsDestroyHeight = -10000
 local part = Instance.new("Part")
 part.Size = Vector3.new(100, 2, 100)
@@ -1357,12 +1352,19 @@ part.Anchored = true
 local pl = game.Players.LocalPlayer.Character
 part.Position = Vector3.new(-897.6600952148438, -650.0717163085938, -709.875732421875)
 pl.HumanoidRootPart.CFrame = part.CFrame
-end
+
 elseif Args[1] == ";antistomp" then
 	AntiStompActive = game:GetService("RunService").Stepped:Connect(AntiStompLoop)
 
 elseif Args[1] == ";unantistomp" then
 AntiStompActive:Disconnect()
+
+elseif Args[1] == ";noplat" then
+for i,v in pairs(game.Workspace:GetChildren()) do
+if v.Name == "AntiAutoKill" then
+v:Destroy()
+end
+end
 
 end
 end)
