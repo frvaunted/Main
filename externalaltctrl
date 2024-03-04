@@ -344,7 +344,18 @@
 				end
 			end
 		end
-
+function AntiStompLoop()
+	if game.Players.LocalPlayer.Character.Humanoid.Health < 10 then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(10000, 10000, 10000)
+		game:FindService'RunService'.RenderStepped:wait()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+	end
+end
+function revbuy()
+	task.wait()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame * CFrame.new(0,-3,0)
+	fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
+end
 	function tKill(Target)
 		local Player, plr,Folder = game:GetService("Players").LocalPlayer
 		local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
@@ -1312,6 +1323,7 @@
 				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame * CFrame.new(0,-3,0)
 				repeat task.wait()
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame * CFrame.new(0,-3,0)
 			fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
 			--Noclipping = RunService.Stepped:Connect(NoclipLoop)
 				until wait(6)
@@ -1329,16 +1341,79 @@
 	elseif Args[1] == ";stopchatjoins" then
 	chattingjoin = false
 
-	end
-	end)
-	local mainacc = game.Players["Infusade"]
-	game:GetService("StarterGui"):SetCore("SendNotification",{
-		Title = "Loaded! test 80",
-		Text = "Version 9.5",
-		Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
-	})
-	--safety
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
+elseif Args[1] == ";antiauto" then
+
+game.Workspace.FallenPartsDestroyHeight = -10000
+local part = Instance.new("Part")
+part.Size = Vector3.new(100, 2, 100)
+part.Name = "AntiAutoKill"
+part.Parent = game.Workspace
+part.Anchored = true
+local pl = game.Players.LocalPlayer.Character
+part.Position = Vector3.new(-897.6600952148438, -650.0717163085938, -709.875732421875)
+pl.HumanoidRootPart.CFrame = part.CFrame
+
+elseif Args[1] == ";antistomp" then
+	AntiStompActive = game:GetService("RunService").Stepped:Connect(AntiStompLoop)
+
+elseif Args[1] == ";unantistomp" then
+AntiStompActive:Disconnect()
+
+end
+end)
+
+local mainacc = game.Players["Infusade"]
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "Loaded!",
+	Text = "Version 9.6",
+	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
+})
+--safety
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	--[[repeat wait()
 	for i,v in pairs(game.Players:GetChildren()) do
 		if v.FollowUserId == "0" then --3453075190
