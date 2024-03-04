@@ -1343,6 +1343,9 @@ end
 
 elseif Args[1] == ";antiauto" then
 if game.Workspace:FindFirstChild("AntiAutoKill") then
+game.Players.LocalPlayer.Character.PrimaryPart.Velocity = Vector3.new(0, 0, 0)
+game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = Vector3.new(0, 0, 0)
+task.wait()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-897.6600952148438, -650.0717163085938, -709.875732421875)
 else
 game.Workspace.FallenPartsDestroyHeight = -10000
