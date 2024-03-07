@@ -1123,19 +1123,16 @@ elseif Args[1] == ";esp" then
 			for _,v in pairs(game:GetService('Players'):GetChildren()) do
 				if v.Character then
 					if not v.Character.Head:FindFirstChild('ESP') then
-						function CreateEsp()
-							local ESP = Instance.new('BillboardGui', v.Character.Head)
-							ESP.StudsOffset = Vector3.new(0,3,0)
-							ESP.Size = UDim2.new(4,0,1,0)
-							ESP.AlwaysOnTop = true
-							ESP.Name = 'ESP'
-							local TextLabel = Instance.new('TextLabel', ESP)
-							TextLabel.Text = (v.Name)
-							TextLabel.BackgroundTransparency = 1
-							TextLabel.Size = UDim2.new(1,0,1,0)
-							TextLabel.TextColor3 = v.TeamColor.Color
-							end
-					CreatingEsp = game:GetService("RunService").Stepped:Connect(CreateEsp)
+						local ESP = Instance.new('BillboardGui', v.Character.Head)
+						ESP.StudsOffset = Vector3.new(0,3,0)
+						ESP.Size = UDim2.new(4,0,1,0)
+						ESP.AlwaysOnTop = true
+						ESP.Name = 'ESP'
+						local TextLabel = Instance.new('TextLabel', ESP)
+						TextLabel.Text = (v.Name)
+						TextLabel.BackgroundTransparency = 1
+						TextLabel.Size = UDim2.new(1,0,1,0)
+						TextLabel.TextColor3 = v.TeamColor.Color
 					end
 				end
 			end
@@ -1145,7 +1142,6 @@ elseif Args[1] == ";esp" then
 elseif Args[1] == ";unesp" then
 	States.Testesp = nil
 	if not States.Testesp then
-		CreatingEsp:Disconnect()
 		for _,v in pairs(Players:GetChildren()) do
 			if v.Character then
 				if v.Character.Head:FindFirstChild('ESP') then
@@ -1353,7 +1349,7 @@ end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 Title = "Loaded!",
-Text = "Version 10.1",
+Text = "Version 10.2",
 Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
 --safety
