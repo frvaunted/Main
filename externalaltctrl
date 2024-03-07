@@ -820,7 +820,7 @@ elseif Args[1] == ";dbring" then
 				repeat
 					Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
 					game.Players.LocalPlayer.Character.Humanoid:ChangeState(2)
-					task.wait(0.1)
+					task.wait(0.3)
 					game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
 					task.wait(0.1)
 					Root.CFrame = PrevCF
