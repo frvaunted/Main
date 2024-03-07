@@ -115,6 +115,18 @@ function GetPart(Target)
 	game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 	return Target.Character:FindFirstChild("HumanoidRootPart") or Target.Character:FindFirstChild("Head")
 end
+function CreateEsp()
+	local ESP = Instance.new('BillboardGui', v.Character.Head)
+	ESP.StudsOffset = Vector3.new(0,3,0)
+	ESP.Size = UDim2.new(4,0,1,0)
+	ESP.AlwaysOnTop = true
+	ESP.Name = 'ESP'
+	local TextLabel = Instance.new('TextLabel', ESP)
+	TextLabel.Text = (v.Name)
+	TextLabel.BackgroundTransparency = 1
+	TextLabel.Size = UDim2.new(1,0,1,0)
+	TextLabel.TextColor3 = v.TeamColor.Color
+	end
 function GetPosition(Player)
 	local Player, plr,Folder = game:GetService("Players").LocalPlayer
 	game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
@@ -820,15 +832,15 @@ elseif Args[1] == ";dbring" then
 				repeat
 					Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
 					game.Players.LocalPlayer.Character.Humanoid:ChangeState(2)
-					task.wait(0.3)
+					task.wait(0.1)
 					game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
-					task.wait(0.3)
+					task.wait(0.1)
 					Root.CFrame = PrevCF
-					task.wait(0.8)
+					task.wait(0.3)
 				until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
-				task.wait(0.3)
+				task.wait(0.1)
 				Root.CFrame = PrevCF
-				task.wait(0.8)
+				task.wait(0.4)
 				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
 			else
 
@@ -1123,16 +1135,7 @@ elseif Args[1] == ";esp" then
 			for _,v in pairs(game:GetService('Players'):GetChildren()) do
 				if v.Character then
 					if not v.Character.Head:FindFirstChild('ESP') then
-						local ESP = Instance.new('BillboardGui', v.Character.Head)
-						ESP.StudsOffset = Vector3.new(0,3,0)
-						ESP.Size = UDim2.new(4,0,1,0)
-						ESP.AlwaysOnTop = true
-						ESP.Name = 'ESP'
-						local TextLabel = Instance.new('TextLabel', ESP)
-						TextLabel.Text = (v.Name)
-						TextLabel.BackgroundTransparency = 1
-						TextLabel.Size = UDim2.new(1,0,1,0)
-						TextLabel.TextColor3 = v.TeamColor.Color
+					CreatingEsp = game:GetService("RunService").Stepped:Connect(CreateEsp)
 					end
 				end
 			end
@@ -1142,6 +1145,7 @@ elseif Args[1] == ";esp" then
 elseif Args[1] == ";unesp" then
 	States.Testesp = nil
 	if not States.Testesp then
+		CreatingEsp:Disconnect()
 		for _,v in pairs(Players:GetChildren()) do
 			if v.Character then
 				if v.Character.Head:FindFirstChild('ESP') then
@@ -1336,7 +1340,8 @@ v:Destroy()
 end
 end
 
-elseif Args[1] == ";testreset" then
+elseif Args[1] == ";treset" then
+	repeat task.wait()
 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(2^7,5^34,4^7)
 task.wait(0.3)
 game.Players.LocalPlayer.Character.Head:BreakJoints()
@@ -1349,7 +1354,7 @@ end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 Title = "Loaded!",
-Text = "Version 9.9",
+Text = "Version 10",
 Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
 --safety
