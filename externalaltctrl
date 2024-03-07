@@ -470,7 +470,7 @@ elseif Message == ";clip" then
 		Noclipping:Disconnect()
 
 elseif Message == ";reset" then
-	game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(2^7,5^34,4^7)
+	game.Players.LocalPlayer.Character.Humanoid.Health = 0
 	if tping == true then
 		LoopTping:Disconnect()
 	end
@@ -1337,8 +1337,11 @@ end
 end
 
 elseif Args[1] == ";testreset" then
-AntiStompActive:Disconnect()
-
+game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(2^7,5^34,4^7)
+task.wait(0.3)
+game.Players.LocalPlayer.Character.Head:BreakJoints()
+task.wait(0.3)
+game.Players.LocalPlayer.Character.Head:Destroy()
 
 end
 end)
@@ -1346,7 +1349,7 @@ end)
 local mainacc = game.Players["Infusade"]
 game:GetService("StarterGui"):SetCore("SendNotification",{
 Title = "Loaded!",
-Text = "Version 9.8",
+Text = "Version 9.9",
 Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
 })
 --safety
