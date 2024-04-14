@@ -1321,7 +1321,7 @@ part.Parent = game.Workspace
 part.Anchored = true
 local pl = game.Players.LocalPlayer.Character
 part.Position = Vector3.new(-897.6600952148438, -650.0717163085938, -709.875732421875)
-pl.HumanoidRootPart.CFrame = part.CFrame
+pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 elseif Args[1] == ";antistomp" then
 AntiStompActive = game:GetService("RunService").Stepped:Connect(AntiStompLoop)
