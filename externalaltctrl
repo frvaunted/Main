@@ -345,11 +345,9 @@ local cmdlp = cmdp.LocalPlayer
 		end
 	end
 function AntiStompLoop()
-if game.Players.LocalPlayer:WaitForChild("Character").Humanoid.Health < 45 then
-	game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(10000, 10000, 10000)
-	game:FindService'RunService'.RenderStepped:wait()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
-end
+	if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health < 15 then
+		game.Players.LocalPlayer.Character.Humanoid.Health = 0
+	end
 end
 function revbuy()
 task.wait()
