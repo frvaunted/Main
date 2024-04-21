@@ -17,7 +17,7 @@ local targetimage = Instance.new("ImageLabel")
 local targettextbox = Instance.new("TextBox")
 local cashlabel = Instance.new("TextLabel")
 local bountylabel = Instance.new("TextLabel")
-local crewlabel = Instance.new("TextLabel")
+local crewlabel = Instance.new("TextButton")
 
 local mainframe = Instance.new("Frame")
 local sideframe = Instance.new("Frame")
@@ -1765,37 +1765,41 @@ local formatNumber = (function (n)
 end)
 
 function SetPlayerInfo()
-    local foundplayer = game:GetService('Players'):FindFirstChild(TargetTextbox.Text)
+    local foundplayer = game:GetService('Players'):FindFirstChild(targettextbox.Text)
     if foundplayer then
         local TargetId = foundplayer.UserId
         local ThumbType = Enum.ThumbnailType.HeadShot
         local ThumbSize = Enum.ThumbnailSize.Size420x420
         local Content, IsReady = game:GetService('Players'):GetUserThumbnailAsync(TargetId, ThumbType, ThumbSize)
                     
-        TargetImage.Image = Content
+        targetimage.Image = Content
         
-        CashLabel.Text = ('Cash : ' .. formatNumber(foundplayer.DataFolder.Currency.Value))
-        BountyLabel.Text = ('Bounty : ' .. formatNumber(foundplayer.leaderstats.Wanted.Value))
+        cashlabel.Text = ('Cash : ' .. formatNumber(foundplayer.DataFolder.Currency.Value))
+        bountylabel.Text = ('Bounty : ' .. formatNumber(foundplayer.leaderstats.Wanted.Value))
         
         local CrewValue = foundplayer:FindFirstChild('DataFolder'):FindFirstChild('Information'):FindFirstChild('Crew')
         if CrewValue then
             if CrewValue.Value ~= nil and CrewValue.Value ~= '' then
                 Crew = game:GetService('GroupService'):GetGroupInfoAsync(tonumber(CrewValue.Value))
                 if Crew then
-                    CrewLabel.Text = ('Crew : ' .. Crew.Name )
+                    crewlabel.Text = ('Crew : ' .. Crew.Name )
                     CrewId = tonumber(CrewValue.Value)
                 end
             else
-                CrewLabel.Text = ('Crew : None')
+                crewlabel.Text = ('Crew : None')
                 Crew = nil
             end
         else
-            CrewLabel.Text = ('Crew : None')
+            crewlabel.Text = ('Crew : None')
             Crew = nil
         end
     end
 end
-
+crewlabel.MouseButton1Click:Connect(function()
+    if crewlabel.Text ~= ('Crew : None') then
+        setclipboard(CrewId)
+    end
+end)
 function ShrinkName()
     targettextbox.FocusLost:connect(function()
         for i,v in pairs(game.Players:GetChildren()) do
@@ -3747,3 +3751,14 @@ end)
 lowgfx.MouseButton1Click:Connect(function()
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/frvaunted/a/main/remove%20textures'),true))() 
 end)
+
+
+
+
+
+
+
+
+
+
+
