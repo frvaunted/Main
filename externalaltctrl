@@ -1343,13 +1343,6 @@ game.Players.LocalPlayer.Character.Head:Destroy()
 
 end
 end)
-
-local mainacc = game.Players["Infusade"]
-game:GetService("StarterGui"):SetCore("SendNotification",{
-Title = "Loaded!",
-Text = "Version 10.2",
-Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
-})
 --safety
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
 
