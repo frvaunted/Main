@@ -46,7 +46,7 @@ local infobutton = Instance.new("TextButton")
 
 local temp1 = Instance.new("TextButton")
 local temp2 = Instance.new("TextButton")
-local temp3 = Instance.new("TextButton")
+local guntp = Instance.new("TextButton")
 local temp4 = Instance.new("TextButton")
 local temp5 = Instance.new("TextButton")
 local temp6 = Instance.new("TextButton")
@@ -60,7 +60,7 @@ local temp13 = Instance.new("TextButton")
 local temp14 = Instance.new("TextButton")
 local temp15 = Instance.new("TextButton")
 local temp16 = Instance.new("TextButton")
-local temp17 = Instance.new("TextButton")
+local camnoclip = Instance.new("TextButton")
 local temp18 = Instance.new("TextButton")
 local temp19 = Instance.new("TextButton")
 local temp20 = Instance.new("TextButton")
@@ -482,188 +482,6 @@ crewlabel.TextScaled = false
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---TEMP BUTTONS
-
-temp8.Parent = sideframe
-temp8.Text = "temp8"
-temp8.Position = UDim2.new(0.015, 0, 0.025, 0)
-temp8.Size = buttonsize
-temp8.BackgroundColor3 = buttonbackground
-temp8.TextColor3 = buttontext
-temp8.TextSize = 10.000
-temp8.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp9.Parent = sideframe
-temp9.Text = "temp9"
-temp9.Position = UDim2.new(0.34, 0, 0.025, 0)
-temp9.Size = buttonsize
-temp9.BackgroundColor3 = buttonbackground
-temp9.TextColor3 = buttontext
-temp9.TextSize = 10.000
-temp9.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp6.Parent = sideframe
-temp6.Text = "temp6"
-temp6.Position = UDim2.new(0.665, 0, 0.025, 0)
-temp6.Size = buttonsize
-temp6.BackgroundColor3 = buttonbackground
-temp6.TextColor3 = buttontext
-temp6.TextSize = 10.000
-temp6.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp11.Parent = sideframe
-temp11.Text = "temp11"
-temp11.Position = UDim2.new(0.015, 0, 0.2, 0)
-temp11.Size = buttonsize
-temp11.BackgroundColor3 = buttonbackground
-temp11.TextColor3 = buttontext
-temp11.TextSize = 10.000
-temp11.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp12.Parent = sideframe
-temp12.Text = "temp12"
-temp12.Position = UDim2.new(0.34, 0, 0.2, 0)
-temp12.Size = buttonsize
-temp12.BackgroundColor3 = buttonbackground
-temp12.TextColor3 = buttontext
-temp12.TextSize = 10.000
-temp12.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp13.Parent = sideframe
-temp13.Text = "temp13"
-temp13.Position = UDim2.new(0.665, 0, 0.2, 0)
-temp13.Size = buttonsize
-temp13.BackgroundColor3 = buttonbackground
-temp13.TextColor3 = buttontext
-temp13.TextSize = 10.000
-temp13.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp14.Parent = sideframe
-temp14.Text = "temp14"
-temp14.Position = UDim2.new(0.015, 0, 0.377, 0)
-temp14.Size = buttonsize
-temp14.BackgroundColor3 = buttonbackground
-temp14.TextColor3 = buttontext
-temp14.TextSize = 10.000
-temp14.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp15.Parent = sideframe
-temp15.Text = "temp15"
-temp15.Position = UDim2.new(0.34, 0, 0.377, 0)
-temp15.Size = buttonsize
-temp15.BackgroundColor3 = buttonbackground
-temp15.TextColor3 = buttontext
-temp15.TextSize = 10.000
-temp15.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp16.Parent = sideframe
-temp16.Text = "temp16"
-temp16.Position = UDim2.new(0.665, 0, 0.377, 0)
-temp16.Size = buttonsize
-temp16.BackgroundColor3 = buttonbackground
-temp16.TextColor3 = buttontext
-temp16.TextSize = 10.000
-temp16.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp17.Parent = sideframe
-temp17.Text = "temp17"
-temp17.Position = UDim2.new(0.015, 0, 0.55, 0)
-temp17.Size = buttonsize
-temp17.BackgroundColor3 = buttonbackground
-temp17.TextColor3 = buttontext
-temp17.TextSize = 10.000
-temp17.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp18.Parent = sideframe
-temp18.Text = "temp18"
-temp18.Position = UDim2.new(0.34, 0, 0.55, 0)
-temp18.Size = buttonsize
-temp18.BackgroundColor3 = buttonbackground
-temp18.TextColor3 = buttontext
-temp18.TextSize = 10.000
-temp18.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp19.Parent = sideframe
-temp19.Text = "temp19"
-temp19.Position = UDim2.new(0.665, 0, 0.55, 0)
-temp19.Size = buttonsize
-temp19.BackgroundColor3 = buttonbackground
-temp19.TextColor3 = buttontext
-temp19.TextSize = 10.000
-temp19.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp20.Parent = sideframe
-temp20.Text = "temp20"
-temp20.Position = UDim2.new(0.015, 0, 0.725, 0)
-temp20.Size = buttonsize
-temp20.BackgroundColor3 = buttonbackground
-temp20.TextColor3 = buttontext
-temp20.TextSize = 10.000
-temp20.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp21.Parent = sideframe
-temp21.Text = "temp21"
-temp21.Position = UDim2.new(0.34, 0, 0.725, 0)
-temp21.Size = buttonsize
-temp21.BackgroundColor3 = buttonbackground
-temp21.TextColor3 = buttontext
-temp21.TextSize = 10.000
-temp21.BorderColor3 = Color3.fromRGB(139,0,0)
-
-temp22.Parent = sideframe
-temp22.Text = "temp22"
-temp22.Position = UDim2.new(0.665, 0, 0.725, 0)
-temp22.Size = buttonsize
-temp22.BackgroundColor3 = buttonbackground
-temp22.TextColor3 = buttontext
-temp22.TextSize = 10.000
-temp22.BorderColor3 = Color3.fromRGB(139,0,0)
-
-
-
---
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 --main properties
 
 
@@ -685,14 +503,14 @@ temp2.TextColor3 = buttontext
 temp2.TextSize = 10.000
 temp2.BorderColor3 = Color3.fromRGB(139,0,0)
 
-temp3.Parent = mainframe
-temp3.Text = "3"
-temp3.Position = UDim2.new(0.665, 0, 0.025, 0)
-temp3.Size = buttonsize
-temp3.BackgroundColor3 = buttonbackground
-temp3.TextColor3 = buttontext
-temp3.TextSize = 10.000
-temp3.BorderColor3 = Color3.fromRGB(139,0,0)
+guntp.Parent = mainframe
+guntp.Text = "Gun TP"
+guntp.Position = UDim2.new(0.665, 0, 0.025, 0)
+guntp.Size = buttonsize
+guntp.BackgroundColor3 = buttonbackground
+guntp.TextColor3 = buttontext
+guntp.TextSize = 10.000
+guntp.BorderColor3 = Color3.fromRGB(139,0,0)
 
 temp4.Parent = mainframe
 temp4.Text = "4"
@@ -888,14 +706,14 @@ autofarm.TextColor3 = buttontext
 autofarm.TextSize = 10.000
 autofarm.BorderColor3 = Color3.fromRGB(139,0,0)
 
-temp17.Parent = sideframe
-temp17.Text = "temp17"
-temp17.Position = UDim2.new(0.015, 0, 0.55, 0)
-temp17.Size = buttonsize
-temp17.BackgroundColor3 = buttonbackground
-temp17.TextColor3 = buttontext
-temp17.TextSize = 10.000
-temp17.BorderColor3 = Color3.fromRGB(139,0,0)
+camnoclip.Parent = sideframe
+camnoclip.Text = "Cam Noclip"
+camnoclip.Position = UDim2.new(0.015, 0, 0.55, 0)
+camnoclip.Size = buttonsize
+camnoclip.BackgroundColor3 = buttonbackground
+camnoclip.TextColor3 = buttontext
+camnoclip.TextSize = 10.000
+camnoclip.BorderColor3 = Color3.fromRGB(139,0,0)
 
 temp18.Parent = sideframe
 temp18.Text = "temp18"
@@ -2517,6 +2335,43 @@ fly.MouseButton1Click:Connect(function()
             fling.Text = 'Fling'
         end
     end)
+
+guntp.MouseButton1Click:Connect(function()
+        if guntp.Text == 'Gun TP' then
+            guntp.Text = 'Stop'
+            safepos = CFrame.new(-897.6600952148438, -2545.0717163085938, -709.875732421875)
+            local Float = Instance.new('Part')
+            Float.Parent = game.Players.LocalPlayer.Character
+            Float.Transparency = 1
+            Float.Size = Vector3.new(2,0.2,1.5)
+            Float.Anchored = true
+            local FloatValue = -3.07
+            local Players = game:GetService("Players")
+            function getRoot(char)
+                local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+                return rootPart
+            end
+                local guntpEnemy = Players:FindFirstChild(targettextbox.Text).Character
+                if guntpEnemy and player.Character then
+                    noclip.Text = "clip"
+                    local function GunTP()
+                        task.wait()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = guntpEnemy.HumanoidRootPart.CFrame * CFrame.new(0,-7.5,0)
+                        Float.CFrame = getRoot(game.Players.LocalPlayer.Character).CFrame * CFrame.new(0,FloatValue,0)
+                    end
+                    repeat GunTP() until guntpEnemy.Humanoid.Health < 10 or not guntpEnemy or guntpEnemy.BodyEffects["K.O"].Value == true or guntp.Text == 'Gun TP'
+                    local vectorZero = Vector3.new(0, 0, 0)
+                    game.Players.LocalPlayer.Character.PrimaryPart.Velocity = vectorZero
+                    game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = vectorZero
+                    task.wait(0.1)
+                    player.Character.HumanoidRootPart.CFrame = safepos
+                    noclip.Text = "noclip"
+                    guntp.Text = 'Gun TP'
+                end
+        else
+            guntp.Text = 'Gun TP'
+        end
+    end)
 qtotpcolor.BackgroundColor3 = red
 qtotp.MouseButton1Click:Connect(function()
     if qtotpcolor.BackgroundColor3 == red then
@@ -2956,7 +2811,24 @@ maskusers.MouseButton1Click:Connect(function()
     end
     announce('Showing masked usersnames', '', 3)
 end)
+camnoclip.MouseButton1Click:Connect(function()
 
+    local Players = game:GetService("Players")
+    local LocalPlayer = Players.LocalPlayer
+    local PopperClient = LocalPlayer:WaitForChild("PlayerScripts").PlayerModule.CameraModule.ZoomController.Popper
+    for i, v in next, getgc() do
+        if type(v) == "function" and getfenv(v).script == PopperClient then
+            for i2, v2 in next, debug.getconstants(v) do
+                if tonumber(v2) == 0.25 then
+                    debug.setconstant(v, i2, 0)
+                elseif tonumber(v2) == 0 then
+                    debug.setconstant(v, i2, 0.25)
+                end
+            end
+        end
+    end
+    announce('Enabled Camera Noclip!', '', 3)
+end)
 moneyeesp.MouseButton1Click:Connect(function()
     if moneyeesp.Text == 'Money Esp' then
         moneyeesp.Text = 'Stop ESP'
@@ -3751,7 +3623,6 @@ end)
 lowgfx.MouseButton1Click:Connect(function()
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/frvaunted/a/main/remove%20textures'),true))() 
 end)
-
 
 
 
