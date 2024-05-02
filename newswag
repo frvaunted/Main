@@ -1633,18 +1633,7 @@ function ShrinkName()
     end)
 end
 ShrinkName()
-function View(plr)
-    wait()
-    if game.Players:FindFirstChild(plr) then
-        if game.Players[plr].Character then
-            game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = game.Players:FindFirstChild(plr).Character.Humanoid
-        else
-            view.Text = 'View'
-        end
-    else
-        view.Text = 'View'
-    end
-end
+
 loadstring(game:HttpGet("https://pastebin.com/raw/nzXicwc1", true))() -- Chatspy
 function Noclip()
 plrname = game.Players.LocalPlayer.Name
@@ -1658,7 +1647,10 @@ plrname = game.Players.LocalPlayer.Name
     end 
 end
 
-
+function getRoot(char)
+	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+	return rootPart
+end
 
 
 
@@ -1884,14 +1876,36 @@ end)
 ------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------
-
+viewing = nil
 view.MouseButton1Click:Connect(function()
-    if view.Text == 'View' then
+ local TargetPlr = Players:FindFirstChild(targettextbox.Text)
+    if view.Text == 'View' and TargetPlr  then
         view.Text = 'Unview'
-        repeat View(targettextbox.Text) until view.Text == 'View'
-        game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = player.Character:FindFirstChildWhichIsA('Humanoid')
+		if viewDied then
+			viewDied:Disconnect()
+			viewChanged:Disconnect()
+		end
+		viewing = TargetPlr
+		workspace.CurrentCamera.CameraSubject = TargetPlr.Character
+		local function viewDiedFunc()
+			repeat wait() until TargetPlr.Character ~= nil and getRoot(TargetPlr.Character)
+			workspace.CurrentCamera.CameraSubject = TargetPlr.Character
+		end	
+		viewDied = TargetPlr.CharacterAdded:Connect(viewDiedFunc)
+		local function viewChangedFunc()
+			workspace.CurrentCamera.CameraSubject = TargetPlr.Character
+		end
+		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
     else
         view.Text = 'View'
+	if viewing ~= nil then
+		viewing = nil
+	end
+	if viewDied then
+		viewDied:Disconnect()
+		viewChanged:Disconnect()
+	end
+	workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
     end
 end)
 
@@ -3353,8 +3367,8 @@ tacshotgun.MouseButton1Click:Connect(function()
 end)
 chicken.MouseButton1Click:Connect(function()
     local ItemCost = 2387
-    local ClickDetector = workspace.Ignored.Shop:GetChildren()[43].ClickDetector
-    local Location = workspace.Ignored.Shop:GetChildren()[43].ClickDetector.Parent.Head.Position
+    local ClickDetector = workspace.Ignored.Shop["[Chicken] - $7"].ClickDetector
+    local Location = workspace.Ignored.Shop["[Chicken] - $7"].ClickDetector.Parent.Head.Position
     OldCFrame = player.Character.HumanoidRootPart.CFrame
     noclip.Text = "clip"
     local function buy()
@@ -3623,7 +3637,6 @@ end)
 lowgfx.MouseButton1Click:Connect(function()
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/frvaunted/a/main/remove%20textures'),true))() 
 end)
-
 
 
 
