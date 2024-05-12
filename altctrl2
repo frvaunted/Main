@@ -71,12 +71,12 @@ function getteam()
     return game.Players.LocalPlayer.TeamColor.Name
 end
 
-function summon(plr)
+--[[function summon(plr)
     while getgenv().summoned == true task.wait()
         float()
         hrp.CFrame = plr.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
     until getgenv().summoned == false
-end
+end]]
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/chatspy", true))() -- Chatspy
 
@@ -152,7 +152,7 @@ elseif Args[1] == ".re" then
             character.Humanoid.Health = 0
 
 
-elseif Args[1] == ".summon" then
+--[[elseif Args[1] == ".summon" then
     plr = Speaker
     if getgenv().summoned == false then
         getgenv().summoned = true
@@ -164,7 +164,7 @@ elseif Args[1] == ".vanish" then
         getgenv().summoned = false
         hrp.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
     end
-
+]]
 elseif Args[1] == ".admin" then
         local Player = GetPlayerFromString(Args[2])
         if Player ~= nil and not admins[Player.UserId] then
