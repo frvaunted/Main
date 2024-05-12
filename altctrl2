@@ -93,17 +93,18 @@ Connections["OnChat"] = game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMes
  
 if Args[1] == ".bring" then
 	game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit = False
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = host.Character.Head.CFrame * CFrame.new(0,1,0)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = plr.Character.Head.CFrame * CFrame.new(0,1,0)
 
 elseif Message == ".rejoin" then
 	game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,game.JobId,game:GetService'Players'.LocalPlayer)
 
-elseif Args[1] == ".tp" then
+elseif Args[1] == ".goto" then
 	local FoundPlayer = GetPlayerFromString(Args[2])
-if FoundPlayer then
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FoundPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,2,0)
-end
-viewing = nil
+    if FoundPlayer then
+	    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FoundPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,2,0)
+    end
+
+    viewing = nil
 elseif Args[1] == ".view" then
 	local TargetPlr =  GetPlayerFromString(Args[2])
 		if viewDied then
@@ -135,11 +136,49 @@ elseif Message == ".unview" then
 elseif Message == ".clip" then
 		Noclipping:Disconnect()
 
-elseif Message == ".reset" then
-	game.Players.LocalPlayer.Character.Humanoid.Health = 0
-	if tping == true then
-		LoopTping:Disconnect()
-	end
+elseif Args[1] == ".re" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(2^7,5^34,4^7)
+            task.wait(0.4)
+            game.Players.LocalPlayer.Character.Head:Destroy()
+            task.wait()
+            character.Humanoid.Health = 0
+    
+elseif Args[1] == ".summon" then
+                summoned = true
+                local player = game.Players.LocalPlayer
+                local Flyanimation = Instance.new('Animation', game.Workspace)
+                Flyanimation.AnimationId = 'rbxassetid://3541044388'
+                local Idleanimation = Instance.new('Animation', game.Workspace)
+                Idleanimation.AnimationId = 'rbxassetid://3541114300'
+                local HeroIdle = character.Humanoid:LoadAnimation(Idleanimation)
+                local HeroFly = character.Humanoid:LoadAnimation(Flyanimation)
+                Idleing2 = true
+                
+                    local function flyanim()
+                            --HeroIdle:Stop()
+                            local FlyingA = false
+                            for i,v in pairs(character.Humanoid:GetPlayingAnimationTracks()) do
+                                if v.Animation.AnimationId == 'rbxassetid://3541044388' then
+                                    FlyingA = false
+                                end
+                                if v.Animation.AnimationId == 'rbxassetid://2788289281' then
+                                    v:Stop()
+                                end
+                                if v.Animation.AnimationId == 'rbxassetid://2788292075' then
+                                    v:Stop()
+                                end
+                            end
+                            if FlyingA == false and Idleing2 == false then
+                                HeroFly:Play()
+                            end
+                    end
+                    repeat task.wait()
+                    float()
+                    HeroIdle:Play()
+                    hrp.CFrame = plr.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
+                    until summoned == false or not plr or not plr.Character or not character or not localplayer or not hrp or not plr.Character.HumanoidRootPart
+        
+
 elseif Args[1] == ".admin" then
         local Player = GetPlayerFromString(Args[2])
         if Player ~= nil and not admins[Player.UserId] then
@@ -152,6 +191,6 @@ end)
 
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.7";
+    Title = "V 0.2";
     Text = "PRE-RELEASE";
     Duration = 10;})
