@@ -149,8 +149,23 @@ elseif Args[1] == ".summon" then
         repeat task.wait()
         float()
         hrp.CFrame = plr.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
-        until summoned == false or not plr or not plr.Character or not character or not localplayer or not hrp or not plr.Character.HumanoidRootPart
-        
+        until summoned == false
+
+elseif Args[1] == ".vanish" then
+    summoned = false
+    task.wait()
+    if game.Workspace:FindFirstChild("SafetyPlat")then
+        hrp.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
+    else
+        local part = Instance.new("Part")
+        part.Size = Vector3.new(100, 2, 100)
+        part.Name = "SafetyPlat"
+        part.Parent = game.Workspace
+        part.Anchored = true
+        local pl = game.Players.LocalPlayer.Character
+        part.Position = Vector3.new(-897.6600952148438, -2550.0717163085938, -709.875732421875)
+        pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
+    end
 
 elseif Args[1] == ".admin" then
         local Player = GetPlayerFromString(Args[2])
@@ -162,8 +177,8 @@ elseif Args[1] == ".admin" then
     end
 end)
 
-
+game.Workspace.FallenPartsDestroyHeight = -9e9
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.4";
+    Title = "V 0.5";
     Text = "PRE-RELEASE";
     Duration = 10;})
