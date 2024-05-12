@@ -143,7 +143,7 @@ elseif Args[1] == ".re" then
             task.wait()
             character.Humanoid.Health = 0
 
-local summoned = false
+local summoned
 elseif Args[1] == ".summon" then
     summoned = true
         repeat task.wait()
@@ -179,6 +179,6 @@ end)
 
 game.Workspace.FallenPartsDestroyHeight = -9e9
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.5";
+    Title = "V 0.6";
     Text = "PRE-RELEASE";
     Duration = 10;})
