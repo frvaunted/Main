@@ -70,10 +70,11 @@ end
 function getteam()
     return game.Players.LocalPlayer.TeamColor.Name
 end
-function summon()
+
+function summon(plr)
     while getgenv().summoned == true task.wait()
         float()
-        hrp.CFrame = getRoot(plr).CFrame * CFrame.new(0,3,5)
+        hrp.CFrame = plr.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
     until getgenv().summoned == false
 end
 
@@ -87,10 +88,10 @@ end
 
 Connections["OnChat"] = game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(data)
     local Message = data.Message
-    local plr = game.Players[data.FromSpeaker]
+    local Speaker = game.Players[data.FromSpeaker]
     
     -- Check if the player is not the owner and not an admin
-    if plr.Name ~= getgenv().owner and not admins[plr.UserId] then
+    if plr.Name ~= getgenv().owner and not admins[Speaker.UserId] then
         return
     end
     
@@ -100,7 +101,7 @@ Connections["OnChat"] = game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMes
  
 if Args[1] == ".bring" then
 	game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit = False
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = plr.Character.Head.CFrame * CFrame.new(0,1,0)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Speaker.Character.Head.CFrame * CFrame.new(0,1,0)
 
 elseif Message == ".rejoin" then
 	game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,game.JobId,game:GetService'Players'.LocalPlayer)
@@ -152,6 +153,7 @@ elseif Args[1] == ".re" then
 
 
 elseif Args[1] == ".summon" then
+    plr = Speaker
     if getgenv().summoned == false then
         getgenv().summoned = true
         summon()
