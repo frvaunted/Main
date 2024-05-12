@@ -146,35 +146,9 @@ elseif Args[1] == ".re" then
 elseif Args[1] == ".summon" then
                 summoned = true
                 local player = game.Players.LocalPlayer
-                local Flyanimation = Instance.new('Animation', game.Workspace)
-                Flyanimation.AnimationId = 'rbxassetid://3541044388'
-                local Idleanimation = Instance.new('Animation', game.Workspace)
-                Idleanimation.AnimationId = 'rbxassetid://3541114300'
-                local HeroIdle = character.Humanoid:LoadAnimation(Idleanimation)
-                local HeroFly = character.Humanoid:LoadAnimation(Flyanimation)
-                Idleing2 = true
-                
-                    local function flyanim()
-                            --HeroIdle:Stop()
-                            local FlyingA = false
-                            for i,v in pairs(character.Humanoid:GetPlayingAnimationTracks()) do
-                                if v.Animation.AnimationId == 'rbxassetid://3541044388' then
-                                    FlyingA = false
-                                end
-                                if v.Animation.AnimationId == 'rbxassetid://2788289281' then
-                                    v:Stop()
-                                end
-                                if v.Animation.AnimationId == 'rbxassetid://2788292075' then
-                                    v:Stop()
-                                end
-                            end
-                            if FlyingA == false and Idleing2 == false then
-                                HeroFly:Play()
-                            end
-                    end
+
                     repeat task.wait()
                     float()
-                    HeroIdle:Play()
                     hrp.CFrame = plr.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
                     until summoned == false or not plr or not plr.Character or not character or not localplayer or not hrp or not plr.Character.HumanoidRootPart
         
@@ -191,6 +165,6 @@ end)
 
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.2";
+    Title = "V 0.3";
     Text = "PRE-RELEASE";
     Duration = 10;})
