@@ -175,7 +175,7 @@ elseif Args[1] == ".admin" then
     end
 end)
 
-game.Workspace.FallenPartsDestroyHeight = -9e9
+--[[game.Workspace.FallenPartsDestroyHeight = -9e9
     local part = Instance.new("Part")
     part.Size = Vector3.new(100, 2, 100)
     part.Name = "SafetyPlat"
@@ -184,7 +184,7 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     local pl = game.Players.LocalPlayer.Character
     part.Position = Vector3.new(-897.6600952148438, -2550.0717163085938, -709.875732421875)
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
-
+]]
 game:GetService("StarterGui"):SetCore("SendNotification", {
     Title = "V 0.7";
     Text = "PRE-RELEASE";
