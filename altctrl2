@@ -142,15 +142,14 @@ elseif Args[1] == ".re" then
             game.Players.LocalPlayer.Character.Head:Destroy()
             task.wait()
             character.Humanoid.Health = 0
-    
-elseif Args[1] == ".summon" then
-                summoned = true
-                local player = game.Players.LocalPlayer
 
-                    repeat task.wait()
-                    float()
-                    hrp.CFrame = plr.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
-                    until summoned == false or not plr or not plr.Character or not character or not localplayer or not hrp or not plr.Character.HumanoidRootPart
+local summoned = false
+elseif Args[1] == ".summon" then
+    summoned = true
+        repeat task.wait()
+        float()
+        hrp.CFrame = plr.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
+        until summoned == false or not plr or not plr.Character or not character or not localplayer or not hrp or not plr.Character.HumanoidRootPart
         
 
 elseif Args[1] == ".admin" then
@@ -165,6 +164,6 @@ end)
 
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.3";
+    Title = "V 0.4";
     Text = "PRE-RELEASE";
     Duration = 10;})
