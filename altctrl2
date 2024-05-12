@@ -20,6 +20,10 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
         Duration = 5;})
 end
 
+
+getgenv().summoned = false
+
+
 local function GetPlayerFromString(str,ignore)
 	for i,Targ in pairs(game.Players:GetPlayers()) do 
 		if not ignore and Targ == localplayer then
@@ -68,6 +72,12 @@ end
 
 function getteam()
     return game.Players.LocalPlayer.TeamColor.Name
+end
+function summon()
+    while getgenv().summoned == true task.wait()
+        float()
+        hrp.CFrame = getRoot(plr.Character).CFrame * CFrame.new(0,3,5)
+    until getgenv().summoned == false
 end
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/chatspy", true))() -- Chatspy
@@ -143,28 +153,17 @@ elseif Args[1] == ".re" then
             task.wait()
             character.Humanoid.Health = 0
 
-local summoned
+
 elseif Args[1] == ".summon" then
-    summoned = true
-        repeat task.wait()
-        float()
-        hrp.CFrame = plr.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
-        until summoned == false
+    if getgenv().summoned == false then
+        getgenv().summoned = true
+        summon()
+    end
 
 elseif Args[1] == ".vanish" then
-    summoned = false
-    task.wait()
-    if game.Workspace:FindFirstChild("SafetyPlat")then
+    if getgenv().summoned == true then
+        getgenv().summoned = false
         hrp.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
-    else
-        local part = Instance.new("Part")
-        part.Size = Vector3.new(100, 2, 100)
-        part.Name = "SafetyPlat"
-        part.Parent = game.Workspace
-        part.Anchored = true
-        local pl = game.Players.LocalPlayer.Character
-        part.Position = Vector3.new(-897.6600952148438, -2550.0717163085938, -709.875732421875)
-        pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
     end
 
 elseif Args[1] == ".admin" then
@@ -178,7 +177,16 @@ elseif Args[1] == ".admin" then
 end)
 
 game.Workspace.FallenPartsDestroyHeight = -9e9
+    local part = Instance.new("Part")
+    part.Size = Vector3.new(100, 2, 100)
+    part.Name = "SafetyPlat"
+    part.Parent = game.Workspace
+    part.Anchored = true
+    local pl = game.Players.LocalPlayer.Character
+    part.Position = Vector3.new(-897.6600952148438, -2550.0717163085938, -709.875732421875)
+    pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
+
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.6";
+    Title = "V 0.7";
     Text = "PRE-RELEASE";
     Duration = 10;})
