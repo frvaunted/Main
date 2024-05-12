@@ -1,4 +1,5 @@
 getgenv().owner = "feverplague"
+getgenv().summoned = false
 
 local admins = {}
 local Connections = {}
@@ -19,10 +20,6 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
         Text = "Host not here!";
         Duration = 5;})
 end
-
-
-getgenv().summoned = false
-
 
 local function GetPlayerFromString(str,ignore)
 	for i,Targ in pairs(game.Players:GetPlayers()) do 
@@ -76,7 +73,7 @@ end
 function summon()
     while getgenv().summoned == true task.wait()
         float()
-        hrp.CFrame = getRoot(plr.Character).CFrame * CFrame.new(0,3,5)
+        hrp.CFrame = getRoot(plr).CFrame * CFrame.new(0,3,5)
     until getgenv().summoned == false
 end
 
