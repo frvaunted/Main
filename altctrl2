@@ -91,7 +91,7 @@ Connections["OnChat"] = game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMes
     local Speaker = game.Players[data.FromSpeaker]
     
     -- Check if the player is not the owner and not an admin
-    if plr.Name ~= getgenv().owner and not admins[Speaker.UserId] then
+    if Speaker.Name ~= getgenv().owner and not admins[Speaker.UserId] then
         return
     end
     
@@ -186,6 +186,6 @@ end)
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 ]]
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.8";
+    Title = "V 0.9";
     Text = "PRE-RELEASE";
     Duration = 10;})
