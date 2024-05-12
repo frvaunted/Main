@@ -91,20 +91,20 @@ Connections["OnChat"] = game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMes
     local Args = string.split(Message, " ")
     local AmountOfArgs = #Args
  
-if Args[1] == ";bring" then
+if Args[1] == ".bring" then
 	game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit = False
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Host.Character.Head.CFrame * CFrame.new(0,1,0)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = host.Character.Head.CFrame * CFrame.new(0,1,0)
 
-elseif Message == ";rejoin" then
+elseif Message == ".rejoin" then
 	game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,game.JobId,game:GetService'Players'.LocalPlayer)
 
-elseif Args[1] == ";tp" then
+elseif Args[1] == ".tp" then
 	local FoundPlayer = GetPlayerFromString(Args[2])
 if FoundPlayer then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FoundPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,2,0)
 end
 viewing = nil
-elseif Args[1] == ";view" then
+elseif Args[1] == ".view" then
 	local TargetPlr =  GetPlayerFromString(Args[2])
 		if viewDied then
 			viewDied:Disconnect()
@@ -122,7 +122,7 @@ elseif Args[1] == ";view" then
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
 
-elseif Message == ";unview" then
+elseif Message == ".unview" then
 	if viewing ~= nil then
 		viewing = nil
 	end
@@ -132,20 +132,26 @@ elseif Message == ";unview" then
 	end
 	workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
 
-elseif Message == ";clip" then
+elseif Message == ".clip" then
 		Noclipping:Disconnect()
 
-elseif Message == ";reset" then
+elseif Message == ".reset" then
 	game.Players.LocalPlayer.Character.Humanoid.Health = 0
 	if tping == true then
 		LoopTping:Disconnect()
 	end
+elseif Args[1] == ".admin" then
+        local Player = GetPlayerFromString(Args[2])
+        if Player ~= nil and not admins[Player.UserId] then
+            admins[Player.UserId] = {Player = Player}
+            Chat("/w "..Player.Name.." You've got admin permissions!")
+        end
 
     end
 end)
 
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.1";
+    Title = "V 0.7";
     Text = "PRE-RELEASE";
     Duration = 10;})
