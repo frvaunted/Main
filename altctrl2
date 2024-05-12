@@ -1,1431 +1,190 @@
+getgenv().owner = "feverplague"
 
-	getgenv().HostUser = "Infusade"
-	local Connections = {}
-	local Services = {
-		["RP"] = game:GetService("ReplicatedStorage"),
-		["Players"] = game:GetService("Players"),
-	}
-	local Variables = {
-		HostUser = getgenv().HostUser,
-		Player = game.Players.LocalPlayer,
-	}
-	local Host = Services["Players"]:FindFirstChild(Variables["HostUser"])
-	if not Host then
-		print("Host is not here waiting for him to join!")
-		Services["Players"]:WaitForChild(Variables["HostUser"],9e9)
-		Host = Services["Players"]:FindFirstChild(Variables["HostUser"])
-	end
-	local function GetPlayerFromString(str,ignore)
-		for i,Targ in pairs(game.Players:GetPlayers()) do 
-			if not ignore and Targ == Variables["Player"] then
-				continue
-			end
-			if Targ.Name:lower():sub(1,#str) == str:lower() or  Targ.DisplayName:lower():sub(1,#str) == str:lower()  then
-				return Targ
-			end
-		end
-		return nil
-	end
-	function randomString()
-		local length = math.random(10,20)
-		local array = {}
-		for i = 1, length do
-			array[i] = string.char(math.random(32, 126))
-		end
-		return table.concat(array)
-	end
-	function getRoot(char)
-		local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
-		return rootPart
-	end
-	Players = game:GetService("Players")
-	local Admin = {}
-	local LoopKill = {}
-	local States = {}
-	local Temp = {}
-	local chattingjoin = false
-	Temp.Esps = {}
-	local Player, plr,Folder = game:GetService("Players").LocalPlayer
-	repeat wait() until game:IsLoaded()
-	game:GetService("Players").PlayerAdded:Connect(function(player)
-			game.StarterGui:SetCore("SendNotification",{
-			Title = player.DisplayName,
-			Text = player.Name.. " joined!",
-			Icon = game:GetService("Players"):GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
-			Duration = 5
-			})
-	end)
-	local function GetPos()
-		return game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-	end
-	local function GetCamPos()
-		return workspace.CurrentCamera.CFrame
-	end
-	local function GetTeam()
-		return game.Players.LocalPlayer.TeamColor.Name
-	end
-	function Kill(Player)
-	pcall(function()
-		if not Player or not Player.Character or Player.Character:FindFirstChild("ForceField") or not workspace:FindFirstChild(Player.Name) or not workspace:FindFirstChild(Player.Name):FindFirstChild("Head") or Player.Character.Parent ~= workspace then
-			return
-		end
-		local remington = game.Workspace.Prison_ITEMS.giver["Remington 870"]
-		local Gun = game.Players.LocalPlayer.Character:FindFirstChild("Remington 870") or game.Players.LocalPlayer.Backpack:FindFirstChild("Remington 870")
+local admins = {}
+local Connections = {}
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-		if not Gun then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = remington.ITEMPICKUP.CFrame * CFrame.new(0, 4, 0)
-			task.wait(0.2)
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(930.31842, 118.989983, 2404.84229, -0.521840632, -2.06890043e-08, -0.85304302, 7.93423496e-08, 1, -7.27900797e-08, 0.85304302, -1.05667262e-07, -0.521840632)
-			workspace.Remote.ItemHandler:InvokeServer(remington.ITEMPICKUP)
-		end
+local hostvar1 = getgenv().owner 
 
-		local FireEvent = {
-				[1] = {
-					["RayObject"] = Ray.new(Vector3.new(), Vector3.new()), 
-					["Distance"] = 0, 
-					["Cframe"] = CFrame.new(), 
-					["Hit"] = workspace[Player.Name].Head
-				}, [2] = {
-					["RayObject"] = Ray.new(Vector3.new(), Vector3.new()), 
-					["Distance"] = 0, 
-					["Cframe"] = CFrame.new(), 
-					["Hit"] = workspace[Player.Name].Head
-				}, [3] = {
-					["RayObject"] = Ray.new(Vector3.new(), Vector3.new()), 
-					["Distance"] = 0, 
-					["Cframe"] = CFrame.new(), 
-					["Hit"] = workspace[Player.Name].Head
-				}, [4] = {
-					["RayObject"] = Ray.new(Vector3.new(), Vector3.new()), 
-					["Distance"] = 0, 
-					["Cframe"] = CFrame.new(), 
-					["Hit"] = workspace[Player.Name].Head
-				}, [5] = {
-					["RayObject"] = Ray.new(Vector3.new(), Vector3.new()), 
-					["Distance"] = 0, 
-					["Cframe"] = CFrame.new(), 
-					["Hit"] = workspace[Player.Name].Head
-				}
-			}
-			game:GetService("ReplicatedStorage").ShootEvent:FireServer(FireEvent, Gun)
-		end)
-	end
-	function GetPart(Target)
-		local Player, plr,Folder = game:GetService("Players").LocalPlayer
-		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-		return Target.Character:FindFirstChild("HumanoidRootPart") or Target.Character:FindFirstChild("Head")
-	end
-	function GetPosition(Player)
-		local Player, plr,Folder = game:GetService("Players").LocalPlayer
-		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-		if Player then
-			return GetPart(Player).CFrame
-		elseif not Player then
-			return GetPart(plr).CFrame
-		end
-	end
-	function GetGun(Item, Ignore)
-		task.spawn(function()
-			local Player, plr,Folder = game:GetService("Players").LocalPlayer
-			workspace:FindFirstChild("Remote")['ItemHandler']:InvokeServer({
-				Position = Player.Character.Head.Position,
-				Parent = workspace.Prison_ITEMS:FindFirstChild(Item, true)
-			})
-		end)
-	end
-	function ChangeTeam(TeamPath,NoForce,Pos)
-		local Player, plr = game:GetService("Players").LocalPlayer
-		pcall(function()
-			repeat task.wait() until game:GetService("Players").LocalPlayer.Character
-			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-		end)
-		if TeamPath == game.Teams.Criminals then
-			task.spawn(function()
-				workspace.Remote.TeamEvent:FireServer("Bright orange")
-			end)
-			repeat game:GetService("RunService").Stepped:Wait() until Player.Team == game.Teams.Inmates and Player.Character:FindFirstChild("HumanoidRootPart")
-			repeat
-				game:GetService("RunService").Stepped:Wait()
-				if firetouchinterest then
-					firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Part"), game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1], 0)
-					firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Part"), game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1], 1)
-				end
-				--[[game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].Transparency = 1
-				game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CanCollide = false
-				game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CFrame = GetPosition()]]
-			until game.Players.LocalPlayer.Team == "Criminals"
-			game:GetService("Workspace")["Criminals Spawn"]:GetChildren()[1].CFrame = CFrame.new(0, 3125, 0)
-		else
-			if TeamPath == game.Teams.Neutral then
-				workspace['Remote']['TeamEvent']:FireServer("Bright orange")
-			else
-				if not TeamPath or not TeamPath.TeamColor then
-					workspace['Remote']['TeamEvent']:FireServer("Bright orange")
-				else
-					workspace['Remote']['TeamEvent']:FireServer(TeamPath.TeamColor.Name)
-				end
-			end
-		end
-	end
-	function CreateBulletTable(Amount, Hit, IsTrue)
-		local Args = {}
-		for i = 1, tonumber(Amount) do
-			if IsTrue then
-				Args[#Args + 1] = {
-					["RayObject"] = Ray.new(Vector3.new(990.272583, 101.489975, 2362.74878), Vector3.new(-799.978333, 0.23157759, -5.88794518)),
-					["Distance"] = 198.9905242919922,
-					["Cframe"] = CFrame.new(894.362549, 101.288307, 2362.53491, -0.0123058055, 0.00259522465, -0.999920964, 3.63797837e-12, 0.999996722, 0.00259542116, 0.999924302, 3.19387436e-05, -0.0123057645),
-				}
-			else
-				Args[#Args + 1] = {
-					["RayObject"] = Ray.new(Vector3.new(), Vector3.new()),
-					["Distance"] = 0,
-					["Cframe"] = CFrame.new(),
-					["Hit"] = Hit,
-				}
-			end
-		end
-		return Args
-	end
-	local IsBringing = false
-	function vbring(Target,TeleportTo,MoreTP,DontBreakCar)
-		if not IsBringing and Target and Target.Character:FindFirstChildOfClass("Humanoid") and Target.Character:FindFirstChildOfClass("Humanoid").Health>0 and Target.Character:FindFirstChildOfClass("Humanoid").Sit == false then
-			if not TeleportTo then
-				TeleportTo = GetPosition()
-			end
-			local Orgin = GetPosition()
-			local CarPad = workspace.Prison_ITEMS.buttons["Car Spawner"]
-			local car = nil
-			local Seat = nil
-			local Failed = false
-			local CheckForBreak = function()
-				if not Target or not Target.Character:FindFirstChildOfClass("Humanoid") or Target.Character:FindFirstChildOfClass("Humanoid").Health<1 or Player.Character:FindFirstChildOfClass("Humanoid").Health<1 then
-					Failed = true
-					return true
-				else
-					return nil
-				end
-			end
+local localplayer = Players.LocalPlayer
+local character = localplayer.Character
+local hrp = character.HumanoidRootPart
 
-			for i,v in pairs(game:GetService("Workspace").CarContainer:GetChildren()) do
-				if v then
-					if v:WaitForChild("Body"):WaitForChild("VehicleSeat").Occupant == nil then
-						car = v
-					end
-				end
-			end
-			if not car then
-				coroutine.wrap(function()
-					if not car then
-						car = game:GetService("Workspace").CarContainer.ChildAdded:Wait()
-					end
-				end)()
-				repeat wait()
-					game:GetService("Players").LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-524, 55, 1777))
-					task.spawn(function()
-						workspace.Remote.ItemHandler:InvokeServer(game:GetService("Workspace").Prison_ITEMS.buttons:GetChildren()[7]["Car Spawner"])
-					end)
-					if CheckForBreak() then
-						break
-					end
-				until car
-			end
-			car:WaitForChild("Body"):WaitForChild("VehicleSeat")
-			car.PrimaryPart = car.Body.VehicleSeat
-			Seat = car.Body.VehicleSeat
-			repeat wait()
-				Seat:Sit(Player.Character:FindFirstChildOfClass("Humanoid"))
-			until Player.Character:FindFirstChildOfClass("Humanoid").Sit == true
-			wait() --// so it doesnt break
-			repeat game:GetService("RunService").Stepped:Wait()
-				if CheckForBreak() or not Player.Character:FindFirstChildOfClass("Humanoid") or Player.Character:FindFirstChildOfClass("Humanoid").Sit == false then
-					break
-				end
-				car.PrimaryPart = car.Body.VehicleSeat
-				if Target.Character:FindFirstChildOfClass("Humanoid").MoveDirection.Magnitude >0 then
-					car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-6))
-				else
-					car:SetPrimaryPartCFrame(Target.Character:GetPrimaryPartCFrame()*CFrame.new(0,-.2,-5))
-				end
-			until Target.Character:FindFirstChildOfClass("Humanoid").Sit == true
-			for i =1,10 do
-				car:SetPrimaryPartCFrame(TeleportTo)
-				game:GetService("RunService").Stepped:Wait()
-			end
-		end
-	end
-	function ArrestEvent(Player, Time)
-		for i = 1,Time do
-			workspace.Remote.arrest:InvokeServer(Player.Character.Head)
-		end
-	end
-	function Arrest(Player, Time)
-		local Time = Time or 1
-		local savedcf = GetPos()
-		local savedcamcf = GetCamPos()
-		local savedteam = GetTeam()
-		if Player then
-			repeat wait()
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
-				for i = 1,Time do
-					coroutine.wrap(function()
-						workspace.Remote.arrest:InvokeServer(Player.Character.Head)
-					end)()
-				end
-			until Player.Character:FindFirstChild("Head"):FindFirstChild("handcuffedGui")
-			wait()
-		end
-		game.Players.LocalPlayer.Character.Humanoid.Sit = false
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
-		workspace.CurrentCamera.CFrame = savedcamcf
-	end
-	function SpamArrest(Player)
-		States.SpamArrest = true
-		repeat wait()
-			if game.Players[Player.Name] and States.SpamArrest then
-					repeat game:GetService("RunService").Stepped:Wait()
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
-						for i = 1,1000 do
-							coroutine.wrap(function()
-								ArrestEvent(Player, math.huge)
-							end)()
-						end
-					until Player.Character.Head:FindFirstChild("handcuffedGui") or not game.Players[Player.Name]
-			end
-		until not game.Players[Player.Name] or not States.SpamArrest
-	end
+local host = Players:FindFirstChild(hostvar1)
 
-	function vDestroy(v)
-		v:Remove()
-		pcall(function()
-			v:Remove()
-		end)
-	end
-	local ChangeState = function(Type,StateType)
-		local Value = nil
-		if Type and typeof(Type):lower() == "string" and (Type):lower() == "on" then
-			Value = true
-		elseif Type and typeof(Type):lower() == "string" and (Type):lower() == "off" then
-			Value = false
-		elseif typeof(Type):lower() == "boolean" then
-			Value = Type
-		else
-			Value = not States[StateType]
-		end
-		States[StateType] = Value
-		return Value
-
-	end
-	mouse = game.Players.LocalPlayer:GetMouse()
-	local mt = getrawmetatable(game) -- aimlok
-	pos = Vector3.new(0,0,0)
-	local old = mt.__namecall
-	setreadonly(mt,false)
-	mt.__namecall = newcclosure(function(self, ...)
-	local args = {...}
-	if getnamecallmethod() == 'FireServer' and self.Name == 'MainEvent' then
-		if tostring(args[1]) == 'UpdateMousePos' then
-			if Aimlocked ~= nil then
-				args[2] = pos
-			end
-		end
-	end
-	return old(self, unpack(args))
-	end)
-
-	local cmdp = game:GetService("Players")
-	local cmdlp = cmdp.LocalPlayer
-		function NoclipLoop()
-			if  cmdlp.Character ~= nil then
-				for _, child in pairs(cmdlp.Character:GetDescendants()) do
-					if child:IsA("BasePart") and child.CanCollide == true then
-						child.CanCollide = false
-					end
-				end
-			end
-		end
-function AntiStompLoop()
-	if game.Players.LocalPlayer.Character.Humanoid.Health < 25 or game.Players.LocalPlayer.Character.BodyEffects["K.O"].Value == true then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(10000, 10000, 10000)
-		game:FindService'RunService'.RenderStepped:wait()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
-	end
+if not host then 
+game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Error";
+        Text = "Host not here!";
+        Duration = 5;})
 end
-function revbuy()
-	task.wait()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame * CFrame.new(0,-3,0)
-	fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
+
+local function GetPlayerFromString(str,ignore)
+	for i,Targ in pairs(game.Players:GetPlayers()) do 
+		if not ignore and Targ == localplayer then
+			continue
+		end
+		if Targ.Name:lower():sub(1,#str) == str:lower() or  Targ.DisplayName:lower():sub(1,#str) == str:lower()  then
+			return Targ
+		end
+	end
+	return nil
 end
-	function tKill(Target)
-		local Player, plr,Folder = game:GetService("Players").LocalPlayer
-		local Bullets = CreateBulletTable(20,(Target.Character:FindFirstChild("Head") or Target.Character:FindFirstChildOfClass("Part")))
-		if not Target or not Target.Character or not Target.Character:FindFirstChildOfClass("Humanoid") or Target.Character:FindFirstChildOfClass("Humanoid").Health <1 then
-			return
-		end
-		repeat game:GetService("RunService").Stepped:Wait() until not Target.Character:FindFirstChildOfClass("ForceField")
-		local CurrentTeam = nil
-		--[[if Target.Team == Player.Team then
-			if Target.Team == game.Teams.Inmates then
-				CurrentTeam = Player.Team
-				task.wait(0.1)
-				ChangeTeam(game.Teams.Criminals,true)
-			elseif Target.Team == game.Teams.Criminals then
-				CurrentTeam = Player.Team
-				task.wait(0.1)
-				ChangeTeam(game.Teams.Inmates,true)
-			end
-		end]]
 
-		local Gun = Player.Backpack:FindFirstChild("Remington 870") or Player.Character:FindFirstChild("Remington 870")
-		GetGun("Remington 870")
-		repeat game:GetService("RunService").Stepped:Wait()Gun = Player.Backpack:FindFirstChild("Remington 870") or Player.Character:FindFirstChild("Remington 870") until Gun
-		task.spawn(function()
-			game:GetService("ReplicatedStorage").ShootEvent:FireServer(Bullets, Gun)
-			game:GetService("ReplicatedStorage").ReloadEvent:FireServer(Gun)
-		end)
-		coroutine.wrap(function()
-			wait(.7)
-			pcall(function()
-				if Target.Character:FindFirstChildOfClass("Humanoid").Health >1 then
-					KillPlayer(Target,true)
-				end
-			end)
-		end)()
-		--[[if CurrentTeam and not Player.Team == CurrentTeam then
-			wait(.3)
-			ChangeTeam(CurrentTeam,true)
-		end]]
-	end
-	spawn(function()
-		while wait() do
-			for i,v in pairs(LoopKill) do
-				pcall(function()
-					if v.Player and v.Player.Character and v.Player.Character.Head and v.Player.Character.Humanoid.Health ~= 0 then
-						task.wait(0.5)
-						tKill(v.Player)
-					end
-				end)
-			end
-		end
-	end)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/chatspy", true))() -- Chatspy
-	local vu = game:GetService("VirtualUser") -- AntiAfk
-	game:GetService("Players").LocalPlayer.Idled:connect(function()
-		vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-		wait(1)
-		vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-	end)
-	Connections["OnChat"] = game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(data)
-	local Message = data.Message
-	local plr = game:service"Players"[data.FromSpeaker]
-	if plr.Name ~= getgenv().HostUser then
-		return
-	end
-	Message = string.lower(Message)
-	local Args = string.split(Message," ")
-	local AmountOfArgs = #Args
-
-	if Args[1] == ":bring" then
-		game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit = False
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Host.Character.Head.CFrame * CFrame.new(0,1,0)
-
-	elseif Message == ":rejoin" then
-		game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,game.JobId,game:GetService'Players'.LocalPlayer)
-
-	elseif Args[1] == ":tp" then
-		local FoundPlayer = GetPlayerFromString(Args[2])
-	if FoundPlayer then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FoundPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,2,0)
-	end
-	viewing = nil
-	elseif Args[1] == ":view" then
-		local TargetPlr =  GetPlayerFromString(Args[2])
-			if viewDied then
-				viewDied:Disconnect()
-				viewChanged:Disconnect()
-			end
-			viewing = TargetPlr
-			workspace.CurrentCamera.CameraSubject = TargetPlr.Character
-			local function viewDiedFunc()
-				repeat wait() until TargetPlr.Character ~= nil and getRoot(TargetPlr.Character)
-				workspace.CurrentCamera.CameraSubject = TargetPlr.Character
-			end	
-			viewDied = TargetPlr.CharacterAdded:Connect(viewDiedFunc)
-			local function viewChangedFunc()
-				workspace.CurrentCamera.CameraSubject = TargetPlr.Character
-			end
-			viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
-
-	elseif Message == ":unview" then
-		if viewing ~= nil then
-			viewing = nil
-		end
-		if viewDied then
-			viewDied:Disconnect()
-			viewChanged:Disconnect()
-		end
-		workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
-
-	elseif Message == ":clip" then
-			Noclipping:Disconnect()
-
-	elseif Message == ":reset" then
-		game.Players.LocalPlayer.Character.Humanoid.Health = -1
-		if tping == true then
-			LoopTping:Disconnect()
-		end
-
-	elseif Message == ":floss" then
-		if CurrAnim and CurrAnim.IsPlaying then
-			CurrAnim:Stop()
-		end
-		local Anim = Instance.new("Animation")
-		Anim.AnimationId = "http://www.roblox.com/asset/?id=5917459365"
-		CurrAnim = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(Anim)
-		CurrAnim:Play()
-		CurrAnim:AdjustSpeed()
-
-	elseif Message == ":shuffle" then
-		if CurrAnim and CurrAnim.IsPlaying then
-			CurrAnim:Stop()
-		end
-		local Anim = Instance.new("Animation")
-		Anim.AnimationId = "http://www.roblox.com/asset/?id=4349242221"
-		CurrAnim = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(Anim)
-		CurrAnim:Play()
-		CurrAnim:AdjustSpeed()
-
-	elseif Message == ":boom" then
-		if CurrAnim and CurrAnim.IsPlaying then
-			CurrAnim:Stop()
-		end
-		local Anim = Instance.new("Animation")
-		Anim.AnimationId = "http://www.roblox.com/asset/?id=15571448688"
-		CurrAnim = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(Anim)
-		CurrAnim:Play()
-		CurrAnim:AdjustSpeed()
-
-	elseif Message == ":log" then
-		game:Shutdown()
-
-	elseif Message == ":space" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9e9,9e9,9e9)
-
-	elseif Args[1] == ":ufling" then
-		game.Players.LocalPlayer.Character.Humanoid:ChangeState(14)
-		tping = true
-		local FoundPlayer = GetPlayerFromString(Args[2])
-	if FoundPlayer then
-		local function LoopTp()
-		if  game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit == true then
-			game.Players.LocalPlayer.Character.Humanoid.Sit = false
-		else
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FoundPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-8,8),0,math.random(-8,8))
-		end
-		end
-		LoopTping = game:GetService("RunService").Stepped:Connect(LoopTp)
-	end
-		for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-			if v:IsA("BasePart") then
-				v.CustomPhysicalProperties = PhysicalProperties.new(math.huge, 0.3, 0.5)
-			end
-		end
-		Clip = false
-		wait(0.1)
-		local function NoclipLoop()
-			if Clip == false and game.Players.LocalPlayer.Character ~= nil then
-				Noclip = true
-				for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-					if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
-						child.CanCollide = false
-					end
-				end
-			end
-		end
-		Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
-		wait(.1)
-		local bambam = Instance.new("BodyAngularVelocity")
-		bambam.Name = randomString()
-		bambam.Parent = getRoot(game.Players.LocalPlayer.Character)
-		bambam.AngularVelocity = Vector3.new(0,99999,0)
-		bambam.MaxTorque = Vector3.new(0,math.huge,0)
-		bambam.P = math.huge
-		local Char = game.Players.LocalPlayer.Character:GetChildren()
-		for i, v in next, Char do
-			if v:IsA("BasePart") then
-				v.CanCollide = false
-				v.Massless = true
-				v.Velocity = Vector3.new(0, 0, 0)
-			end
-		end
-		flinging = true
-		repeat
-			bambam.AngularVelocity = Vector3.new(0,99999,0)
-			wait(.2)
-			bambam.AngularVelocity = Vector3.new(0,0,0)
-			wait(.1)
-		until flinging == false
-
-	elseif Message == ":stopufling" then
-		if tping == true then
-			LoopTping:Disconnect()
-		end
-
-
-	elseif Message == ":coords" then
-	setclipboard(tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame))
-
-	elseif Message == ":cliff" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(52.4878502, 139.899948, -723.02655)
-	elseif Message == ":base" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-123.49057, -57.8000755, 152.757477)
-	elseif Message == ":tac" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(495.036804, 113.399979, -667.521912)
-	elseif Message == ":sg" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
-	elseif Message == ":rpg" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(89.0373077, -25.8500366, -267.091187)
-	elseif Message == ":db" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1078.67578, 105.154976, -233.942841)
-	elseif Message == ":rev" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-580.337524, 114.899979, -52.1758194)
-	elseif Message == ":bank" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-437.125885, 38.9783134, -285.587372)
-	elseif Message == ":pg" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-259.516907, 22.1498718, -762.971558)
-	elseif Message == ":gas" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(591.680725, 49.0000458, -256.818298)
-	elseif Message == ":plat" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-215.367538, -25.5009403, 288.070831)
-	elseif Message == ":higharmor" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-932.91626, -27.6000061, 556.413513)
-	elseif Message == ":flamearmor" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-938.566162, -1.07312286, 144.735718)
-	elseif Message == ":roof" then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-322.608459, 81.8456192, -257.353699)
-		
-	elseif Args[1] == "!s" then
-		local newStr = string.gsub(Message, "!s", "")
-		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(newStr, 'All'):
-
-	elseif Args[1] == ":fling" then
-		local FoundPlayer = GetPlayerFromString(Args[2])
-		if FoundPlayer then
-			local loopFunction = function()
-				player = game.Players.LocalPlayer
-				local Loop
-				local OldFlingPos =  game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-					local success,err = pcall(function()
-						local FlingEnemy = FoundPlayer.Character
-						if FlingEnemy and  game.Players.LocalPlayer.Character then
-							FlingTorso = FlingEnemy.UpperTorso
-							local dis = 5.7
-							local increase = 7
-							if FlingEnemy.Humanoid.MoveDirection.X < 0 then
-								xchange = -increase
-							elseif FlingEnemy.Humanoid.MoveDirection.X > 0  then
-								xchange = increase
-							else
-								xchange = 0
-							end
-							if FlingEnemy.Humanoid.MoveDirection.Z < 0 then
-								zchange = -increase
-							elseif FlingEnemy.Humanoid.MoveDirection.Z > 0 then
-								zchange = increase
-							else
-								zchange = 0
-							end          
-							if  game.Players.LocalPlayer.Character then
-								if  game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit == true then
-									game.Players.LocalPlayer.Character.Humanoid.Sit = false
-								else
-									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(FlingTorso.Position.X + math.random(-dis,dis) + xchange, FlingTorso.Position.Y, FlingTorso.Position.Z + math.random(-dis,dis) + zchange) * CFrame.Angles(math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.X + 350),math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.Y + 200),math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.Z + 240))
-									game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(500000,500000,500000)
-								end
-							end
-						end
-					end)
-				end
-				local Start = function()    
-					Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction)
-				end
-				local Pause = function()
-					Loop:Disconnect()
-					local vectorZero = Vector3.new(0, 0, 0)
-					game.Players.LocalPlayer.Character.PrimaryPart.Velocity = vectorZero
-					game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = vectorZero
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(OldFlingPos) * CFrame.Angles(math.rad(0),math.rad(137.92),math.rad(0))
-				end
-				Start()
-			end
-		elseif Message == ":stopfling" then
-				local loopFunction = function()
-					game.Players.LocalPlayer = game.Players.LocalPlayer
-					local Loop
-					local OldFlingPos =  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-						local success,err = pcall(function()
-							local FlingEnemy = FoundPlayer.Character
-							if FlingEnemy and  game.Players.LocalPlayer.Character then
-								FlingTorso = FlingEnemy.UpperTorso
-								local dis = 3.85
-								local increase = 6
-								if FlingEnemy.Humanoid.MoveDirection.X < 0 then
-									xchange = -increase
-								elseif FlingEnemy.Humanoid.MoveDirection.X > 0  then
-									xchange = increase
-								else
-									xchange = 0
-								end
-								if FlingEnemy.Humanoid.MoveDirection.Z < 0 then
-									zchange = -increase
-								elseif FlingEnemy.Humanoid.MoveDirection.Z > 0 then
-									zchange = increase
-								else
-									zchange = 0
-								end          
-								if  game.Players.LocalPlayer.Character then
-									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(FlingTorso.Position.X + math.random(-dis,dis) + xchange, FlingTorso.Position.Y, FlingTorso.Position.Z + math.random(-dis,dis) + zchange) * CFrame.Angles(math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.X + 350),math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.Y + 200),math.rad(game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation.Z + 240))
-									game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(500000,500000,500000)
-								end
-							end
-						end)
-					end
-					local Start = function()    
-						Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction)
-					end
-					local Pause = function()
-						Loop:Disconnect()
-						local vectorZero = Vector3.new(0, 0, 0)
-						game.Players.LocalPlayer.Character.PrimaryPart.Velocity = Vector3.new(0, 0, 0)
-						game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = Vector3.new(0, 0, 0)
-						task.wait(0.3)
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
-					end
-					Pause()
-		elseif Args[1] == ":kill" then
-		local Player = GetPlayerFromString(Args[2])
-			Kill(Player)
-		elseif Args[1] == ":arrest" then
-			local Player = GetPlayerFromString(Args[2])
-			Arrest(Player)
-		elseif Args[1] == ":crim" then
-			--local Player = GetPlayerFromString(Args[2])
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-919, 96, 2138)
-		elseif Args[1] == ":inmate" then
-			coroutine.wrap(function()
-				workspace.Remote.TeamEvent:FireServer("Medium stone grey")
-				workspace.Remote.TeamEvent:FireServer("Bright orange")
-			end)()		
-		elseif Args[1] == ":cop" then
-			coroutine.wrap(function()
-				workspace.Remote.TeamEvent:FireServer("Medium stone grey")
-				workspace.Remote.TeamEvent:FireServer("Bright blue")
-			end)()	
-		elseif Args[1] == ":lk" then
-			local Player = GetPlayerFromString(Args[2])
-		if Player ~= nil and not LoopKill[Player.UserId] then
-			LoopKill[Player.UserId] = {Player = Player}
-		end
-	elseif Args[1] == ":unlk" then
-		local Player = GetPlayerFromString(Args[2])
-		if Player ~= nil and LoopKill[Player.UserId] then
-			LoopKill[Player.UserId] = nil
-		end
-	elseif Message == ":ammo" then
-		States.Auto_RapidFire = true
-		game.Players.LocalPlayer.CharacterAdded:Connect(function()
-			game.Players.LocalPlayer.Character.ChildAdded:Connect(function(Item)
-				if States.Auto_RapidFire then
-					local Tool = game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool")
-					local Name
-					local Req
-					if Tool then
-						States.CAN = true
-						Name = Tool.Name
-						if Tool:FindFirstChild("GunStates") then
-							Req = require(Tool.GunStates)
-							Req["MaxAmmo"] = Req["MaxAmmo"]
-							Req["StoredAmmo"] = Req["StoredAmmo"]
-							Req["AmmoPerClip"] = Req["AmmoPerClip"]
-							Req["CurrentAmmo"] = Req["CurrentAmmo"]
-							Req["FireRate"] = -math.huge
-							Req["Bullets"] = 25
-							Req["Range"] = math.huge
-							Req["Damage"] = math.huge
-							Req["ReloadTime"] = -math.huge
-							Req["AutoFire"] = true
-						end
-					end
-					while wait() do
-						pcall(function()
-							if game.Players.LocalPlayer.Character:FindFirstChild(Name) and States.CAN then
-								if Req["CurrentAmmo"] < 1 then
-									Tool:Destroy()
-									workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[Name].ITEMPICKUP)
-									Tool = game.Players.LocalPlayer.Backpack:FindFirstChild(Name)
-									if Tool then
-										Name = Tool.Name
-										Tool.Parent = game.Players.LocalPlayer.Character
-										Tool = game.Players.LocalPlayer.Character[Name]
-										Req = require(Tool.GunStates)
-										Req["MaxAmmo"] = Req["MaxAmmo"]
-										Req["StoredAmmo"] = Req["StoredAmmo"]
-										Req["AmmoPerClip"] = Req["AmmoPerClip"]
-										Req["CurrentAmmo"] = Req["CurrentAmmo"]
-										Req["FireRate"] = -math.huge
-										Req["Bullets"] = 26
-										Req["Range"] = math.huge
-										Req["Damage"] = math.huge
-										Req["ReloadTime"] = -math.huge
-										Req["AutoFire"] = true
-									end
-								end
-							end
-						end)
-					end
-				end
-			end)
-		end)
-	elseif Args[1] == ":autore" then
-		States.Auto_Refresh = true
-		while wait() do
-			if States.Auto_Refresh == true then
-				pcall(function()
-					if game.Players.LocalPlayer.Character.Humanoid.Health < 1 then
-						if game.Players.LocalPlayer.TeamColor.Name ~= "Medium stone grey" then
-							if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-								local savedcf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-								local savedcamcf = workspace.CurrentCamera.CFrame
-								workspace.Remote.TeamEvent:FireServer("Medium stone grey")
-								workspace.Remote.TeamEvent:FireServer("Bright orange")
-								task.wait(0.35)
-								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
-								workspace.CurrentCamera.CFrame = savedcamcf
-							end
-						end
-					end
-				end)
-			end
-		end	
-	elseif Args[1] == ":dbring" then	
-		local CmdSettings = {}
-			local TargetPlr =  GetPlayerFromString(Args[2])
-			local c = game.Players.LocalPlayer.Character
-			local Root = c.HumanoidRootPart
-			local PrevCF = Root.CFrame
-			local TargetChar = TargetPlr.Character
-			if TargetPlr and TargetPlr.Character and TargetPlr.Character:FindFirstChild("Humanoid") then
-
-				if TargetChar.BodyEffects["K.O"].Value == true then
-					repeat
-						Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
-						game.Players.LocalPlayer.Character.Humanoid:ChangeState(2)
-						task.wait(0.3)
-						game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
-						task.wait(0.3)
-						Root.CFrame = PrevCF
-						task.wait(0.8)
-					until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
-					task.wait(0.3)
-					Root.CFrame = PrevCF
-					task.wait(0.8)
-					game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
-				else
-
-			CmdSettings["IsLocking"] = true
-
-			c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
-			--Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
-			if not c:FindFirstChild("Combat") then
-				c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)     
-			end
-			c["Combat"]:Activate()
-			task.wait(1.5)
-			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
-			repeat task.wait()
-				if  game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit == true then
-					game.Players.LocalPlayer.Character.Humanoid.Sit = false
-				else
-				Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
-					if not c:FindFirstChild("Combat") then
-						c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["Combat"])     
-					end
-				c["Combat"]:Activate()
-				end
-			until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == true
-			Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
-			if c.BodyEffects.Grabbed.Value ~= nil then
-
-			else
-			if not (not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false ) then
-				local args = {
-					[1] = "Grabbing",
-					[2] = false
-				}
-
-				game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
-			end
-
-		end
-			repeat wait(0.35)
-			if not (not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false ) then
-				for i,v in pairs(game:GetService("Workspace").MAP.Indestructible:GetDescendants()) do
-				if v:IsA("Part") then
-				v.CanCollide = true
-				end
-			end
-			Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
-			if c.BodyEffects.Grabbed.Value ~= nil then
-				else
-					if not (not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or TargetChar.BodyEffects["K.O"].Value == false)  then
-						local args = {
-							[1] = "Grabbing",
-							[2] = false
-						}
-						game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
-					end
-				end
-			end
-		until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false 
-
-		Root.CFrame = PrevCF
-
-		CmdSettings["IsLocking"] = nil
-		wait(1.5)
-		local args = {
-			[1] = "Grabbing",
-			[2] = false
-		}
-
-		game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
-		end
-	end
-	elseif Args[1] == ":pbring" then
-		local CmdSettings = {}
-			local TargetPlr =  GetPlayerFromString(Args[2])
-			local BringEnemy = TargetPlr.Character
-			local c = game.Players.LocalPlayer.Character
-			local Root = c.HumanoidRootPart
-			local PrevCF = Root.CFrame
-			local TargetChar = TargetPlr.Character
-			if TargetPlr and TargetPlr.Character and TargetPlr.Character:FindFirstChild("Humanoid") then
-
-				if TargetChar.BodyEffects["K.O"].Value == true then
-					repeat
-						Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
-						game.Players.LocalPlayer.Character.Humanoid:ChangeState(2)
-						task.wait(0.3)
-						game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
-						task.wait(0.3)
-						Root.CFrame = PrevCF
-						task.wait(0.8)
-					until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false				game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
-					task.wait(0.3)
-					Root.CFrame = PrevCF
-					task.wait(0.8)
-					game:GetService("ReplicatedStorage").MainEvent:FireServer("Grabbing",false)
-				else
-
-			CmdSettings["IsLocking"] = true
-
-			c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
-			--Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
-			if not game.Players.LocalPlayer.Backpack:FindFirstChild("[Pitchfork]") or not c:FindFirstChild("[Pitchfork]") then
-				local ItemCost = 339
-				local ClickDetector = game:GetService("Workspace").Ignored.Shop["[Pitchfork] - $339"].ClickDetector
-				local Location = game:GetService("Workspace").Ignored.Shop["[Pitchfork] - $339"].ClickDetector.Parent.Head.Position
-				OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-				local function buy()
-					wait()
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Location)
-					fireclickdetector(ClickDetector)
-				end
-				repeat buy() until game.Players.LocalPlayer.Backpack:FindFirstChild("[Pitchfork]") or game.Players.LocalPlayer.Character:FindFirstChild("[Pitchfork]")
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
-			end
-			if not c:FindFirstChild("[Pitchfork]") then
-				c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Pitchfork]"])     
-			end
-			c["[Pitchfork]"]:Activate()
-			task.wait(1.3)
-			Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
-			repeat game:GetService("RunService").Stepped:Wait()
-				if BringEnemy and game.Players.LocalPlayer.Character then
-					BringTorso = BringEnemy.UpperTorso
-					local dis = 4.84
-					local increase = 6
-					if BringEnemy.Humanoid.MoveDirection.X < 0 then
-						xchange = -increase
-					elseif BringEnemy.Humanoid.MoveDirection.X > 0  then
-						xchange = increase
-					else
-						xchange = 0
-					end
-					if BringEnemy.Humanoid.MoveDirection.Z < 0 then
-						zchange = -increase
-					elseif BringEnemy.Humanoid.MoveDirection.Z > 0 then
-						zchange = increase
-					else
-						zchange = 0
-					end
-					if game.Players.LocalPlayer.Character then
-						if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit == true then
-							game.Players.LocalPlayer.Character.Humanoid.Sit = false
-						else
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(BringTorso.Position.X + dis + xchange, BringTorso.Position.Y, BringTorso.Position.Z + dis + zchange)
-						end
-					end
-				end
-					if not c:FindFirstChild("[Pitchfork]") then
-						c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Pitchfork]"])     
-					end
-				c["[Pitchfork]"]:Activate()
-			until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == true
-			Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
-			if c.BodyEffects.Grabbed.Value ~= nil then
-
-			else
-			if not (not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false ) then
-				local args = {
-					[1] = "Grabbing",
-					[2] = false
-				}
-
-				game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
-			end
-
-		end
-			repeat wait(0.35)
-			if not (not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false ) then
-				for i,v in pairs(game:GetService("Workspace").MAP.Indestructible:GetDescendants()) do
-				if v:IsA("Part") then
-				v.CanCollide = true
-				end
-			end
-			Root.CFrame = CFrame.new(TargetChar.LowerTorso.Position)*CFrame.new(0,3,0)
-			if c.BodyEffects.Grabbed.Value ~= nil then
-				else
-					if not (not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or TargetChar.BodyEffects["K.O"].Value == false)  then
-						local args = {
-							[1] = "Grabbing",
-							[2] = false
-						}
-						game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
-					end
-				end
-			end
-		until not TargetPlr or not TargetChar or not c or not c:FindFirstChild("BodyEffects") or not c.BodyEffects:FindFirstChild("K.O") or not c.BodyEffects:FindFirstChild("Grabbed")  or c.BodyEffects["K.O"].Value == true or c.BodyEffects.Grabbed.Value ~= nil or not TargetChar or not TargetChar:FindFirstChild("BodyEffects") or not TargetChar.BodyEffects:FindFirstChild("K.O") or TargetChar.BodyEffects["K.O"].Value == false 
-
-		Root.CFrame = PrevCF
-
-		CmdSettings["IsLocking"] = nil
-		wait(1.5)
-		local args = {
-			[1] = "Grabbing",
-			[2] = false
-		}
-
-		game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
-		end
-	end
-	elseif Message == ":rspy" then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/78n/SimpleSpy/main/SimpleSpySource.lua"))()
-
-	elseif Message == ":armor" then
-		local ItemCost = 2440
-		local ClickDetector = game:GetService("Workspace").Ignored.Shop["[High-Medium Armor] - $2440"].ClickDetector
-		local Location = game:GetService("Workspace").Ignored.Shop["[High-Medium Armor] - $2440"].ClickDetector.Parent.Head.Position
-		OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-		local function buy()
-			wait()
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Location)
-			fireclickdetector(ClickDetector)
-		end
-		repeat buy() until game.Players.LocalPlayer.Character.BodyEffects.Armor.Value == 130 or game.Players.LocalPlayer.DataFolder.Currency.Value <= ItemCost or game.Players.LocalPlayer.Character.BodyEffects.Armor:FindFirstChild('God')
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
-
-	elseif Message == ":textures" then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/remove%20textures"))()
-
-	elseif Args[1] == ":vbring" then
-	local Player = GetPlayerFromString(Args[2])
-	vbring(Player, Host.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
-
-	elseif Args[1] == ":vcrim" then
-		local Player = GetPlayerFromString(Args[2])
-		vbring(Player, CFrame.new(-858.08990478516, 94.476051330566, 2093.8288574219))
-	elseif Args[1] == ":vlunch" then
-		local Player = GetPlayerFromString(Args[2])
-		vbring(Player, CFrame.new(905, 100, 2226))
-	elseif Args[1] == ":vnexus" then
-		local Player = GetPlayerFromString(Args[2])
-		vbring(Player, CFrame.new(-362.340332, 54.2398224, 1984.19775))
-	elseif Args[1] == ":vprison" then
-		local Player = GetPlayerFromString(Args[2])
-		vbring(Player, CFrame.new(918.028381, 99.9899826, 2371.59741))
-	elseif Args[1] == ":vroof" then
-		local Player = GetPlayerFromString(Args[2])
-		vbring(Player, CFrame.new(820.480591, 120.989983, 2311.49097))
-	elseif Args[1] == ":vyard" then
-		local Player = GetPlayerFromString(Args[2])
-		vbring(Player, CFrame.new(780.588379, 97.9999237, 2485.39795))
-	elseif Args[1] == ":vguard" then
-		local Player = GetPlayerFromString(Args[2])
-		vbring(Player, CFrame.new(833.242981, 99.9899826, 2266.13501))
-	elseif Args[1] == ":vbase1" then
-		local Player = GetPlayerFromString(Args[2])
-		vbring(Player, CFrame.new(-43.2018013, 11.0993261, 1301.39001))
-	elseif Args[1] == ":vgas" then
-		local Player = GetPlayerFromString(Args[2])
-		vbring(Player, CFrame.new(-518, 54, 1655))
-	elseif Args[1] == ":vheaven" then
-		local Player = GetPlayerFromString(Args[2])
-		vbring(Player, CFrame.new(2^7,5^34,4^7))
-
-	elseif Args[1] == ":tkill" then
-		local Player = GetPlayerFromString(Args[2])
-		tKill(Player)
-
-	elseif Args[1] == ":freeze" then
-		local a = game:GetService("RunService").Stepped:Connect(function()
-			pcall(function()
-				plr.Character:Destroy()
-			end)
-		end)
-		local a2 = plr.CharacterAdded:Connect(function(a)
-			pcall(function()
-				a:Destroy()
-			end)
-			pcall(function()
-				plr.Character:Destroy()
-			end)
-		end)
-		for i =1,1500 do
-			task.spawn(function()
-				workspace.Remote.TeamEvent:FireServer("Bright orange")
-			end)
-		end
-		wait(8)
-		a:Disconnect()
-		a2:Disconnect()
-		wait(.7)
-		task.spawn(function()
-			workspace.Remote.TeamEvent:FireServer("Bright orange")
-		end)
-
-	elseif Args[1] == ":sa" then
-	local Player = GetPlayerFromString(Args[2])
-		SpamArrest(Player)
-
-	elseif Args[1] == ":esp" then
-		States.Testesp = true
-		if States.Testesp then
-			repeat game:GetService("RunService").Stepped:Wait()
-				for _,v in pairs(game:GetService('Players'):GetChildren()) do
-					if v.Character then
-						if not v.Character.Head:FindFirstChild('ESP') then
-							local ESP = Instance.new('BillboardGui', v.Character.Head)
-							ESP.StudsOffset = Vector3.new(0,3,0)
-							ESP.Size = UDim2.new(4,0,1,0)
-							ESP.AlwaysOnTop = true
-							ESP.Name = 'ESP'
-							local TextLabel = Instance.new('TextLabel', ESP)
-							TextLabel.Text = (v.Name)
-							TextLabel.BackgroundTransparency = 1
-							TextLabel.Size = UDim2.new(1,0,1,0)
-							TextLabel.TextColor3 = v.TeamColor.Color
-						end
-					end
-				end
-			until not States.Testesp
-		end
-
-	elseif Args[1] == ":unesp" then
-		States.Testesp = nil
-		if not States.Testesp then
-			for _,v in pairs(Players:GetChildren()) do
-				if v.Character then
-					if v.Character.Head:FindFirstChild('ESP') then
-						v.Character.Head:FindFirstChild('ESP'):Destroy()
-						game:GetService("RunService").Stepped:Wait()
-					end
-				end
-			end
-		end
-
-	elseif Args[1] == ":bag" then
-		local Player = GetPlayerFromString(Args[2])
-		local CmdSettings = {}
-			local TargetPlr =  GetPlayerFromString(Args[2])
-			local BringEnemy = TargetPlr.Character
-			local c = game.Players.LocalPlayer.Character
-			local Root = c.HumanoidRootPart
-			local PrevCF = Root.CFrame
-			local TargetChar = TargetPlr.Character
-			if TargetPlr and TargetPlr.Character and TargetPlr.Character:FindFirstChild("Humanoid") then
-			CmdSettings["IsLocking"] = true
-				c.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
-					if not game.Players.LocalPlayer.Backpack:FindFirstChild("[BrownBag]") or not c:FindFirstChild("[BrownBag]") then
-					local ItemCost = 339
-					local ClickDetector = game:GetService("Workspace").Ignored.Shop["[BrownBag] - $27"].ClickDetector
-					local Location = game:GetService("Workspace").Ignored.Shop["[BrownBag] - $27"].ClickDetector.Parent.Head.Position
-					OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-					local function buy()
-						wait()
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Location)
-						fireclickdetector(ClickDetector)
-					end
-
-				repeat buy() until game.Players.LocalPlayer.Backpack:FindFirstChild("[BrownBag]") or game.Players.LocalPlayer.Character:FindFirstChild("[BrownBag]")
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
-			end
-
-			if not c:FindFirstChild("[BrownBag]") then
-				c.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[BrownBag]"])     
-			end
-
-			c["[BrownBag]"]:Activate()
-				task.wait(1)
-				Root.CFrame = CFrame.new(TargetChar.HumanoidRootPart.Position)*CFrame.new(0,1,3)
-				repeat game:GetService("RunService").Stepped:Wait()
-					if BringEnemy and game.Players.LocalPlayer.Character then
-						c["[BrownBag]"]:Activate()
-						BringTorso = BringEnemy.UpperTorso
-						local dis = 0
-						local increase = 5
-						local below = -5
-						if BringEnemy.Humanoid.MoveDirection.X < 0 then
-							xchange = -increase
-						elseif BringEnemy.Humanoid.MoveDirection.X > 0  then
-							xchange = increase
-						else
-							xchange = 0
-						end
-						if BringEnemy.Humanoid.MoveDirection.Z < 0 then
-							zchange = -increase
-						elseif BringEnemy.Humanoid.MoveDirection.Z > 0 then
-							zchange = increase
-						else
-							zchange = 0
-						end
-						if game.Players.LocalPlayer.Character then
-							if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit == true then
-								game.Players.LocalPlayer.Character.Humanoid.Sit = false
-							else
-							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(BringTorso.Position.X + dis + xchange, BringTorso.Position.Y + below, BringTorso.Position.Z + dis + zchange)
-							end
-						end
-					end
-				until not TargetPlr or not TargetChar or not c or TargetChar:FindFirstChild("Christmas_Sock")
-					Root.CFrame = CFrame.new(PrevCF)
-			end
-			
-		elseif Args[1] == ":cash" then
-			local Player = GetPlayerFromString(Args[2])
-			local enemy = Player
-			local CashAmount = enemy.Character.DataFolder.Currency.Value
-			local chat1 = "Player has"..CashAmount..""
-			local chat2 = "All"
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat1, chat2)
-				
-	elseif Args[1] == ":revbring" then
-	local Player = GetPlayerFromString(Args[2])
-
-	game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
-	if not game.Players.LocalPlayer.Backpack:FindFirstChild("[Revolver]") or not game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]") then
-	local ItemCost = 1379
-	local ClickDetector = game:GetService("Workspace").Ignored.Shop["[Revolver] - $1379"].ClickDetector
-	local Location = game:GetService("Workspace").Ignored.Shop["[Revolver] - $1379"].ClickDetector.Parent.Head.Position
-	OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-	local function buy()
-		wait()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Location)
-		fireclickdetector(ClickDetector)
-	end
-
-	repeat buy() until game.Players.LocalPlayer.Backpack:FindFirstChild("[Revolver]") or game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]")
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
-	end
-	Aimlocked = Player.Name
-
-
-	local Loop
-	local loopFunction = function()
-		local enemy = Player.Character
-		if enemy then
-			local pingvalue = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
-			local split = string.split(pingvalue,'(')
-			local ping = tonumber(split[1]) 
-			local xchange
-			local zchange
-			if ping < 70 then
-				increase = 0.9
-			elseif ping < 140 then
-				increase = 1.65
-			elseif ping < 200 then
-				increase = 0.95
-			elseif ping < 350 then
-				increase = 1.7
-			else 
-				increase = 1.8
-			end
-			if enemy.Humanoid.MoveDirection.X < 0 then
-				xchange = -increase
-			elseif enemy.Humanoid.MoveDirection.X > 0 then
-				xchange = increase
-			else
-				xchange = 0
-			end
-			if enemy.Humanoid.MoveDirection.Z < 0 then
-				zchange = -increase
-			elseif enemy.Humanoid.MoveDirection.Z > 0 then
-				zchange = increase
-			else
-				zchange = 0
-			end
-			pos = Vector3.new(enemy.UpperTorso.Position.X + enemy.Humanoid.MoveDirection.X + xchange, enemy.UpperTorso.Position.Y, enemy.UpperTorso.Position.Z + enemy.Humanoid.MoveDirection.Z + zchange)
-			if not game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]") then
-				game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Revolver]"])     
-			end
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.HumanoidRootPart.CFrame * CFrame.new(0,6,4)
-
-			game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
-			game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
-			game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
-			game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("ShootButton")
-			if game.Players.LocalPlayer.Character["[Revolver]"].Ammo.Value < 4 then
-				local args = {
-					[1] = "Reload",
-					[2] = game:GetService("Players").LocalPlayer.Character["[Revolver]"]
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
-			end
-		end
-	end
-
-
-	local Start = function()
-		Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction)
-	end
-	local Pause = function()
-		Loop:Disconnect()
-	end
-	spawn(function()
-
-	local revammo = game.Players.LocalPlayer.PlayerGui.MainScreenGui.AmmoFrame:FindFirstChild("AmmoText")
-	local ammotext = tonumber(revammo.Text)
-		if ammotext < 13 then
-			if not game.Players.LocalPlayer.Character:FindFirstChild("[Revolver]") then
-				game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["[Revolver]"])     
-			end
-			Pause()
-			if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
-				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame * CFrame.new(0,-3,0)
-				repeat task.wait()
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector.Parent.Head.CFrame * CFrame.new(0,-3,0)
-			fireclickdetector(game:GetService("Workspace").Ignored.Shop["12 [Revolver Ammo] - $80"].ClickDetector)
-			--Noclipping = RunService.Stepped:Connect(NoclipLoop)
-				until wait(6)
-			end
-			Start()
-		end
-	end)
-	Start()
-	repeat game:GetService("RunService").Stepped:Wait() until Player.Character.BodyEffects["K.O"].Value == true or game.Players.LocalPlayer.Character.Humanoid.Health < 10 --or game.Players.LocalPlayer.Character["[Revolver]"].Ammo.Value == 0
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
-	Pause()
-
-	elseif Args[1] == ":chatjoins" then
-	chattingjoin = true
-	elseif Args[1] == ":stopchatjoins" then
-	chattingjoin = false
-
-elseif Args[1] == ":antiauto" then
-if game.Workspace:FindFirstChild("AntiAutoKill") then
-game.Players.LocalPlayer.Character.PrimaryPart.Velocity = Vector3.new(0, 0, 0)
-game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = Vector3.new(0, 0, 0)
-task.wait()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-897.6600952148438, -650.0717163085938, -709.875732421875)
-else
-game.Workspace.FallenPartsDestroyHeight = -10000
-local part = Instance.new("Part")
-part.Size = Vector3.new(100, 2, 100)
-part.Name = "AntiAutoKill"
-part.Parent = game.Workspace
-part.Anchored = true
-local pl = game.Players.LocalPlayer.Character
-part.Position = Vector3.new(-897.6600952148438, -650.0717163085938, -709.875732421875)
-pl.HumanoidRootPart.CFrame = part.CFrame
+function getRoot(char)
+	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+	return rootPart
 end
-elseif Args[1] == ":antistomp" then
-	AntiStompActive = game:GetService("RunService").Stepped:Connect(AntiStompLoop)
 
-elseif Args[1] == ":unantistomp" then
-AntiStompActive:Disconnect()
-
+function Chat(Message, Whisper)
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Message, Whisper or "ALl")
 end
+
+function float()
+    local Float = Instance.new('Part')
+    Float.Parent = game.Players.LocalPlayer.Character
+    Float.Transparency = 1
+    Float.Size = Vector3.new(2,0.2,1.5)
+    Float.Anchored = true
+    local FloatValue = -3.46
+    Float.CFrame = hrp.CFrame * CFrame.new(0,FloatValue,0)
+end
+
+local admins = {}
+local loopkill = {}
+local states = {}
+local temp = {}
+local chattingjoin = false
+local summoned = false
+
+function getpos()
+    return hrp.CFrame
+end
+
+function getcampos()
+    return workspace.CurrentCamera.CFrame
+end
+
+function getteam()
+    return game.Players.LocalPlayer.TeamColor.Name
+end
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/chatspy", true))() -- Chatspy
+
+repeat wait() until game:IsLoaded()
+for i,v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do -- antiafk
+    v:Disable()
+end
+
+
+Connections["OnChat"] = game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(data)
+    local Message = data.Message
+    local plr = game.Players[data.FromSpeaker]
+    
+    -- Check if the player is not the owner and not an admin
+    if plr.Name ~= getgenv().owner --[[and not admins[plr.UserId]] then
+        return
+    end
+    
+    Message = string.lower(Message)
+    local Args = string.split(Message, " ")
+    local AmountOfArgs = #Args
+    
+    if Args[1] == ".admin" then
+        local Player = GetPlayerFromString(Args[2])
+        if Player ~= nil and not admins[Player.UserId] then
+            admins[Player.UserId] = {Player = Player}
+            Chat("/w "..Player.Name.." You've got admin permissions!")
+        end
+
+    elseif Args[1] == ".rejoin" then
+         game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer) 
+
+    elseif Args[1] == ".re" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(2^7,5^34,4^7)
+        task.wait(0.4)
+        game.Players.LocalPlayer.Character.Head:Destroy()
+        task.wait()
+        character.Humanoid.Health = 0
+
+    elseif Args[1] == ".log" then
+        game:Shutdown()
+
+    elseif Args[1] == ".bring" then
+        hrp.CFrame = plr.Character.Head.CFrame * CFrame.new(0,2,0)
+
+    elseif Args[1] == ".safety" then
+        if game.Workspace:FindFirstChild("SafetyPlat")then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
+         else
+             game.Workspace.FallenPartsDestroyHeight = -9e9
+             local part = Instance.new("Part")
+             part.Size = Vector3.new(100, 2, 100)
+             part.Name = "SafetyPlat"
+             part.Parent = game.Workspace
+             part.Anchored = true
+             local pl = game.Players.LocalPlayer.Character
+             part.Position = Vector3.new(-897.6600952148438, -2550.0717163085938, -709.875732421875)
+             pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
+         end
+
+    elseif Args[1] == ".summon" then
+        summoned = true
+        local player = game.Players.LocalPlayer
+        local Flyanimation = Instance.new('Animation', game.Workspace)
+        Flyanimation.AnimationId = 'rbxassetid://3541044388'
+        local Idleanimation = Instance.new('Animation', game.Workspace)
+        Idleanimation.AnimationId = 'rbxassetid://3541114300'
+        local HeroIdle = character.Humanoid:LoadAnimation(Idleanimation)
+        local HeroFly = character.Humanoid:LoadAnimation(Flyanimation)
+        Idleing2 = true
+        
+            local function flyanim()
+                    --HeroIdle:Stop()
+                    local FlyingA = false
+                    for i,v in pairs(character.Humanoid:GetPlayingAnimationTracks()) do
+                        if v.Animation.AnimationId == 'rbxassetid://3541044388' then
+                            FlyingA = false
+                        end
+                        if v.Animation.AnimationId == 'rbxassetid://2788289281' then
+                            v:Stop()
+                        end
+                        if v.Animation.AnimationId == 'rbxassetid://2788292075' then
+                            v:Stop()
+                        end
+                    end
+                    if FlyingA == false and Idleing2 == false then
+                        HeroFly:Play()
+                    end
+            end
+            repeat task.wait()
+            float()
+            HeroIdle:Play()
+            hrp.CFrame = plr.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
+            until summoned == false or not plr or not plr.Character or not character or not localplayer or not hrp or not plr.Character.HumanoidRootPart
+
+    elseif Args[1] == ".vanish" then
+        summoned = false
+        task.wait()
+        hrp.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
+        task.wait()
+        for i,v in pairs(character.Humanoid:GetPlayingAnimationTracks()) do
+            if v.Animation.AnimationId == 'rbxassetid://3541114300' then
+                v:Stop()
+            end
+        end
+
+    elseif Args[1] == ".goto" then
+    local Player = GetPlayerFromString(Args[2])
+    hrp.CFrame = Player.Character.Head.CFrame * CFrame.new(0,2,0)
+
+
+    end
 end)
 
-local mainacc = game.Players["Infusade"]
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Loaded!",
-	Text = "Version 9.6",
-	Icon = game:GetService("Players"):GetUserThumbnailAsync(mainacc.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
-})
---safety
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-719.766418, 144.024811, -821.530273)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	--[[repeat wait()
-	for i,v in pairs(game.Players:GetChildren()) do
-		if v.FollowUserId == "0" then --3453075190
-			local ohString1 = "/w Infusade"..v.Name.."Has joined you!"
-			local ohString2 = "All"
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ohString1, ohString2)
-			task.wait()
-		end
-	end
-	until chattingjoin == false]]
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "V 0.2";
+    Text = "PRE-RELEASE";
+    Duration = 10;})
