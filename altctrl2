@@ -1,4 +1,4 @@
-getgenv().owner = "feverplague"
+getgenv().owner = "pieasehang4"
 
 
 local admins = {}
@@ -184,6 +184,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.2";
+    Title = "V 0.3";
     Text = "PRE-RELEASE";
     Duration = 10;})
