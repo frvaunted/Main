@@ -145,6 +145,7 @@ elseif Args[1] == ".re" then
             task.wait()
             character.Humanoid.Health = 0
 
+getgenv().summoned = false
 
 elseif Args[1] == ".admin" then
         local Player = GetPlayerFromString(Args[2])
@@ -167,6 +168,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.3";
+    Title = "V 0.4";
     Text = "PRE-RELEASE";
     Duration = 10;})
