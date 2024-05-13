@@ -145,7 +145,7 @@ elseif Args[1] == ".re" then
             task.wait()
             character.Humanoid.Health = 0
 
-getgenv().summoned = nil
+getgenv().summoned = false
 elseif Args[1] == ".summon" then
     if getgenv().summoned ~= true then
         getgenv().summoned = true
