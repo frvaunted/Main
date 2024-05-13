@@ -147,15 +147,14 @@ elseif Args[1] == ".re" then
 
 getgenv().summoned = nil
 elseif Args[1] == ".summon" then
-    function summon()
-        while getgenv().summoned == true do task.wait()
+    if getgenv().summoned ~= true then
+        getgenv().summoned = true
+        while getgenv().summoned == true do 
+            task.wait()
             float()
             hrp.CFrame = Speaker.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
         until getgenv().summoned == false
-    end
-    if getgenv().summoned ~= true then
-        getgenv().summoned = true
-        summon()
+        end
     end
 
 elseif Args[1] == ".vanish" then
@@ -185,6 +184,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.1";
+    Title = "V 0.2";
     Text = "PRE-RELEASE";
     Duration = 10;})
