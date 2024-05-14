@@ -59,6 +59,15 @@ function getteam()
     return game.Players.LocalPlayer.TeamColor.Name
 end
 
+function float()
+    local Float = Instance.new('Part')
+    Float.Parent = game.Players.LocalPlayer.Character
+    Float.Transparency = 1
+    Float.Size = Vector3.new(2,0.2,1.5)
+    Float.Anchored = true
+    local FloatValue = -3.1
+    Float.CFrame = getRoot(game.Players.LocalPlayer.Character).CFrame * CFrame.new(0,FloatValue,0)
+end
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/chatspy", true))() -- Chatspy
 
@@ -135,19 +144,10 @@ elseif Args[1] == ".re" then
 
 getgenv().summoned = false
 elseif Args[1] == ".s" then
-    local player = game.Players.LocalPlayer
-    local torso = player.Character.HumanoidRootPart
     getgenv().summoned = true
     while getgenv().summoned == true do 
     repeat task.wait()
-        local bg = Instance.new("BodyGyro", torso)
-        bg.P = 9e4
-        bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-        bg.cframe = torso.CFrame
-        local bv = Instance.new("BodyVelocity", torso)
-        bv.velocity = Vector3.new(0,0.1,0)
-        bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-        game.Players.LocalPlayer.Character.Humanoid:ChangeState(14)
+        float()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Speaker.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
     until getgenv().summoned == false
     end
@@ -155,25 +155,13 @@ elseif Args[1] == ".s" then
 elseif Args[1] == ".v" then
         getgenv().summoned = false
         task.wait()
-        if bg then
-            bg.P = 0
-            bg.maxTorque = Vector3.new(0,0,0)
-            bv.velocity = Vector3.new(0,0,0)
-            bv.maxForce = Vector3.new(0,0,0)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
-        else
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
-        end
+
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
+
 elseif Args[1] == ".stop" then
     getgenv().summoned = false
     task.wait()
-    if bg then
-        bg.P = 0
-        bg.maxTorque = Vector3.new(0,0,0)
-        bv.velocity = Vector3.new(0,0,0)
-        bv.maxForce = Vector3.new(0,0,0)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
-    end
+    Float.CFrame = CFrame.new(0,0,0)
 
 local autodrop
 elseif Args[1] == ".autodrop" then
@@ -206,6 +194,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0";
+    Title = "V 1";
     Text = "PRE-RELEASE";
     Duration = 10;})
