@@ -156,12 +156,34 @@ elseif Args[1] == ".v" then
         getgenv().summoned = false
         task.wait()
         if bg then
-            bg:Destroy()
-            bv:Destroy()
+            bg.P = 0
+            bg.maxTorque = Vector3.new(0,0,0)
+            bv.velocity = Vector3.new(0,0,0)
+            bv.maxForce = Vector3.new(0,0,0)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
         else
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
         end
+elseif Args[1] == ".stop" then
+    getgenv().summoned = false
+    task.wait()
+    if bg then
+        bg.P = 0
+        bg.maxTorque = Vector3.new(0,0,0)
+        bv.velocity = Vector3.new(0,0,0)
+        bv.maxForce = Vector3.new(0,0,0)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
+    end
+
+local autodrop
+elseif Args[1] == ".autodrop" then
+autodrop = true
+while autodrop == true do task.wait()
+game:GetService("ReplicatedStorage").MainEvent:FireServer("DropMoney","10000")
+end
+
+elseif Args[1] == ".stopdrop" then
+autodrop = false
 
 elseif Args[1] == ".admin" then
         local Player = GetPlayerFromString(Args[2])
@@ -180,10 +202,10 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     part.Parent = game.Workspace
     part.Anchored = true
     local pl = game.Players.LocalPlayer.Character
-    part.Position = Vector3.new(-897.6600952148438, -2550.0717163085938, -709.875732421875)
+    part.Position = Vector3.new(-897.6600952148438, -3550.0717163085938, -709.875732421875)
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.12";
+    Title = "V 0";
     Text = "PRE-RELEASE";
     Duration = 10;})
