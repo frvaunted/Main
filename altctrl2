@@ -147,7 +147,6 @@ elseif Args[1] == ".re" then
 
 getgenv().summoned = false
 elseif Args[1] == ".summon" then
-    if getgenv().summoned ~= true then
         getgenv().summoned = true
         while getgenv().summoned == true do 
         repeat
@@ -156,13 +155,11 @@ elseif Args[1] == ".summon" then
             hrp.CFrame = Speaker.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
         until getgenv().summoned == false
         end
-    end
 
 elseif Args[1] == ".vanish" then
-    if getgenv().summoned == true then
         getgenv().summoned = false
+        task.wait(0.3)
         hrp.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
-    end
         
 elseif Args[1] == ".admin" then
         local Player = GetPlayerFromString(Args[2])
@@ -185,6 +182,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.1";
+    Title = "V 0.2";
     Text = "PRE-RELEASE";
     Duration = 10;})
