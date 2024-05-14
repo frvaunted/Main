@@ -135,22 +135,33 @@ elseif Args[1] == ".re" then
 
 getgenv().summoned = false
 elseif Args[1] == ".s" then
-    local plr = game.Players.LocalPlayer
-        getgenv().summoned = true
-        while getgenv().summoned == true do 
-        repeat task.wait()
-            local humanoid = plr.Character.Humanoid
-            humanoid.PlatformStand = true
-            humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Speaker.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
-        until getgenv().summoned == false
-        end
+    local player = game.Players.LocalPlayer
+    local torso = player.Character.Head
+    getgenv().summoned = true
+    while getgenv().summoned == true do 
+    repeat task.wait()
+        local bg = Instance.new("BodyGyro", torso)
+        bg.P = 9e4
+        bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+        bg.cframe = torso.CFrame
+        local bv = Instance.new("BodyVelocity", torso)
+        bv.velocity = Vector3.new(0, 5, 0) -- Set upward velocity to maintain floating
+        bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Speaker.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
+    until getgenv().summoned == false
+    end
 
 elseif Args[1] == ".v" then
         getgenv().summoned = false
         task.wait()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
-        
+        if bg then
+            bg:Destroy()
+            bv:Destroy()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
+        else
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SafetyPlat.CFrame * CFrame.new(0,5,0)
+        end
+
 elseif Args[1] == ".admin" then
         local Player = GetPlayerFromString(Args[2])
         if Player ~= nil and not admins[Player.UserId] then
@@ -172,6 +183,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.7";
+    Title = "V 0.8";
     Text = "PRE-RELEASE";
     Duration = 10;})
