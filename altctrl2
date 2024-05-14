@@ -136,7 +136,7 @@ elseif Args[1] == ".re" then
 getgenv().summoned = false
 elseif Args[1] == ".s" then
     local player = game.Players.LocalPlayer
-    local torso = player.Character.Head
+    local torso = player.Character.HumanoidRootPart
     getgenv().summoned = true
     while getgenv().summoned == true do 
     repeat task.wait()
@@ -145,8 +145,9 @@ elseif Args[1] == ".s" then
         bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
         bg.cframe = torso.CFrame
         local bv = Instance.new("BodyVelocity", torso)
-        bv.velocity = Vector3.new(0, 5, 0) -- Set upward velocity to maintain floating
+        bv.velocity = Vector3.new(0,0.1,0)
         bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+        player.Character:FindFirstChildWhichIsA('Humanoid').PlatformStand = true
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Speaker.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
     until getgenv().summoned == false
     end
@@ -183,6 +184,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.8";
+    Title = "V 0.9";
     Text = "PRE-RELEASE";
     Duration = 10;})
