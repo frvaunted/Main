@@ -95,7 +95,7 @@ if Args[1] == ".bring" then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Speaker.Character.Head.CFrame * CFrame.new(0,1,0)
 
 elseif Message == ".rejoin" then
-	game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,game.JobId,game:GetService'Players'.LocalPlayer)
+	game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer)
 
 elseif Args[1] == ".goto" then
 	local FoundPlayer = GetPlayerFromString(Args[2])
@@ -162,6 +162,9 @@ elseif Args[1] == ".stop" then
     getgenv().summoned = false
     task.wait()
     Float.CFrame = CFrame.new(0,0,0)
+    if CurrAnim and CurrAnim.IsPlaying then
+        CurrAnim:Stop()
+    end
 
 local autodrop
 elseif Args[1] == ".autodrop" then
@@ -172,6 +175,23 @@ end
 
 elseif Args[1] == ".stopdrop" then
 autodrop = false
+
+elseif Args[1] == "!s" then
+	local newStr = string.gsub(Message, "!s", "")
+	game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(newStr, 'All')
+
+elseif Message == ";boom" then
+    if CurrAnim and CurrAnim.IsPlaying then
+        CurrAnim:Stop()
+    end
+    local Anim = Instance.new("Animation")
+    Anim.AnimationId = "http://www.roblox.com/asset/?id=15571448688"
+    CurrAnim = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(Anim)
+    CurrAnim:Play()
+    CurrAnim:AdjustSpeed()
+
+
+
 
 elseif Args[1] == ".admin" then
         local Player = GetPlayerFromString(Args[2])
@@ -194,6 +214,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 1";
+    Title = "V 2";
     Text = "PRE-RELEASE";
     Duration = 10;})
