@@ -39,15 +39,6 @@ function Chat(Message, Whisper)
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Message, Whisper or "ALl")
 end
 
-function float()
-    local Float = Instance.new('Part')
-    Float.Parent = game.Players.LocalPlayer.Character
-    Float.Transparency = 1
-    Float.Size = Vector3.new(2,0.2,1.5)
-    Float.Anchored = true
-    local FloatValue = -3.46
-    Float.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,FloatValue,0)
-end
 
 local admins = {}
 local loopkill = {}
@@ -144,11 +135,29 @@ elseif Args[1] == ".re" then
 
 getgenv().summoned = false
 elseif Args[1] == ".s" then
+    local plr = game.Players.LocalPlayer
+    local Humanoid = plr.Character:FindFirstChildWhichIsA('Humanoid')
+    local mouse = plr:GetMouse()
+    localplayer = plr
+    if workspace:FindFirstChild("Core") then
+        workspace.Core:Destroy()
+    end
+    local Core = Instance.new("Part")
+    Core.Name = "Core"
+    Core.Size = Vector3.new(0.05, 0.05, 0.05)
+    spawn(function()
+        Core.Parent = workspace
+        local Weld = Instance.new("Weld", Core)
+        Weld.Part0 = Core
+        Weld.Part1 = localplayer.Character.LowerTorso
+        Weld.C0 = CFrame.new(0, 0, 0)
+    end)
+    workspace:WaitForChild("Core")
+    local torso = workspace.Core
         getgenv().summoned = true
         while getgenv().summoned == true do 
         repeat
             task.wait()
-            float()
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Speaker.Character.HumanoidRootPart.CFrame * CFrame.new(0,3,5)
         until getgenv().summoned == false
         end
@@ -179,6 +188,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.4";
+    Title = "V 0.5";
     Text = "PRE-RELEASE";
     Duration = 10;})
