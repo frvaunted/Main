@@ -29,6 +29,29 @@ local function GetPlayerFromString(str,ignore)
 	end
 	return nil
 end
+local function GetGamePlayerFromString(str, ignore)
+    for _, Targ in pairs(game.Players:GetPlayers()) do 
+        if not ignore and Targ == localplayer then
+            continue
+        end
+        if Targ.Name:lower():sub(1, #str) == str:lower() or Targ.DisplayName:lower():sub(1, #str) == str:lower() then
+            return Targ, Targ.Character
+        end
+    end
+    return nil
+end
+
+local function GetGamePlayerFromString(str,ignore)
+	for i,Targ in pairs(game.Players:GetPlayers()) do 
+		if not ignore and Targ == localplayer then
+			continue
+		end
+		if Targ.Name:lower():sub(1,#str) == str:lower() or  Targ.DisplayName:lower():sub(1,#str) == str:lower()  then
+			return Targ
+		end
+	end
+	return nil
+end
 
 function getRoot(char)
 	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
@@ -187,12 +210,15 @@ elseif Message == ".log" then
     game:Shutdown()
 
 elseif Args[1] == ";cash" then
-	local Player = GetPlayerFromString(Args[2])
-	local CashAmount = Player.Character.DataFolder.Currency.Value
-	local chat1 = "Player has"..CashAmount..""
-	local chat2 = "All"
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat1, chat2)
-
+    local Player, Character = GetGamePlayerFromString(Args[2])
+    if Player then
+        local CashAmount = Player.DataFolder.Currency.Value
+        local chat1 = "Player has " .. CashAmount
+        local chat2 = "All"
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat1, chat2)
+    else
+    print("Player not found")
+    end
 
 elseif Args[1] == ".admin" then
         local Player = GetPlayerFromString(Args[2])
@@ -219,6 +245,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 2";
+    Title = "V 0.1";
     Text = "PRE-RELEASE";
     Duration = 10;})
