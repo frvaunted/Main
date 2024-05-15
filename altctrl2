@@ -1,4 +1,4 @@
-getgenv().owner = "9kxm"
+getgenv().owner = "feverplague"
 
 
 local admins = {3928865898}
@@ -69,6 +69,13 @@ local states = {}
 local temp = {}
 local chattingjoin = false
 local summoned = false
+local suffixes = {"K", "M", "B", "T", "Q"} -- numbers don't go higher than 'Q' in Lua.
+
+function toSuffixString(n)
+    local i = math.floor(math.log(n, 1e3))
+    local v = math.pow(10, i * 3)
+    return ("%.1f"):format(n / v):gsub("%.?0+$", "") .. (suffixes[i] or "")
+end
 
 function getpos()
     return hrp.CFrame
@@ -209,16 +216,53 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
 elseif Message == ".log" then
     game:Shutdown()
 
-elseif Args[1] == ";cash" then
-    local Player, Character = GetGamePlayerFromString(Args[2])
+elseif Args[1] == ".cash" then
+    local Player, Character = GetPlayerFromString(Args[2])
     if Player then
         local CashAmount = Player.DataFolder.Currency.Value
-        local chat1 = "Player has " .. math.floor(CashAmount)
+        local formattedCash = toSuffixString(CashAmount)
+        local chat1 = "Player has " .. formattedCash
         local chat2 = "All"
         game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat1, chat2)
     else
-    print("Player not found")
+        print("Player not found")
     end
+flinging = false
+elseif Args[1] == ".fling" then
+flinging = true
+oldcf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+local FlingTarget = GetPlayerFromString(Args[2])
+local BodyAngularVelocity = Instance.new("BodyAngularVelocity")
+BodyAngularVelocity.AngularVelocity = Vector3.new(10^6, 10^6, 10^6)
+BodyAngularVelocity.MaxTorque = Vector3.new(10^6, 10^6, 10^6)
+BodyAngularVelocity.P = 10^6
+    if not FlingTarget then return end
+    BodyAngularVelocity.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+    while flinging == true do
+        game:GetService("RunService").RenderStepped:Wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FlingTarget.Character.HumanoidRootPart.CFrame * game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Rotation
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new()
+     end
+
+elseif Args[1] == ".unfling" then
+    flinging = false
+    BodyAngularVelocity.Parent = nil
+    if BodyAngularVelocity then
+    BodyAngularVelocity:Destroy()
+    end
+    game.Players.LocalPlayer.Character.PrimaryPart.Velocity = Vector3.new(0, 0, 0)
+    game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = Vector3.new(0, 0, 0)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldcf
+
+
+
+
+
+
+
+
+
+
 
 elseif Args[1] == ".admin" then
         local Player = GetPlayerFromString(Args[2])
@@ -227,9 +271,6 @@ elseif Args[1] == ".admin" then
             Chat("/w "..Player.Name.." You've got admin permissions!")
         end
 elseif Args[1] == ".unadmin" then
-
-elseif Args[1] == "." then
-
 
     end
 end)
@@ -245,6 +286,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.3";
+    Title = "V 0.4";
     Text = "PRE-RELEASE";
     Duration = 10;})
