@@ -1,7 +1,7 @@
 getgenv().owner = "feverplague"
 
 
-local admins = {3928865898,}
+local admins = {3928865898}
 local Connections = {}
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -213,7 +213,7 @@ elseif Args[1] == ";cash" then
     local Player, Character = GetGamePlayerFromString(Args[2])
     if Player then
         local CashAmount = Player.DataFolder.Currency.Value
-        local chat1 = "Player has " .. CashAmount
+        local chat1 = "Player has " .. Math.Floor(CashAmount)
         local chat2 = "All"
         game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat1, chat2)
     else
@@ -245,6 +245,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.1";
+    Title = "V 0.2";
     Text = "PRE-RELEASE";
     Duration = 10;})
