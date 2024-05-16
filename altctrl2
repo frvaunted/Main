@@ -229,8 +229,17 @@ local targetPlayer
 elseif Args[1] == ".fling" then
     targetPlayer = GetPlayerFromString(Args[2])
     flinging = true
-
-elseif Args[1] == ".stop" then
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if flinging and targetPlayer then
+            local predictedPosition = PredictPosition(targetPlayer)
+            if predictedPosition then
+                local offset = (predictedPosition - targetPlayer.Character.HumanoidRootPart.Position).Unit * 1
+                local finalPosition = predictedPosition + offset
+                TeleportToPosition(finalPosition)
+            end
+        end
+    end)
+elseif Args[1] == ".unfling" then
     flinging = false
 
 
@@ -255,16 +264,6 @@ elseif Args[1] == ".unadmin" then
     end
 end)
 
-game:GetService("RunService").Heartbeat:Connect(function()
-    if flinging and targetPlayer then
-        local predictedPosition = PredictPosition(targetPlayer)
-        if predictedPosition then
-            local offset = (predictedPosition - targetPlayer.Character.HumanoidRootPart.Position).Unit * 5
-            local finalPosition = predictedPosition + offset
-            TeleportToPosition(finalPosition)
-        end
-    end
-end)
 
 game.Workspace.FallenPartsDestroyHeight = -9e9
     local part = Instance.new("Part")
@@ -277,6 +276,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.1";
+    Title = "V 0.2";
     Text = "PRE-RELEASE";
     Duration = 10;})
