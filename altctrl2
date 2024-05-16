@@ -1,4 +1,4 @@
-getgenv().owner = "9kxm"
+getgenv().owner = "feverplague"
 
 
 local admins = {3928865898}
@@ -29,29 +29,6 @@ local function GetPlayerFromString(str,ignore)
 	end
 	return nil
 end
-local function GetGamePlayerFromString(str, ignore)
-    for _, Targ in pairs(game.Players:GetPlayers()) do 
-        if not ignore and Targ == localplayer then
-            continue
-        end
-        if Targ.Name:lower():sub(1, #str) == str:lower() or Targ.DisplayName:lower():sub(1, #str) == str:lower() then
-            return Targ, Targ.Character
-        end
-    end
-    return nil
-end
-
-local function GetGamePlayerFromString(str,ignore)
-	for i,Targ in pairs(game.Players:GetPlayers()) do 
-		if not ignore and Targ == localplayer then
-			continue
-		end
-		if Targ.Name:lower():sub(1,#str) == str:lower() or  Targ.DisplayName:lower():sub(1,#str) == str:lower()  then
-			return Targ
-		end
-	end
-	return nil
-end
 
 function getRoot(char)
 	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
@@ -69,7 +46,7 @@ local states = {}
 local temp = {}
 local chattingjoin = false
 local summoned = false
-local suffixes = {"K", "M", "B", "T", "Q"} -- numbers don't go higher than 'Q' in Lua.
+local suffixes = {"K", "M", "B", "T", "Q"}
 
 function toSuffixString(n)
     local i = math.floor(math.log(n, 1e3))
@@ -99,6 +76,27 @@ function float()
     Float.CFrame = getRoot(game.Players.LocalPlayer.Character).CFrame * CFrame.new(0,FloatValue,0)
 end
 
+function PredictPosition(target)
+    local character = target.Character
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local rootPart = character.HumanoidRootPart
+        local velocity = rootPart.Velocity
+        local position = rootPart.Position
+        local lookVector = rootPart.CFrame.LookVector
+        local predictionTime = 0.1
+        
+        local predictedPosition = position + velocity * predictionTime
+        return predictedPosition
+    end
+    return nil
+end
+
+function TeleportToPosition(position)  
+    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(position)
+    end
+end
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/frvaunted/a/main/chatspy", true))() -- Chatspy
 
 repeat wait() until game:IsLoaded()
@@ -110,8 +108,6 @@ end
 Connections["OnChat"] = game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(data)
     local Message = data.Message
     local Speaker = game.Players[data.FromSpeaker]
-    
-    -- Check if the player is not the owner and not an admin
     if Speaker.Name ~= getgenv().owner and not admins[Speaker.UserId] then
         return
     end
@@ -227,33 +223,16 @@ elseif Args[1] == ".cash" then
     else
         print("Player not found")
     end
-flinging = false
-elseif Args[1] == ".fling" then
-flinging = true
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FlingTarget.Character.HumanoidRootPart.CFrame * game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Rotation
-oldcf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-local FlingTarget = GetPlayerFromString(Args[2])
-local BodyAngularVelocity = Instance.new("BodyAngularVelocity")
-BodyAngularVelocity.AngularVelocity = Vector3.new(10^6, 10^6, 10^6)
-BodyAngularVelocity.MaxTorque = Vector3.new(10^6, 10^6, 10^6)
-BodyAngularVelocity.P = 10^6
-    if not FlingTarget then return end
-    BodyAngularVelocity.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-    while flinging == true do
-        game:GetService("RunService").RenderStepped:Wait()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = FlingTarget.Character.HumanoidRootPart.CFrame * game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Rotation
-        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new()
-     end
 
-elseif Args[1] == ".unfling" then
+local flinging = false
+local targetPlayer
+elseif Args[1] == ".fling" then
+    targetPlayer = GetPlayerFromString(Args[2])
+    flinging = true
+
+elseif Args[1] == ".stop" then
     flinging = false
-    BodyAngularVelocity.Parent = nil
-    if BodyAngularVelocity then
-    BodyAngularVelocity:Destroy()
-    end
-    game.Players.LocalPlayer.Character.PrimaryPart.Velocity = Vector3.new(0, 0, 0)
-    game.Players.LocalPlayer.Character.PrimaryPart.RotVelocity = Vector3.new(0, 0, 0)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldcf
+
 
 
 
@@ -276,6 +255,17 @@ elseif Args[1] == ".unadmin" then
     end
 end)
 
+game:GetService("RunService").Heartbeat:Connect(function()
+    if flinging and targetPlayer then
+        local predictedPosition = PredictPosition(targetPlayer)
+        if predictedPosition then
+            local offset = (predictedPosition - targetPlayer.Character.HumanoidRootPart.Position).Unit * 5
+            local finalPosition = predictedPosition + offset
+            TeleportToPosition(finalPosition)
+        end
+    end
+end)
+
 game.Workspace.FallenPartsDestroyHeight = -9e9
     local part = Instance.new("Part")
     part.Size = Vector3.new(100, 2, 100)
@@ -287,6 +277,6 @@ game.Workspace.FallenPartsDestroyHeight = -9e9
     pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,5,0)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "V 0.5";
+    Title = "V 0.1";
     Text = "PRE-RELEASE";
     Duration = 10;})
