@@ -1,0 +1,150 @@
+_G.a = true
+local lowFireRateWeapons = {
+    "Revolver",
+    "Trench Shotgun",
+    "Sniper",
+    "Tactical Shotgun",
+    "Cobra",
+    "Fiery Cannon",
+    "Venom",
+    "Invader Crossbow"
+}
+
+local lowFireRateCooldown = 0.65 
+local highFireRateCooldown = 0.01  
+
+function getRoot(char)
+    local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+    return rootPart
+end
+
+local function createFloat()
+    local Float = Instance.new('Part')
+    Float.Parent = game.Players.LocalPlayer.Character
+    Float.Transparency = 1
+    Float.Size = Vector3.new(2, 0.2, 1.5)
+    Float.Anchored = true
+    local FloatValue = -3.1
+
+    coroutine.wrap(function()
+        while _G.a do
+            Float.CFrame = getRoot(game.Players.LocalPlayer.Character).CFrame * CFrame.new(0, FloatValue, 0)
+            task.wait()
+        end
+    end)()
+end
+
+createFloat()
+
+function getWeaponName()
+    local player = game.Players.LocalPlayer
+    local tool
+    for _, item in ipairs(player.Backpack:GetChildren()) do
+        if item:IsA("Tool") and item:FindFirstChild("GunController") then
+            tool = item
+            break
+        end
+    end
+    if not tool then
+        for _, item in ipairs(player.Character:GetChildren()) do
+            if item:IsA("Tool") and item:FindFirstChild("GunController") then
+                tool = item
+                break
+            end
+        end
+    end
+    if tool then
+        return tool.Name
+    end
+    return "Unknown"
+end
+
+function equipGun()
+    local player = game.Players.LocalPlayer
+    local tool = nil
+    for _, item in ipairs(player.Backpack:GetChildren()) do
+        if item:IsA("Tool") and item:FindFirstChild("GunController") then
+            tool = item
+            break
+        end
+    end
+    if tool then
+        player.Character.Humanoid:EquipTool(tool)
+    end
+end
+
+function fireGun(enemy)
+    local weaponName = getWeaponName()
+    local args = {
+        [1] = {
+            ["Normal"] = Vector3.yAxis,
+            ["Direction"] = (enemy.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).unit,
+            ["Name"] = weaponName,
+            ["Hit"] = enemy,
+            ["Origin"] = game.Players.LocalPlayer.Character.HumanoidRootPart.Position,
+            ["Pos"] = enemy.Position
+        }
+    }
+
+    game:GetService("ReplicatedStorage"):WaitForChild("Gun"):FireServer(unpack(args))
+end
+
+local function fireGunCoroutine(enemy)
+    coroutine.wrap(function()
+        local weaponName = getWeaponName()
+        local cooldown = highFireRateCooldown
+        if table.find(lowFireRateWeapons, weaponName) then
+            cooldown = lowFireRateCooldown
+        end
+        while enemy and enemy.Parent and enemy.Parent:FindFirstChild("Humanoid") and enemy.Parent.Humanoid.Health > 0.1 do
+            fireGun(enemy)
+            task.wait(cooldown)
+        end
+    end)()
+end
+
+function looptp(enemy)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.CFrame * CFrame.new(0, 18, 0) * CFrame.Angles(math.rad(-90), 0, 0)
+    task.wait()
+    workspace.CurrentCamera.CameraSubject = enemy
+end
+
+function autofarm()
+    while true do
+        local foundEnemy = false
+        local target
+        for _, boss in pairs(workspace:FindFirstChild("BossFolder"):GetChildren()) do
+            if boss:FindFirstChild("Humanoid") and boss.Humanoid.Health > 1 then
+                target = boss
+                break
+            end
+        end
+
+        if not target then
+            for i, v in pairs(workspace.enemies:GetDescendants()) do
+                if v.Parent and v.Name == "HumanoidRootPart" and v.Parent:FindFirstChild("Humanoid") and v.Parent.Humanoid.Health > 0.1 then
+                    target = v.Parent
+                    break
+                end
+            end
+        end
+        if target then
+            foundEnemy = true
+            fireGunCoroutine(target.HumanoidRootPart)
+            repeat
+                looptp(target.HumanoidRootPart)
+            until not target or not target:FindFirstChild("Humanoid") or not target.HumanoidRootPart or target.Humanoid.Health <= 1
+        end
+        if not foundEnemy then
+            task.wait()
+        end
+    end
+end
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    task.wait(0.5)  
+    equipGun()
+end)
+
+equipGun()
+autofarm()
