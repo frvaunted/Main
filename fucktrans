@@ -274,7 +274,7 @@ TITLE.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TITLE.BorderSizePixel = 0;
 TITLE.Size = UDim2.new(1, 0, 0, 17)
 TITLE.Font = Enum.Font.RobotoMono;
-TITLE.Text = "| IKU AUTOFARM - @trans"
+TITLE.Text = "| IKU AUTOFARM - @ewnigga"
 TITLE.TextColor3 = Color3.fromRGB(101, 44, 180)
 TITLE.TextScaled = true;
 TITLE.TextSize = 17.000;
@@ -1010,7 +1010,7 @@ end)
 task.spawn(function()
 	while true and task.wait(_G.AutofarmSettings.LogInterval * 60) do
         local s, e = pcall(function()
-            SendLog(_G.AutofarmSettings.Webhook, {Player.Name, Player.UserId, WALLET.Text, PROFIT.Text, TIMER.Text, BROKEN.Text, "| iku autofarm by @trans"})
+            SendLog(_G.AutofarmSettings.Webhook, {Player.Name, Player.UserId, WALLET.Text, PROFIT.Text, TIMER.Text, BROKEN.Text, "| iku autofarm by @ewnigga"})
         end)
         if (e) then 
             Log("error while sending log:\n"..tostring(e).."\n")
