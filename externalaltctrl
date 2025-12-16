@@ -914,21 +914,11 @@ loadstring(game:HttpGet("https://pastebin.com/raw/5LUmhUw3", true))()
         end
         
     elseif command == "v" then
-        if #flingingTargets > 0 then
-            unfling()
-        elseif randomVanishEnabled then
-            randomVanishEnabled = false
-            if randomVanishConnection then
-                randomVanishConnection:Disconnect()
-                randomVanishConnection = nil
-            end
-            local char = LocalPlayer.Character
-            if char then
-                local hrp = char:FindFirstChild("HumanoidRootPart")
-                if hrp then hrp.CFrame = CFrame.new(teleportPosition) end
-            end
+        if args[2] then
+            local target = GetPlayerFromString(args[2])
+            unfling(target)
         else
-            vanish()
+            unfling()
         end
     elseif command == ".friends" then
             local Player = GetPlayerFromString(args[2])
@@ -1294,4 +1284,4 @@ end
 
 game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterRespawn)
 
-print("v2")
+print("v3")
